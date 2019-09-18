@@ -6,7 +6,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <div className='Admin-panel'>
+            <img src={logo} className="App-logo" alt="logo" />
+            <span className='Title-span'>Административная панель</span>
+        </div>
+        
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
