@@ -1,6 +1,6 @@
 <template>
   <div class="projects-list">
-    <!-- <div class='hidden-info'>{{ info }}</div> -->
+   <div class='hidden-info'>{{ info }}</div> 
      <span class='project-container' v-for="n in info" v-bind:key='info.id'>
        <div @click="showSingle(n.image)" class='box-img'> 
             <img  :src="n.image" />

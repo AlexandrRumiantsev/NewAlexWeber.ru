@@ -1,6 +1,15 @@
 .App {
   text-align: center;
 }
+.Menu-item
+{
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #000;
+    padding: 10px;
+    border-radius: 10px;
+    }
 .Title-span{
    position: absolute;
     left: 80px;

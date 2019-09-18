@@ -4,7 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import Projects from './Projects';
+
+
 ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Projects />, document.getElementById('project'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
