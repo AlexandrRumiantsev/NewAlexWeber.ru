@@ -1,0 +1,79 @@
+body {
+    display: block;
+    margin: 0;
+}
+.HeaderMenu{
+    background: whitesmoke;
+    height: 50px;
+    width: 100%;
+    display: inline;
+    position: absolute;
+    text-align: center;
+}
+#root{
+
+}
+.line{
+    display:flex;
+    justify-content: center;
+}
+.row{
+    font-size: 18px;
+    width: 25%;
+    text-align: left;
+    margin: 5px;
+}
+.Authorization{
+   padding: 55px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 500px;
+    margin: 10% auto;
+    text-align: center;
+}
+.sbm < span{
+    width: 500px;
+}
+.sbm{
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+    border: 1px solid;
+    margin: 15px auto;
+    border: 1px solid #e0dede;
+    border-radius: 5px;
+}
+.Body{
+   padding: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background: white;
+    position: relative;
+    top: 85px;
+    max-width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+.Footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: whitesmoke;
+    height: 50px;
+    text-align: center;
+}
+.Item-menu{
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin: 10px;
+    border-radius: 45px;
+}
+.menu-in-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px;
+}
+#log , #pass{
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #e0dede;
+}
