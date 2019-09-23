@@ -8,7 +8,17 @@ class Body extends React.Component {
   }
   
   render() {
-    return <div>{this.props.tmp.map(n => <div key={n._id}>{n.name}</div>)}</div>
+    return <div>
+              {this.props.tmp.map(n => 
+                    <div key={n._id}>
+                    <main>
+                        {n.name}
+                        {n.image}
+                        {n.imageFull}
+                    </main>     
+                    </div>
+                )
+              }</div>
   }
 }
 

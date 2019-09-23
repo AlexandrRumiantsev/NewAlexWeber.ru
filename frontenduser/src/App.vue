@@ -13,27 +13,27 @@
         -->
         
         
-        <div  @click="activePage(1)" class="svg-wrapper">
+        <div  @click="show = 1" class="svg-wrapper">
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-            <rect class="shape" v-bind:class="{ active: isActiveOnePage }" height="60" width="320" />
+            <rect class="shape" height="60" width="320" />
           </svg>
            <div class="text">
-                ГЛАВНАЯ
+               ГЛАВНАЯ
            </div>
         </div>
         
-         <div   @click="activePage(2)" class="svg-wrapper">
+         <div  @click="show = 2" class="svg-wrapper">
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-            <rect class="shape" v-bind:class="{ active: isActiveTwoPage }" height="60" width="320" />
+            <rect class="shape" height="60" width="320" />
           </svg>
            <a class="text">
                 ПОРТФОЛИО
           </a>
         </div>
         
-         <div   @click="activePage(3)" class="svg-wrapper">
+         <div  @click="show = 3" class="svg-wrapper">
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-            <rect class="shape" v-bind:class="{ active: isActiveThreePage }" height="60" width="320" />
+            <rect class="shape" height="60" width="320" />
           </svg>
            <div class="text">
               КОНТАКТЫ
@@ -49,9 +49,11 @@
                 <div class="main-page" v-if="show==1">
                      <!-- {{ n.msg }} --> 
                     <div class='content'>
-                       <h1 class='h1-main'>1Главная</h1>
+                       <particles> <particles>
+                       <h1 class='h1-main'>Главная1</h1>
                        <h2 class='title'>Заголовок 2</h2>
-                       <div class='text-page'>Текст</div>
+                       <div class='text-page'>
+                       </div>
                     </div>
                 </div>
             </transition>
@@ -90,13 +92,10 @@ import MyProjects from './components/MyProjects.vue'
 export default {
   name: 'app',
   data: function() {
-      return {
-        isActiveOnePage: true,
-        isActiveTwoPage: false,
-        isActiveThreePage: false,
+      return 
         active: 1,
         slider: 1 ,
-        show : 1,
+        show : 1 ,
         list: [
           { msg: 'Первая страница', id: 1 },
           { msg: 'Вторая страница', id: 2  },
@@ -106,30 +105,6 @@ export default {
       };
     },
   methods: {
-        activePage: function (page) {
-        
-        if(page==1){
-            this.isActiveOnePage = true;
-            
-            this.isActiveTwoPage= false;
-            this.isActiveThreePage= false;
-            }
-        if(page==2){
-           this.isActiveTwoPage= true;
-        
-           this.isActiveOnePage = false;
-            this.isActiveThreePage= false;
-            }
-        if(page==3){
-            this.isActiveThreePage= true;
-            
-            this.isActiveOnePage = false;
-            this.isActiveTwoPage= false;
-            }    
-    
-          
-          this.show = page
-        },
         menu: function (page) {
           this.slider = page;
         }
@@ -202,13 +177,7 @@ top: 15%;
   stroke-width: 8px;
   stroke: white;
 }
-.shape.active{
-    stroke: #19f6e8;
-    fill: none;
-    stroke-dasharray: none;
-    stroke-dashoffset: 0;
-    stroke-width: 1px;
-}
+
 .text {
   color: #fff;
   font-family: 'Roboto Condensed';
