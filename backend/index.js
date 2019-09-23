@@ -15,8 +15,10 @@ const projects = require("./my_modules/my_projects");
          var db = new projects();
          var project_data = db.projects_model(res);
 
-  });
+});
 
+var db = new projects();
+db.connect();
 
 http.listen(5000, function(){
                 console.log('СЕРВЕР ЗАПУЩЕН');

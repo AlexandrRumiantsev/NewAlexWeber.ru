@@ -8,14 +8,13 @@ class Body extends React.Component {
   }
   
   render() {
-    return <div>
-              {this.props.tmp.map(n => 
-                    <div key={n._id}>
-                    <main>
-                        {n.name}
-                        {n.image}
-                        {n.imageFull}
-                    </main>     
+    return <div className='main-container'>
+              {this.props.tmp.map(n =>
+                    <div className='project' key={n._id}>
+                        <main className='project-container'>
+                            <img  className='project-container__img' src={'http://alexweber.ru/img/'+n.image} /> 
+                            <a className='project-container__del' target='_blank' href={n.link}> {n.name} </a>
+                        </main>     
                     </div>
                 )
               }</div>

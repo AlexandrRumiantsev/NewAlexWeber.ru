@@ -22,12 +22,14 @@ function projects() {
   
    this.projects_model = function(res) { 
        
-       var connect;
-       if(!connect)  connect = this.connect(res);
+       //var connect;
+       //if(connect != "")  connect = this.connect(res);
        
-       return projectSchem.find({}, function(err, data) {
+       return projectSchem.find({}, (err, data) => {
              res.setHeader('Access-Control-Allow-Origin', '*');
              res.send(data);
+            
+             console.log('connect close');
        });
         
    }           
