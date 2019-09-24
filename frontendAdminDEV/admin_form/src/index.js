@@ -4,9 +4,6 @@ import './style.css';
 import axios from 'axios';
 
 class Body extends React.Component {
-  componentWillMount(){
-  }
-  
   render() {
     return <div className='main-container'>
               {this.props.tmp.map(n =>
@@ -14,6 +11,7 @@ class Body extends React.Component {
                         <main className='project-container'>
                             <img  className='project-container__img' src={'http://alexweber.ru/img/'+n.image} /> 
                             <a className='project-container__del' target='_blank' href={n.link}> {n.name} </a>
+                            <a className='project-container__del' target='_blank' href={'http://alexweber.ru:5000/delete?name=' + n.name} > УДАЛИТЬ </a>
                         </main>     
                     </div>
                 )

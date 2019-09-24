@@ -14,6 +14,7 @@
         
         
         <div  @click="activePage(1)" class="svg-wrapper">
+        
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
             <rect class="shape" v-bind:class="{ active: isActiveOnePage }" height="60" width="320" />
           </svg>
@@ -47,7 +48,7 @@
           <li :key="1" class="alert alert-info">
             <transition name="fade">
                 <div class="main-page" v-if="show==1">
-                     <!-- {{ n.msg }} --> 
+                     <!-- {{ n.msg }} -->
                     <div class='content'>
                        <h1 class='h1-main'>1Главная</h1>
                        <h2 class='title'>Заголовок 2</h2>
