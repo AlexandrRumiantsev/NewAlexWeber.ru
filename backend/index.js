@@ -3,6 +3,7 @@ const app = express();
 var http = require('http').Server(app);
 
 const projects = require("./my_modules/my_projects");
+const users = require("./my_modules/users");
 
 (function(){
   "use strict";
@@ -13,7 +14,7 @@ const projects = require("./my_modules/my_projects");
   
  app.get('/data', function(req, res){
      
-    console.log('data'); 
+   // console.log('data'); 
     var db = new projects();
     var project_data = db.projects_model(res);
     
@@ -26,7 +27,20 @@ const projects = require("./my_modules/my_projects");
     var project_data = db.projects_del(res);
     
  });
-    
+
+
+
+app.get('/login', function(req, res){
+     
+    console.log('login'); 
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader("Access-Control-Allow-Methods" , "GET,POST,PUT,DELETE,OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+       
+    var db = new users();
+    var user_data = db.users_model(res);
+ 
+ });    
 
 
 

@@ -75,20 +75,30 @@ class AdminPanel extends React.Component {
   }
 }
 
+
+    
 class Authorization extends React.Component{
     onClick(){
+      
+       let log = document.getElementById('log').value;
+       let pass = document.getElementById('pass').value;
 
-       if( document.querySelector('#log').value === 'admin' && 
-           document.querySelector('#pass').value === 'qwe') {
-               ReactDOM.render(<Response isSuccess={true} />,  document.getElementById('root'));
-           }else{
-               alert('Неверный логин или пароль');
-               ReactDOM.render(<Response isSuccess={false} />,  document.getElementById('root'));
-           }
-
+       axios.get('http://alexweber.ru:5000/login?login=' + log + '&password=' + pass)
+          .then( response => {
+            if (response.data.length != 0) 
+                ReactDOM.render(<Response data={response.data} isSuccess={true} />,  document.getElementById('root'))
+            else{
+                alert('Неверный логин или пароль');
+                ReactDOM.render(<Response isSuccess={false} />,  document.getElementById('root'));
+            }   
+          });
     }
-    componentDidMount() {
-
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          autoriz: []
+        };
     }
     render(){
         return (

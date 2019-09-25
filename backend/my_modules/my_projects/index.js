@@ -26,7 +26,7 @@ function projects() {
              res.setHeader('Access-Control-Allow-Origin', '*');
              res.send(data);
             
-             console.log('connect close');
+             //console.log('connect close');
        });
         
    }
