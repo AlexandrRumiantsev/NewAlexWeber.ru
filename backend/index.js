@@ -28,10 +28,11 @@ const projects = require("./my_modules/my_projects");
  });
     
 
-var db = new projects();
-db.connect();
 
-http.listen(5000, function(){
+
+http.listen(5000, ()=>{
                 console.log('СЕРВЕР ЗАПУЩЕН');
+                var db = new projects();
+                db.connect();
               });  
 })();

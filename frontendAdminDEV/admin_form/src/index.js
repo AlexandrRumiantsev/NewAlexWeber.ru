@@ -3,9 +3,36 @@ import ReactDOM from 'react-dom';
 import './style.css';
 import axios from 'axios';
 
+/* Пример REDUX */
+import {createStore} from 'redux';
+const reducer = (state = {say: 'Hi'}, action) => {
+    switch (action.type) {
+        case 'SAY OK': return {say: 'OK'};
+        default: return state;
+    }
+}
+const store = createStore(reducer);
+/* END REDUX */
+
 class Body extends React.Component {
+  //Пример REDUX    
+  constructor () {
+        super(...arguments);
+        this.state = store.getState();
+        this.unsubscribe = store.subscribe(() => {
+            this.setState(store.getState());
+        });
+    }
+  sayOK () {
+        store.dispatch({type: 'SAY OK'});
+  }
+  //END REDUX
   render() {
     return <div className='main-container'>
+           
+              <h1>{this.state.say}</h1>
+              <h2 onClick={this.sayOK.bind(this)}>Скажи ОК</h2>
+    
               {this.props.tmp.map(n =>
                     <div className='project' key={n._id}>
                         <main className='project-container'>
