@@ -5,16 +5,24 @@ import axios from 'axios';
 
 /* Пример REDUX */
 import {createStore} from 'redux';
-const reducer = (state = {say: 'Hi'}, action) => {
+
+const reducer = (state = {data: 'Hi'}, action) => {
     switch (action.type) {
-        case 'SAY OK': return {say: 'OK'};
+        case 'SAY OK': return {data: 'OK'};
+        case 'HEADER': return {
+            data: <h1>HEADER</h1>
+        };
         default: return state;
     }
 }
+
 const store = createStore(reducer);
 
 class Header extends React.Component {
     
+ takeData(){
+    store.dispatch({type: 'HEADER'});
+ }
  img(img){
      
      switch(img){
@@ -24,7 +32,6 @@ class Header extends React.Component {
      }
      
  } 
- 
  form(arr){
      return <section className='section-header'>
      
@@ -46,8 +53,12 @@ class Header extends React.Component {
     super(props);
 
     this.state = {
-      headerArr: this.props.data
+      headerArr: this.takeData()
     };
+  }
+  componentWillMount(){
+     this.takeData();
+     console.log(this.state.headerArr);
   }
   render() {
        return <div className='Header'> { this.form(this.props.dataHeader) } </div>
@@ -71,7 +82,7 @@ class Body extends React.Component {
   render() {
     return <div className='main-container'>
               
-              <h1>{this.state.say}</h1>
+              <h1>{this.state.data}</h1>
               <h2 onClick={this.sayOK.bind(this)}>Скажи ОК</h2>
               
               {this.props.tmp.map(n =>
@@ -88,16 +99,33 @@ class Body extends React.Component {
 }
 
 class AdminPanel extends React.Component {
+  uppgrade(flag){
+      if(flag===0){
+        this.get();
+        this.uppgrade(1);
+      }else{
+          setInterval(()=>{ 
+              this.get(); 
+          }, 30000);
+      }
+  }
   get(){
-     var projects = [];
-     axios.get(`http://alexweber.ru:5000/data`)
-          .then(res => {
-            projects = res.data;
-            this.setState({
-              jsonAPI: projects
-            })
-          }) 
-          
+      
+    let projects = [];
+    
+        new Promise( ()=>
+             axios.get(`http://alexweber.ru:5000/data`)
+                  .then(res => {
+                    projects = res.data;
+                    console.log(projects);
+                    this.setState({
+                      jsonAPI: projects
+                    })
+                  }) 
+         ).then(() => {
+            throw new Error('Где-то произошла ошибка');
+        });     
+    
     return this.state.jsonAPI;      
   }
   constructor(props) {
@@ -107,11 +135,14 @@ class AdminPanel extends React.Component {
       jsonAPI: []
     };
   }
+  componentWillMount(){
+     this.uppgrade(0);
+  }
   render() {
     return (
       <div>
         <Header dataHeader={this.props.data}/>
-        <Body tmp={this.get()} />
+        <Body tmp={this.state.jsonAPI} />
       </div>
     );
   }
@@ -163,6 +194,9 @@ class Authorization extends React.Component{
 function Response(props) {
 
     const isSuccess = props.isSuccess;
+    /**
+     * REDUX
+     **/ 
     return isSuccess ? <AdminPanel data={props.data} /> : <Authorization/>
 
   }
