@@ -12,7 +12,48 @@ const reducer = (state = {say: 'Hi'}, action) => {
     }
 }
 const store = createStore(reducer);
-/* END REDUX */
+
+class Header extends React.Component {
+    
+ img(img){
+     
+     switch(img){
+         case 'default':{
+             return <div className='section-header__img__default-img'> </div>
+         }
+     }
+     
+ } 
+ 
+ form(arr){
+     return <section className='section-header'>
+     
+                <header className='section-header__img'>
+                    { (arr[0].img === undefined) ? this.img('default') : this.img(arr[0].img) }
+                </header>
+                
+                <main className='section-header__name'>
+                    Имя: { arr[0].name }
+                </main>
+                
+                <footer className='section-header__login'>
+                    Логин: { arr[0].login }
+                </footer>
+                
+            </section>
+ }  
+ constructor(props) {
+    super(props);
+
+    this.state = {
+      headerArr: this.props.data
+    };
+  }
+  render() {
+       return <div className='Header'> { this.form(this.props.dataHeader) } </div>
+  }
+  
+}
 
 class Body extends React.Component {
   //Пример REDUX    
@@ -29,10 +70,10 @@ class Body extends React.Component {
   //END REDUX
   render() {
     return <div className='main-container'>
-           
+              
               <h1>{this.state.say}</h1>
               <h2 onClick={this.sayOK.bind(this)}>Скажи ОК</h2>
-    
+              
               {this.props.tmp.map(n =>
                     <div className='project' key={n._id}>
                         <main className='project-container'>
@@ -69,6 +110,7 @@ class AdminPanel extends React.Component {
   render() {
     return (
       <div>
+        <Header dataHeader={this.props.data}/>
         <Body tmp={this.get()} />
       </div>
     );
@@ -121,7 +163,7 @@ class Authorization extends React.Component{
 function Response(props) {
 
     const isSuccess = props.isSuccess;
-    return isSuccess ? <AdminPanel/> : <Authorization/>
+    return isSuccess ? <AdminPanel data={props.data} /> : <Authorization/>
 
   }
 

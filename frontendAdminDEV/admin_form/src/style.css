@@ -98,3 +98,17 @@ body {
     display:block;
     width: 100%;
 }
+.section-header{
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    display: flex;
+    padding: 20px;
+}
+.section-header__name , .section-header__name , .section-header__login{
+   margin: auto 10px;
+}
+.section-header__img__default-img{
+    width: 50px;
+    height: 50px;
+    background: gray;
+    border-radius: 30px;
+}
