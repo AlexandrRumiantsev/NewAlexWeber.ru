@@ -79,6 +79,17 @@ class Body extends React.Component {
         store.dispatch({type: 'SAY OK'});
   }
   //END REDUX
+  delButton (user, project_name) {
+      if(user[0].login === 'Admin'){
+          return  <button onClick={ () => this.delFunc( project_name ) } className='project-container__del'> 
+                      Удалить
+                  </button>
+      }
+  }
+  delFunc(name ){
+      axios.get('http://alexweber.ru:5000/delete?name=' + name)
+          .then( console.log('Delete ' + name) );
+  }
   render() {
     return <div className='main-container'>
               
@@ -90,7 +101,7 @@ class Body extends React.Component {
                         <main className='project-container'>
                             <img  className='project-container__img' src={'http://alexweber.ru/img/'+n.image} /> 
                             <a className='project-container__del' target='_blank' href={n.link}> {n.name} </a>
-                            <a className='project-container__del' target='_blank' href={'http://alexweber.ru:5000/delete?name=' + n.name} > УДАЛИТЬ </a>
+                            { this.delButton(this.props.user , n.name  ) }
                         </main>     
                     </div>
                 )
@@ -142,7 +153,7 @@ class AdminPanel extends React.Component {
     return (
       <div>
         <Header dataHeader={this.props.data}/>
-        <Body tmp={this.state.jsonAPI} />
+        <Body user={this.props.data} tmp={this.state.jsonAPI} />
       </div>
     );
   }
