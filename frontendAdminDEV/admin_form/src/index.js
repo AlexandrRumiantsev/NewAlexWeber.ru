@@ -32,7 +32,52 @@ class Header extends React.Component {
      }
      
  } 
+ addProject(){
+    
+      axios.post('http://alexweber.ru:5000/save', {
+            id_group: '1' ,
+            name: document.getElementById("name_project").value ,
+            link: document.getElementById("url_project").value ,
+            discription: document.getElementById("discr_project").value ,
+            image: document.getElementById("image_project").value ,
+            imageFull: document.getElementById("image_full_project").value ,
+        })
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(JSON.stringify(error));
+      });
+     }
+     
+ showProjectAddForm(){
+     return <div id='pop-app'>
+             <div>
+                <input id='name_project' type='text'/>
+             </div>
+             <div>
+                <input id='discr_project' type='text'/>
+             </div>
+             <div>
+                <input id='url_project' type='text'/>
+             </div>
+             <div>
+                <input id='id_group_project' type='text'/>
+             </div>
+             <div>
+                <input id='image_project' type='text'/>
+             </div>
+             <div>
+                <input id='image_full_project' type='text'/>
+             </div>
+             <div>
+                <span onClick={  () => this.addProject() } >Добавить проект </span>
+             </div>
+          </div>;
+ }     
+
  form(arr){
+     let stateForm = 0 ;
      return <section className='section-header'>
      
                 <header className='section-header__img'>
@@ -47,13 +92,18 @@ class Header extends React.Component {
                     Логин: { arr[0].login }
                 </footer>
                 
+                <div className='section-header__add-project'>
+                   <button onClick={ () => { this.setState({project_form: 1}); } }>Добавить проект</button>
+                </div>
+                <div>{ (this.state.project_form == 1) ? this.showProjectAddForm() : '' }</div>
             </section>
  }  
  constructor(props) {
     super(props);
 
     this.state = {
-      headerArr: this.takeData()
+      headerArr: this.takeData() , 
+      project_form: 0
     };
   }
   componentWillMount(){
