@@ -2,19 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 import axios from 'axios';
-
 /* Пример REDUX */
 import {createStore} from 'redux';
+
+import Cookies from 'universal-cookie';
+ 
+const cookies = new Cookies();
+
+
+
 
 const reducer = (state = {data: 'Hi'}, action) => {
     switch (action.type) {
         case 'SAY OK': return {data: 'OK'};
-        case 'HEADER': return {
+        case 'body': return {
             data: <h1>HEADER</h1>
         };
         default: return state;
     }
 }
+
 
 const store = createStore(reducer);
 
@@ -48,7 +55,17 @@ class Header extends React.Component {
       .catch(function (error) {
         console.log(JSON.stringify(error));
       });
-     }
+      
+      /*
+      Exempl render html from function in component
+      
+      const element = 
+        `<h1>Проект успешно добавлен</h1>;`;
+      
+      ReactDOM.render(element, document.getElementById('root'));
+      */
+    
+}
      
  showProjectAddForm(){
      return <div id='pop-app'>
@@ -75,7 +92,11 @@ class Header extends React.Component {
              </div>
           </div>;
  }     
-
+exitProfile(){
+     cookies.set('login', '', { path: '/' });
+     cookies.set('password', '', { path: '/' });
+     window.location.reload();
+}
  form(arr){
      let stateForm = 0 ;
      return <section className='section-header'>
@@ -91,6 +112,10 @@ class Header extends React.Component {
                 <footer className='section-header__login'>
                     Логин: { arr[0].login }
                 </footer>
+                
+                <div className='section-header__exit-profile'>
+                   <button onClick={ () => { this.exitProfile() } }>Выйти</button>
+                </div>
                 
                 <div className='section-header__add-project'>
                    <button onClick={ () => { this.setState({project_form: 1}); } }>Добавить проект</button>
@@ -212,10 +237,31 @@ class AdminPanel extends React.Component {
 
     
 class Authorization extends React.Component{
-    onClick(){
-      
-       let log = document.getElementById('log').value;
-       let pass = document.getElementById('pass').value;
+    
+    state = {
+          autoriz: [],
+          checkbox: 'false'
+        };
+        
+    constructor(props) {
+        super(props);
+    }
+    check(item){
+        
+        let log = document.getElementById('log').value;
+        let pass = document.getElementById('pass').value;
+        
+        if(item == 'true'){
+            cookies.set('login', log, { path: '/' });
+            cookies.set('password', pass, { path: '/' });
+        }
+        if(item == 'false'){
+            cookies.set('login', '', { path: '/' });
+            cookies.set('password', '', { path: '/' });
+        }
+        this.onClick(log , pass);
+    }
+    onClick(log , pass){
 
        axios.get('http://alexweber.ru:5000/login?login=' + log + '&password=' + pass)
           .then( response => {
@@ -226,13 +272,7 @@ class Authorization extends React.Component{
                 ReactDOM.render(<Response isSuccess={false} />,  document.getElementById('root'));
             }   
           });
-    }
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          autoriz: []
-        };
+          
     }
     render(){
         return (
@@ -244,8 +284,27 @@ class Authorization extends React.Component{
                     <div className='line'>
                         <div className='row'> Пароль:</div>  <div className='row'><input id='pass'/></div>
                     </div>
-                    <span onClick={ this.onClick }>
-                         <div className='sbm'>Залогиниться</div>
+                    <span>
+                         <div onClick={ ()=>{ this.check(this.state.checkbox) } } className='sbm'>Войти</div>
+                         <span onClick={ 
+                            ()=>{ 
+                               
+                                if(this.state.checkbox=='false'){
+                                     this.setState({
+                                      checkbox: 'true'
+                                    })
+                                }
+                                if(this.state.checkbox=='true'){
+                                     this.setState({
+                                      checkbox: 'false'
+                                    })
+                                }    
+
+                            }
+                         }> 
+                            <input type='checkbox' name='check' id='check'/>
+                             Запомнить
+                         </span>
                     </span>
              </div>
         )
@@ -255,9 +314,20 @@ class Authorization extends React.Component{
 function Response(props) {
 
     const isSuccess = props.isSuccess;
-    /**
-     * REDUX
-     **/ 
+    
+    if(cookies.get('login') != '' && cookies.get('password') !=''){
+        
+        axios.get('http://alexweber.ru:5000/login?login=' + cookies.get('login') + '&password=' + cookies.get('password'))
+          .then( response => {
+            if (response.data.length != 0) 
+                ReactDOM.render(<Response data={response.data} isSuccess={true} />,  document.getElementById('root'))
+            else{
+                ReactDOM.render(<Response isSuccess={false} />,  document.getElementById('root'));
+            }   
+          });
+          
+    }
+    
     return isSuccess ? <AdminPanel data={props.data} /> : <Authorization/>
 
   }
