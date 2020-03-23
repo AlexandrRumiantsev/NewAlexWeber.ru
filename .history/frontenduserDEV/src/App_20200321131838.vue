@@ -45,8 +45,7 @@
     <main>
     <div  v-if="slider === 1" class='top-baner'>
          <transition-group name="fade" tag="div">
-          <div :key="1" class="alert alert-info">
-
+          <li :key="1" class="alert alert-info">
             <transition name="fade">
                 <div class="main-page" v-if="show==1">
                      <!-- {{ n.msg }} -->
@@ -57,18 +56,16 @@
                     </div>
                 </div>
             </transition>
-
             <transition name="fade2">
                 <div class="portfolio-page" v-if="show==2">
+                    <div class='content'>
                     
-                    
-                     
+                       <div class='text-page'>
                           <MyProjects msg="Welcome to Your Vue.js App"/>                   
-                       
-                    
+                       </div>
+                    </div>
                 </div>
             </transition>
-
             <transition name="fade3">
                 <div class="contact-page" v-if="show==3">
                     <div class='content'>
@@ -78,9 +75,7 @@
                     </div>
                 </div>
             </transition>
-
-
-          </div> 
+          </li> 
          </transition-group>
        </div>
     <div v-if="slider === 2" class='top-baner two-slider'>
@@ -162,7 +157,7 @@ export default {
 }
 .text-page{
 position: absolute;
-    top: 10%;
+    top: 25%;
     margin: 0 auto;
     width: 100%;
 }
@@ -311,7 +306,7 @@ top: 15%;
 .alert-info{
 padding: 0;
     color: #0c5460;
-    
+    background-color: #d1ecf1;
     border-color: #bee5eb;
    
     position: absolute;
@@ -323,14 +318,11 @@ padding: 0;
     position: absolute;
     /* z-index: 99999999; */
     width: 100%;
+    height: 100%;
     margin: auto;
-   background: linear-gradient(45deg, rgba(256, 256, 256, .9), rgba(256, 256, 256, .7)), url(https://www.at-kom.ru/wp-content/uploads/2019/04/the_project_website.jpg);
+    background: white;
     color: black;
-    background-attachment: fixed
 }
-
-
-
 html .alert-info .main-page{
       height: 100vh;
     background: linear-gradient(45deg, rgba(256, 256, 256, .9), rgba(256, 256, 256, .7)), url(https://www.at-kom.ru/wp-content/uploads/2019/04/the_project_website.jpg);
@@ -402,7 +394,7 @@ margin:1px;
 .content{
 
 height: 100%;
- top: 10%;
+ top: 15%;
     position: relative;
 }
 

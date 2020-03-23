@@ -14,8 +14,6 @@
            <div class='discription-projects'> {{ n.discription }} </div>
          </div>  
        <div>
-
-
   <div>
     <VueEasyLightbox
       :visible="visible"
@@ -149,10 +147,15 @@ cursor:pointer;
     }
     
 .projects-list{
-   margin-top: 150px;
     width: 100%;
+    position: relative;
+    background: white;
+    top: 25%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(256, 256, 256, .9), rgba(256, 256, 256, .7)), url(https://clipart-db.ru/file_content/rastr/background_024.jpg);
     background-size: cover;
-    background-attachment: fixed;
+    /* position: fixed; */
+    height: 100%;
 }
 html .project-container{
 transition: 0.5s;

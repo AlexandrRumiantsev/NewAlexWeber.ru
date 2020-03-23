@@ -14,8 +14,6 @@
            <div class='discription-projects'> {{ n.discription }} </div>
          </div>  
        <div>
-
-
   <div>
     <VueEasyLightbox
       :visible="visible"
@@ -149,10 +147,10 @@ cursor:pointer;
     }
     
 .projects-list{
-   margin-top: 150px;
-    width: 100%;
-    background-size: cover;
-    background-attachment: fixed;
+width:100%;
+position: relative;
+   background: white;
+    top:25%;
 }
 html .project-container{
 transition: 0.5s;

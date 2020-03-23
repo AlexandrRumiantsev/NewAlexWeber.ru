@@ -14,8 +14,6 @@
            <div class='discription-projects'> {{ n.discription }} </div>
          </div>  
        <div>
-
-
   <div>
     <VueEasyLightbox
       :visible="visible"
@@ -149,10 +147,10 @@ cursor:pointer;
     }
     
 .projects-list{
-   margin-top: 150px;
-    width: 100%;
-    background-size: cover;
-    background-attachment: fixed;
+width:100%;
+position: relative;
+   background: white;
+    top:25%;
 }
 html .project-container{
 transition: 0.5s;
@@ -171,6 +169,10 @@ background: white;
    display:none;
 }
 
-
+.alert-info .main-page{
+  height: 453px;
+  background: linear-gradient(45deg, rgba(103, 0, 31, .8), rgba(34, 101, 163, .5)), url(https://html5book.ru/wp-content/uploads/2016/12/photo-8.jpg); 
+  background-size: cover;
+}
 
 </style>
