@@ -1,11 +1,19 @@
+import modules from './modules'
+
 <template>
+
+
   <div class="projects-list">
+
    <div class='hidden-info'>{{ info }}</div> 
-     <span class='project-container' v-for="n in info" v-bind:key='info.id'>
-       <div @click="showSingle('http://alexweber.ru/img/' + n.imageFull)" class='box-img'> 
-            <div class='sloy'></div>
-            <img  :src="'http://alexweber.ru/img/' + n.image" />
-       </div>
+
+     <div class='project-container' v-for="n in info" v-bind:key='info.id'>
+
+         <div @click="showSingle('http://alexweber.ru/img/' + n.imageFull)" class='box-img'> 
+              <div class='sloy'></div>
+              <img  :src="'http://alexweber.ru/img/' + n.image" />
+         </div>
+
          <div class='block-info-project'>
            <div class='link-project'> 
                  <a target="_blank" :href="n.link" >{{ n.name }}</a>
@@ -13,20 +21,21 @@
            <div class='title-projects'> {{ n.title }} </div>
            <div class='discription-projects'> {{ n.discription }} </div>
          </div>  
+         
+       
        <div>
+        <VueEasyLightbox
+          :visible="visible"
+          :imgs="imgs"
+          :index="index"
+          @hide="handleHide"
+        ></VueEasyLightbox>
+      </div>
 
+       
+  </div>
+</div>
 
-  <div>
-    <VueEasyLightbox
-      :visible="visible"
-      :imgs="imgs"
-      :index="index"
-      @hide="handleHide"
-    ></VueEasyLightbox>
-  </div>
-      </div>    
-    </span>
-  </div>
 </template>
 
 

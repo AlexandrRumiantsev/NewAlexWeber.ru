@@ -1,71 +1,63 @@
 <template>
   <div id="app">
     <header class='top-menu'>
-    
-        <!--
-        <a v-on:click="menu(1)">Резюме</a>
-        <a v-on:click="menu(2)">Портфолио</a>
-        <button 
-             class="btn btn-primary" 
-             @click="show = !show">
-                 Show
-        </button>
-        -->
-        
-        
+
         <div  @click="activePage(1)" class="svg-wrapper">
-        
+
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
             <rect class="shape" v-bind:class="{ active: isActiveOnePage }" height="60" width="320" />
           </svg>
+
            <div class="text">
                 ГЛАВНАЯ
            </div>
+
         </div>
         
          <div   @click="activePage(2)" class="svg-wrapper">
+
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
             <rect class="shape" v-bind:class="{ active: isActiveTwoPage }" height="60" width="320" />
           </svg>
-           <a class="text">
+
+           <div class="text">
                 ПОРТФОЛИО
-          </a>
+           </div>
+
         </div>
         
          <div   @click="activePage(3)" class="svg-wrapper">
+
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
             <rect class="shape" v-bind:class="{ active: isActiveThreePage }" height="60" width="320" />
           </svg>
+
            <div class="text">
               КОНТАКТЫ
            </div>
+
         </div>
+
     </header>
     
-    <main>
-    <div  v-if="slider === 1" class='top-baner'>
-         <transition-group name="fade" tag="div">
-          <div :key="1" class="alert alert-info">
+
+
+   
+ 
+
+        <transition-group name="fade" tag="div">
+
+          <div :key="2">
 
             <transition name="fade">
-                <div class="main-page" v-if="show==1">
-                     <!-- {{ n.msg }} -->
-                    <div class='content'>
-                       <h1 class='h1-main'>1Главная</h1>
-                       <h2 class='title'>Заголовок 2</h2>
-                       <div class='text-page'>Текст</div>
-                    </div>
-                </div>
+             <div  v-if="show==1">  
+                <MainPage />
+             </div>   
             </transition>
 
             <transition name="fade2">
-                <div class="portfolio-page" v-if="show==2">
-                    
-                    
-                     
-                          <MyProjects msg="Welcome to Your Vue.js App"/>                   
-                       
-                    
+                <div class="portfolio-page" v-if="show==2">                  
+                    <MyProjects />                         
                 </div>
             </transition>
 
@@ -74,23 +66,24 @@
                     <div class='content'>
                        <h1 class='h1-main'>Контакты</h1>
                        <h2 class='title'>Заголовок 2</h2>
-                       <div class='text-page'>Текст</div>
                     </div>
                 </div>
             </transition>
 
+          </div>
 
-          </div> 
          </transition-group>
-       </div>
-    <div v-if="slider === 2" class='top-baner two-slider'>
-       ПОРТФОЛИО
-    </div>
-    </main>
-    <footer></footer>
+
+      </div>
+    
+
   </div>
 </template>
+
+
 <script>
+import ContactPage from './page/ContactPage.vue'
+import MainPage from './page/MainPage.vue'
 import MyProjects from './components/MyProjects.vue'
 
 export default {
@@ -148,7 +141,9 @@ export default {
           }
   } , 
   components: {
-    MyProjects
+    MyProjects,
+    MainPage,
+    ContactPage
   }
 }
 </script>
@@ -172,7 +167,6 @@ position: absolute;
    color:red !important;
 }
 .h1-main{
-    position: absolute;
     top: 5%;
     width: 100%;
     height: 100%;
@@ -183,7 +177,7 @@ color:white;
 .title{
 display:inline;
 width:100%;
-position:absolute;
+
 top: 15%;
 }
 .none{
@@ -314,7 +308,7 @@ padding: 0;
     
     border-color: #bee5eb;
    
-    position: absolute;
+    position: relative;
     width: 100%;
     left: 0;
     height: 100%;
@@ -335,7 +329,6 @@ html .alert-info .main-page{
       height: 100vh;
     background: linear-gradient(45deg, rgba(256, 256, 256, .9), rgba(256, 256, 256, .7)), url(https://www.at-kom.ru/wp-content/uploads/2019/04/the_project_website.jpg);
     background-size: cover;
-    position:fixed;
 }
 
 
@@ -399,11 +392,6 @@ margin-top:75px;
 padding:0;
 margin:1px;
 }
-.content{
 
-height: 100%;
- top: 10%;
-    position: relative;
-}
 
 </style>
