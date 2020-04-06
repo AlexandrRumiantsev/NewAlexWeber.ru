@@ -33,7 +33,7 @@
           </svg>
 
            <div class="text">
-              КОНТАКТЫ
+              СТАТЬИ
            </div>
 
         </div>
@@ -63,10 +63,7 @@
 
             <transition name="fade3">
                 <div class="contact-page" v-if="show==3">
-                    <div class='content'>
-                       <h1 class='h1-main'>Контакты</h1>
-                       <h2 class='title'>Заголовок 2</h2>
-                    </div>
+                     <ContactPage />   
                 </div>
             </transition>
 
@@ -248,13 +245,13 @@ top: 15%;
   transform: translate(0, 0);
 }
     .fade-enter-active{
-        transition: 1s;
+        transition: 3s;
     }
     .fade-leave{
       transform: translate(0, 0);
     }
     .fade-leave-active{
-         transition: 1s;
+         transition: 2s;
     }
     .fade-leave-to{
        transform: translate(-100%, 0);
@@ -267,7 +264,7 @@ top: 15%;
   transform: translate(0, 0);
 }
     .fade2-enter-active{
-        transition: 1s;
+        transition: 3s;
     }
      
      
@@ -275,7 +272,7 @@ top: 15%;
       transform: translate(0, 0);
     }
     .fade2-leave-active{
-         transition: 1s;
+         transition: 2s;
     }
     .fade2-leave-to{
        transform: translate(-100%, 0);
@@ -283,19 +280,19 @@ top: 15%;
     
     
           .fade3-enter{
-        transform: translate(100%, 0);
+        transform: translate(-100%, 0);
     }
 .fade3-enter-to {
   transform: translate(0, 0);
 }
     .fade3-enter-active{
-        transition: 1s;
+        transition: 2s;
     }
     .fade3-leave{
       transform: translate(-100%, 0);
     }
     .fade3-leave-active{
-         transition: 1s;
+         transition: 3s;
     }
     .fade3-leave-to{
        transform: translate(-200%, 0);
