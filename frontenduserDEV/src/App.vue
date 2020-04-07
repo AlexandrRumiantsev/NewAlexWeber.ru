@@ -215,7 +215,12 @@ top: 15%;
   position: relative;
   top: -48px;
 }
-
+.contact-page{
+	width:100%;
+	height:100vh;
+	position:absolute;
+	top: 15%;
+}
 @keyframes draw {
   0% {
     stroke-dasharray: 140 540;
@@ -254,25 +259,25 @@ top: 15%;
          transition: 2s;
     }
     .fade-leave-to{
-       transform: translate(-100%, 0);
+       transform: translate(100%, 0);
     }
     
       .fade2-enter{
-        transform: translate(100%, 0);
+        transform: translate(-100%, 0);
     }
 .fade2-enter-to {
   transform: translate(0, 0);
 }
+
     .fade2-enter-active{
-        transition: 3s;
+        transition: 4s;
     }
-     
      
      .fade2-leave{
       transform: translate(0, 0);
     }
     .fade2-leave-active{
-         transition: 2s;
+         transition: 3s;
     }
     .fade2-leave-to{
        transform: translate(-100%, 0);
@@ -286,13 +291,13 @@ top: 15%;
   transform: translate(0, 0);
 }
     .fade3-enter-active{
-        transition: 2s;
+        transition: 3s;
     }
     .fade3-leave{
       transform: translate(-100%, 0);
     }
     .fade3-leave-active{
-         transition: 3s;
+         transition: 2s;
     }
     .fade3-leave-to{
        transform: translate(-200%, 0);
@@ -389,6 +394,5 @@ margin-top:75px;
 padding:0;
 margin:1px;
 }
-
 
 </style>

@@ -33,15 +33,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #paper-page{
-	width:100%;
-	height:100vh;
-	position:absolute;
-	top:15%;
+	height: 100vh;
 }
 #paper-page div{
 	display:inline-block;
 	width:50%;
-	height:35%;
+	height:45vh;
 	border:1px solid black;
 }
 </style>

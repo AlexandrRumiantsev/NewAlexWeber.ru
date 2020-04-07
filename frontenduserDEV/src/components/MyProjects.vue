@@ -172,7 +172,7 @@ background: white;
     position: relative;
     top: 25%;
     margin: 15px;
-    width: 30%;
+    width: 45%;
     display: inline-block;
     color:black;
 }
