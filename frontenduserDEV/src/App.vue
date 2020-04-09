@@ -63,7 +63,7 @@
 
             <transition name="fade3">
                 <div class="contact-page" v-if="show==3">
-                     <ContactPage />   
+                     <MyPapers />   
                 </div>
             </transition>
 
@@ -79,7 +79,7 @@
 
 
 <script>
-import ContactPage from './page/ContactPage.vue'
+import MyPapers from './components/MyPapers.vue'
 import MainPage from './page/MainPage.vue'
 import MyProjects from './components/MyProjects.vue'
 
@@ -140,7 +140,7 @@ export default {
   components: {
     MyProjects,
     MainPage,
-    ContactPage
+    MyPapers
   }
 }
 </script>
