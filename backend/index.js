@@ -9,6 +9,8 @@ app.use(cors());
 var http = require('http').Server(app);
 
 const projects = require("./my_modules/my_projects");
+const papers = require("./my_modules/my_papers");
+
 const users = require("./my_modules/users");
 
 //const bodyParser = require('body-parser');
@@ -34,11 +36,17 @@ const users = require("./my_modules/users");
   });
   
  app.get('/data', function(req, res){
-     
-   // console.log('data'); 
+    console.log('data'); 
     var db = new projects();
+    db.connect();
     var project_data = db.projects_model(res);
-    
+ });
+ 
+  app.get('/data_papers', function(req, res){
+    console.log('data_papers'); 
+    var db_papers = new papers();
+    db_papers.connect();
+    var papers_data = db_papers.papers_model(res);
  });
  
  app.get('/delete', function(req, res){
@@ -94,7 +102,7 @@ app.get('/login', function(req, res){
 
 http.listen(5000, ()=>{
                 console.log('СЕРВЕР ЗАПУЩЕН');
-                var db = new projects();
-                db.connect();
+               // var db = new projects();
+                
               });  
 })();

@@ -12,7 +12,7 @@ function projects() {
             if (err) {
                 console.log(err);
             } else {
-                console.log('Подключение с БД установлено');
+                console.log('111Подключение с БД установлено');
                 return db;
                    
                                 } 
@@ -25,6 +25,7 @@ function projects() {
        return projectSchem.find({}, (err, data) => {
            
              res.setHeader('Access-Control-Allow-Origin', '*');
+             console.log(data);
              res.send(data);
             
        });

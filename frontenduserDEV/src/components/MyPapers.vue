@@ -49,12 +49,12 @@ export default {
   mounted() {
   const axios = require('axios');
   
-  var my = 'http://alexweber.ru:5000/data';
+  var my = 'http://alexweber.ru:5000/data_papers';
     axios.get(my)
     .then(response => {
       // JSON responses are automatically parsed.
       this.papers = response.data;
-      
+      console.log(this.papers);
       //this.info.blob =  window.URL.createObjectURL( this.info.image)
     })
     .catch(e => {
