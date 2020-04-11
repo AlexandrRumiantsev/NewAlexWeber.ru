@@ -1,29 +1,19 @@
 import modules from './modules'
 
+
 <template>
   	<div id="paper-page">
-		<div class='papers-container' v-for="n in papers" v-bind:key='papers.id'>
-        	<a target="_blank" :href="n.link" >
-			 	{{ n.name }}
-			</a>
-        </div>  
-	</div>
+      <div class='papers-container' v-for="n in papers" v-bind:key='papers.id'>
+            <PapersTemplate :post-data="n"/>
+      </div>
+	  </div>
 </template>
 
-
-<script>
-import Vue from 'vue'
-export default {
-  name: 'ContactPage',
-}  
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #paper-page{
 	height: 100vh;
 }
-#paper-page div{
+#paper-page .papers-container{
 	display:inline-block;
 	width:50%;
 	height:45vh;
@@ -33,9 +23,8 @@ export default {
 
 
 <script>
-
 import Vue from 'vue'
-
+import PapersTemplate from '../page/PapersPage.vue'
 
 export default {
   name: 'MyPapers',
@@ -55,7 +44,6 @@ export default {
       // JSON responses are automatically parsed.
       this.papers = response.data;
       console.log(this.papers);
-      //this.info.blob =  window.URL.createObjectURL( this.info.image)
     })
     .catch(e => {
       this.errors.push(e)
@@ -72,6 +60,9 @@ export default {
     handleHide() {
       this.visible = false
     }
+  },
+  components: {
+    PapersTemplate
   }
 }  
 </script>
