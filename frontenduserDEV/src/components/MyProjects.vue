@@ -143,7 +143,6 @@ background: white;
     word-wrap: break-word;
     padding: 30px;
     position: relative;
-    top: 25%;
     margin: 15px;
     width: 45%;
     display: inline-block;

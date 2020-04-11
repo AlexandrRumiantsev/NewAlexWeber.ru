@@ -35,7 +35,7 @@ import modules from './modules'
 <style>
     .box-img img{
     width:100%;
-    max-height:400px;
+    height:400px;
     overflow:hidden;
     }
     .block-info-project{

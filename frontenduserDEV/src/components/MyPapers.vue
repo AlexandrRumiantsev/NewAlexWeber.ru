@@ -12,12 +12,15 @@ import modules from './modules'
 <style scoped>
 #paper-page{
 	height: 100vh;
+ text-align: start;
 }
 #paper-page .papers-container{
-	display:inline-block;
-	width:50%;
-	height:45vh;
-	border:1px solid black;
+	display: block;
+    float: left;
+    width: 50%;
+    height: 50vh;
+    overflow: hidden;
+    cursor:pointer;
 }
 </style>
 
