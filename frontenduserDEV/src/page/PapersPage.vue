@@ -1,17 +1,18 @@
 import modules from './modules'
 
+
 <template>
 
-    
-  	<div  class='fon-paper' :style="
+   
+  	<div  v-on:click="detail(postData.link)" class='fon-paper' :style="
                   'background: url(http://www.alexweber.ru/img/papers/'+postData.link+'.jpg ) no-repeat;'
                 ">
         <div class='fon-paper__container'>        
           <div class='fon-paper__title'>{{ postData.title }} </div>
           <div class='fon-paper__discr'>{{ postData.discription }}</div>
         </div> 
+       <DetailTemplate :post-data="postData.link" v-if="visible" />
 	  </div>
-
 </template>
 
 <style>
@@ -43,11 +44,23 @@ justify-content: center;
 }
 </style>
 <script>
-
-import Vue from 'vue'
-
+import DetailTemplate from './DetailTemplate.vue';
 export default {
   name: 'PapersTemplate',
+  data: function () {
+    return {
+      visible: 0
+    }
+  },
   props: ['postData'],
+  methods: {
+    detail(link) {
+      //alert(link);
+      this.visible = 1;
+    }
+  },
+  components: {
+    DetailTemplate
+  }
 }  
 </script>
