@@ -13,13 +13,21 @@ export default {
   data () {
     return {
       message: 'Welcome to Vue.js',
-      linkFrame: 'localhost:8080/papers/' + this.postData + '.html'
+      linkFrame: 'http://localhost:8080/papers/' + this.postData + '.html'
     }
   }
 }
 </script>
  
 <style>
+iframe{
+  top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    background:white;
+}
 #hello {
   font-family: Verdana;
   color: navy;

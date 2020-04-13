@@ -25,7 +25,7 @@ import modules from './modules'
  background-size: cover !important;
  HEIGHT: 100%;
 WIDTH: 100%;
-position:relative;
+
 display:flex;
 justify-content: center;
     align-items: center;
