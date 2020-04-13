@@ -2,8 +2,6 @@ import modules from './modules'
 
 
 <template>
-
-   
   	<div  v-on:click="detail(postData.link)" class='fon-paper' :style="
                   'background: url(http://www.alexweber.ru/img/papers/'+postData.link+'.jpg ) no-repeat;'
                 ">
@@ -11,11 +9,43 @@ import modules from './modules'
           <div class='fon-paper__title'>{{ postData.title }} </div>
           <div class='fon-paper__discr'>{{ postData.discription }}</div>
         </div> 
-       <DetailTemplate :post-data="postData.link" v-if="visible" />
+         
+        <div :id="postData.link"  class='paper-item'>
+          <span 
+                id='close-btn'>
+                Закрыть статью
+          </span>
+         <iframe :src="'http://localhost:8080/papers/' + postData.link + '.html'">
+         </iframe>
+       </div>
 	  </div>
 </template>
 
 <style>
+iframe{
+  top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    background:white;
+}
+.paper-item{
+  display:none;
+}
+.paper-item.active{
+  display:block;
+}
+
+#close-btn{
+  z-index: 99999999;
+  position:fixed;
+  top:0;
+  right:0;
+  background:black;
+  color:white;
+  padding:10px;
+}
 .fon-paper__container{
   background:black;
   padding:30px;
@@ -44,23 +74,13 @@ justify-content: center;
 }
 </style>
 <script>
-import DetailTemplate from './DetailTemplate.vue';
 export default {
   name: 'PapersTemplate',
-  data: function () {
-    return {
-      visible: 0
-    }
-  },
   props: ['postData'],
   methods: {
     detail(link) {
-      //alert(link);
-      this.visible = 1;
+      document.getElementById(link).classList.toggle("active");
     }
-  },
-  components: {
-    DetailTemplate
   }
 }  
 </script>
