@@ -135,7 +135,10 @@ export default {
             return this.list.filter(function (item) {
               return item
             })
-          }
+          },
+      message(){
+        return store.getters.message;
+      }    
   } , 
   components: {
     MyProjects,
