@@ -1,13 +1,9 @@
 import modules from './modules'
 
-
 <template>
   	<div id="paper-page">
-      <div class='papers-container' v-for="n in papers" v-bind:key='papers.id'>
+      <div class='papers-container' v-for="n in allPapers" v-bind:key='n.id'>
             <PapersTemplate :post-data="n"/>
-      </div>
-      <div v-for="todo in allTodos" :key="todo.id" class="todo">
-        {{ todo.title }}
       </div>
 	  </div>
 </template>
@@ -32,7 +28,7 @@ import modules from './modules'
 import Vue from 'vue'
 import PapersTemplate from '../page/PapersPage.vue'
 
-import { mapGetters } from 'vuex'
+import { mapGetters , mapActions } from 'vuex'
 
 export default {
   name: 'MyPapers',
@@ -43,22 +39,12 @@ export default {
       imgs: '' 
     };
   },
-  mounted() {
-  const axios = require('axios');
-
-  var my = 'http://alexweber.ru:5000/data_papers';
-    axios.get(my)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.papers = response.data;
-      console.log(this.papers);
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+  computed: mapGetters(['allPapers']),
+  created(){
+      this.feathPapers();
   },
-  computed: mapGetters(['allTodos']),
   methods: {
+    ...mapActions(['feathPapers']),
     showSingle(img) {
       this.imgs = img
       this.show()

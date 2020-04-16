@@ -2,10 +2,10 @@ import modules from './modules'
 
 <template>
   <div class="projects-list">
-      <div class='project-container' v-for="n in info" v-bind:key='info.id'>
+      <div class='project-container' v-for="n in allProjects" v-bind:key='n.id'>
         <ProjectsTemplate :post-data="n"/>
       </div>
-  </div>
+  </div> 
 </template>
 
 
@@ -15,6 +15,8 @@ import Vue from 'vue'
 import ProjectsTemplate from '../page/ProjectsPage.vue'
 import VueEasyLightbox from 'vue-easy-lightbox'
 Vue.use(VueEasyLightbox)
+
+import { mapGetters , mapActions } from 'vuex'
 
 export default {
   components: { VueEasyLightbox },
@@ -26,25 +28,12 @@ export default {
       imgs: '' 
     };
   },
-  mounted() {
-  const axios = require('axios');
-  
-  var my = 'http://alexweber.ru:5000/data';
-  
-        
-
-    axios.get(my)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.info = response.data;
-      
-      //this.info.blob =  window.URL.createObjectURL( this.info.image)
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
+  computed: mapGetters(['allProjects']),
+  created(){
+      this.feathProjects();
   },
   methods: {
+    ...mapActions(['feathProjects']),
     showSingle(img) {
       this.imgs = img
       this.show()
@@ -151,8 +140,4 @@ background: white;
 .hidden-info{
    display:none;
 }
-
-
-
-
 </style>
