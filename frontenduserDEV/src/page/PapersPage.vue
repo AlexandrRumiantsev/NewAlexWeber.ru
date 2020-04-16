@@ -1,6 +1,5 @@
 import modules from './modules'
 
-
 <template>
   	<div  v-on:click="detail(postData.link)" class='fon-paper' :style="
                   'background: url(http://www.alexweber.ru/img/papers/'+postData.link+'.jpg ) no-repeat;'
@@ -22,6 +21,15 @@ import modules from './modules'
 </template>
 
 <style>
+.paper-item__btm{
+  position: absolute;
+    bottom: 0;
+    right: 0;
+    color: white;
+    background: black;
+    padding: 10px;
+}
+  
 iframe{
   top: 0;
     position: absolute;
@@ -74,6 +82,8 @@ justify-content: center;
 }
 </style>
 <script>
+
+
 export default {
   name: 'PapersTemplate',
   props: ['postData'],
