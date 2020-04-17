@@ -23,30 +23,30 @@ const state = {
 			user:'Константин',
 			title:'Hello world',
 			paper: 'Docker + Node + Mongo'
-		}
+		},
+		{
+			id:4,
+			time: '20.08.20: 13:40',
+			user:'Константин',
+			title:'Hello world',
+			paper: 'Шпаргалка по работе с MONGO в консоли'
+		},
 	]
 };
 
 //  Объект для получения состояний в компоненте
 const getters = {
-	allComments:  state => state.comments
+    allComments:  state => state.comments,
 }
 
 //  Объект для получения данных из внешних источников
 const actions = {
-	/*
-	async feathProjects( {commit} ){
-		const response = await axios.get(
-			'http://alexweber.ru:5000/data'
-		)
-		commit('setProjects' , response.data);
-	}
-	*/
+	
 }
 
 //  Объект для изменения объекта состояния при использование в action метода commit
 const mutations = {
-	//setProjects: (state , projects) => (state.projects = projects)
+	
 }
 
 export default {

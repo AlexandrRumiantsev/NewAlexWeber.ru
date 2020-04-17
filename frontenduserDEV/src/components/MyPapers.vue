@@ -5,13 +5,15 @@ import modules from './modules'
       <div class='papers-container' v-for="n in allPapers" v-bind:key='n.id'>
             <PapersTemplate :post-data="n"/>
             <div @click="showComment(n.title)" class='paper-item__btn'> 
-              Комментарии  ({{n.title}})
+              Комментарии  <span>({{ setCount(n.title)}})</span>
             </div>
 
             <PaperComments class='papers-container__comments' :id='n.title' :post-data="n.title"/>
-
+             
       </div>
-     
+
+      
+
 	  </div>
 </template>
 
@@ -32,13 +34,15 @@ import modules from './modules'
     cursor:pointer;
 }
 .paper-item__btn{
+    display: flex;
     bottom: 0;
     right: 0;
     color: white;
     background: black;
     padding: 10px;
+    position: -webkit-sticky;
     position: sticky;
-    max-width: 125px;
+    max-width: 140px;
 }
 
     
@@ -58,10 +62,11 @@ export default {
   data() {
     return {
       papers: null,
-      imgs: '' 
+      imgs: '',
+      count:0
     };
   },
-  computed: mapGetters(['allPapers']),
+  computed: mapGetters(['allPapers' , 'allComments']),
   created(){
       this.feathPapers();
   },
@@ -70,6 +75,14 @@ export default {
     showSingle(img) {
       this.imgs = img
       this.show()
+    },
+    setCount(paper){
+      let counter = '0';
+      for(let i = 0 ; i < this.allComments.length ; i++){
+         if(this.allComments[i].paper == paper)
+            counter++
+      }
+      return counter;
     },
     show() {
       this.visible = true
