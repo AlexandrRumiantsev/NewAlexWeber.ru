@@ -10,9 +10,8 @@ import modules from './modules'
         </div> 
          
         <div :id="postData.link"  class='paper-item'>
-          <span 
-                id='close-btn'>
-                Закрыть статью
+          <span id='close-btn'>
+                <img src='http://localhost:8080/img/close-icon.png'>
           </span>
          <iframe :src="'http://localhost:8080/papers/' + postData.link + '.html'">
          </iframe>
@@ -29,8 +28,15 @@ import modules from './modules'
     background: black;
     padding: 10px;
 }
-  
+#close-btn img{
+      width: 35px;
+     margin:10px;
+}
+.content h1{
+   padding:10px;
+}
 iframe{
+    z-index: 9;
   top: 0;
     position: absolute;
     width: 100%;
@@ -46,13 +52,11 @@ iframe{
 }
 
 #close-btn{
-  z-index: 99999999;
-  position:fixed;
-  top:0;
-  right:0;
-  background:black;
-  color:white;
-  padding:10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: black;
+    z-index: 99;
 }
 .fon-paper__container{
   background:black;

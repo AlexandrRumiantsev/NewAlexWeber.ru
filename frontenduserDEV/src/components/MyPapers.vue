@@ -5,7 +5,7 @@ import modules from './modules'
       <div class='papers-container' v-for="n in allPapers" v-bind:key='n.id'>
             <PapersTemplate :post-data="n"/>
             <div @click="showComment(n.title)" class='paper-item__btn'> 
-              Комментарии 
+              Комментарии  ({{n.title}})
             </div>
 
             <PaperComments class='papers-container__comments' :id='n.title' :post-data="n.title"/>
@@ -78,7 +78,7 @@ export default {
       this.visible = false
     },
     showComment(title){
-       document.getElementById(title).style = "display:block;";
+       document.getElementById(title).style = "display:flex;";
     }
   },
   components: {
