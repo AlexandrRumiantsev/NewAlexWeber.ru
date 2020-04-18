@@ -37,6 +37,15 @@ function comments() {
             if (err) return console.log(err);
          });
    }
+   this.get_all_comments = function(res) {
+       return commentsSchem.find({}, (err, data) => {
+           
+             res.setHeader('Access-Control-Allow-Origin', '*');
+             console.log(data);
+             res.send(data);
+            
+       });
+   }
    
    
        

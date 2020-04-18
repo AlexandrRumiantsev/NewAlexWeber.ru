@@ -51,6 +51,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
     var papers_data = db_papers.papers_model(res);
  });
  
+ app.get('/get_all_comments', function(req, res){
+    console.log('all_comments'); 
+    var db_comments = new comments();
+    db_comments.connect();
+    db_comments.get_all_comments(res);
+ });
+ 
+ 
  app.get('/delete', function(req, res){
      
     console.log('delete project'); 
