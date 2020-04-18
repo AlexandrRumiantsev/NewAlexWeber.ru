@@ -10,13 +10,15 @@ var http = require('http').Server(app);
 
 const projects = require("./my_modules/my_projects");
 const papers = require("./my_modules/my_papers");
+const comments = require("./my_modules/comments");
 
 const users = require("./my_modules/users");
 
-//const bodyParser = require('body-parser');
-
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: false }));
+const bodyParser = require("body-parser");
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 (function(){
   "use strict";
@@ -84,7 +86,10 @@ const users = require("./my_modules/users");
        
  });
 
-
+ app.post('/comment_add', urlencodedParser , (req, res) => {
+    var comment = new comments();
+    comment.comments_model(req.body);
+ })
 
 app.get('/login', function(req, res){
      
@@ -92,7 +97,6 @@ app.get('/login', function(req, res){
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader("Access-Control-Allow-Methods" , "GET,POST,PUT,DELETE,OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-       
     var db = new users();
     var user_data = db.users_model(res);
  

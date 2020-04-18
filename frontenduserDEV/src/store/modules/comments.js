@@ -2,36 +2,7 @@ const axios = require('axios');
 
 const state = {
 	//Тестовые хардкордные значения
-	comments:[
-		{
-			id:1,
-			time: '10.08.20: 13:40',
-			user:'Виталий',
-			title:'Первый комментарий',
-			paper: 'Шпаргалка по работе с MONGO в консоли'
-		},
-		{
-			id:2,
-			time: '12.08.20: 13:40',
-			user:'Евгений',
-			title:'Привет, Привет',
-			paper: 'Шпаргалка по работе с MONGO в консоли'
-		},
-		{
-			id:3,
-			time: '20.08.20: 13:40',
-			user:'Константин',
-			title:'Hello world',
-			paper: 'Docker + Node + Mongo'
-		},
-		{
-			id:4,
-			time: '20.08.20: 13:40',
-			user:'Константин',
-			title:'Hello world',
-			paper: 'Шпаргалка по работе с MONGO в консоли'
-		},
-	]
+	comments:[]
 };
 
 //  Объект для получения состояний в компоненте
@@ -41,12 +12,25 @@ const getters = {
 
 //  Объект для получения данных из внешних источников
 const actions = {
-	
+	async addComments(obj ,data){
+		console.log('addComments');
+		console.log(data);
+		const response = await axios.post(
+			'http://alexweber.ru:5000/comment_add',
+			data
+		)
+	},
+	async feathComments( {commit} ){
+		const response = await axios.get(
+			'http://alexweber.ru:5000/get_all_comments'
+		)
+		commit('setComments' , response.data);
+	}
 }
 
 //  Объект для изменения объекта состояния при использование в action метода commit
 const mutations = {
-	
+	setComments: (state , comments) => (state.comments = comments)
 }
 
 export default {

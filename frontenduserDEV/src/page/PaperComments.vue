@@ -22,15 +22,17 @@ import Vue from 'vue'
                 </div>
             </div>
             <div class='container-comment__form'>
-              <div class='container-comment__input'>
-                Имя:<input type='text'>
-              </div>
-              <div class='container-comment__input'>
-                Комментарий<textarea></textarea>
-              </div>
-              <div class='container-comment__sbm'>
-                <input value='Написать' type='submit'>
-              </div>
+              <form id='comment_add' @submit="comment_add">
+                <div class='container-comment__input'>
+                  Имя:<input name='name_form' type='text'>
+                </div>
+                <div class='container-comment__input'>
+                  Комментарий<textarea name='comment_form'></textarea>
+                </div>
+                <div class='container-comment__sbm'>
+                  <input value='Написать' type='submit'>
+                </div>
+              </form>
             </div>
        </div>     
 	   </div>
@@ -124,8 +126,25 @@ export default {
       enter: false
     };
   },
+  created(){
+      this.feathComments();
+  },
   computed: mapGetters(['allComments']),
   methods: {
+    ...mapActions(['addComments' , 'feathComments']),
+    comment_add(e){
+        e.preventDefault();
+       console.log(document.querySelector("input[name='name_form']").value);
+       console.log(document.querySelector("textarea[name='comment_form']").value);
+       let data = {
+            'name' : document.querySelector("input[name='name_form']").value ,
+            'comment' : document.querySelector("textarea[name='comment_form']").value,
+            'paper': this.$props.postData
+       }
+       this.addComments(
+          data
+       );
+    },
     close(){
        console.log(this.$el.style.cssText = '');
     }
