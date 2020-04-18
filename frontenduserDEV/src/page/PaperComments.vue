@@ -24,7 +24,7 @@ import Vue from 'vue'
             <div class='container-comment__form'>
               <form id='comment_add' @submit="comment_add">
                 <div class='container-comment__input'>
-                  Имя:<input name='name_form' type='text'>
+                  Имя:<input id='name_form' name='name_form' type='text'>
                 </div>
                 <div class='container-comment__input'>
                   Комментарий<textarea name='comment_form'></textarea>
@@ -133,12 +133,10 @@ export default {
   methods: {
     ...mapActions(['addComments' , 'feathComments']),
     comment_add(e){
-        e.preventDefault();
-       console.log(document.querySelector("input[name='name_form']").value);
-       console.log(document.querySelector("textarea[name='comment_form']").value);
+       e.preventDefault();
        let data = {
-            'name' : document.querySelector("input[name='name_form']").value ,
-            'comment' : document.querySelector("textarea[name='comment_form']").value,
+            'name' : e.target.querySelector("input[name='name_form']").value ,
+            'comment' : e.target.querySelector("textarea[name='comment_form']").value,
             'paper': this.$props.postData
        }
        this.addComments(
