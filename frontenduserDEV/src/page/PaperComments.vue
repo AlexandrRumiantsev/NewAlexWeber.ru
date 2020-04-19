@@ -240,9 +240,26 @@ export default {
                component.refrashComments(data); 
             }
        }
-       this.addComments(
-          data
-       );
+       console.log(form.querySelector("input[name='name_form']").value)
+       console.log(form.querySelector("input[name='name_form']").value)
+       
+       if(form.querySelector("input[name='name_form']").value == ''){
+          form.querySelector("input[name='name_form']").style = 'border:1px solid red;';
+          alert('Заполните Имя');
+       }else if(form.querySelector("textarea[name='comment_form']").value == ''){
+       form.querySelector("textarea[name='comment_form']").style = 'border:1px solid red;';
+        alert('Заполните Комментарий');
+       }else{
+         form.querySelector("input[name='name_form']").style = 'border:none';
+         form.querySelector("textarea[name='comment_form']").style = 'border:none';
+         this.addComments(
+            data
+         );
+       }
+       
+       
+
+       
     },
     close(){
        console.log(this.$el.style.cssText = '');
