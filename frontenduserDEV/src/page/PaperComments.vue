@@ -24,13 +24,10 @@ import Vue from 'vue'
             <div class='container-comment__form'>
               <form id='comment_add' @submit="comment_add">
                 <div class='container-comment__input'>
-                  Имя:<input id='name_form' name='name_form' type='text'>
-                </div>
-                <div class='container-comment__input'>
-                  Комментарий<textarea name='comment_form'></textarea>
-                </div>
-                <div class='container-comment__sbm'>
-                  <input value='Написать' type='submit'>
+                    <input placeholder="Ваше имя?" id='name_form' name='name_form' type='text'>
+                    <!--<input id='sbm-elem' value='Написать' type='submit'> -->
+                    <span @click="comment_add" id='sbm-elem' >Написать</span>
+                    <textarea name='comment_form'></textarea>
                 </div>
               </form>
             </div>
@@ -39,6 +36,83 @@ import Vue from 'vue'
 </template>
 
 <style scoped>
+
+#name_form{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+}
+
+
+
+#sbm-elem:before, 
+#sbm-elem:after {
+  content: "Отправить";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+#sbm-elem:before{
+  content: "wait..";
+  transform: translateX(-100%);
+  background: #000;
+  transition: transform .3s cubic-bezier(.55,.055,.675,.19);
+  color:white;
+}
+#sbm-elem:after {
+  background: #413ad5;
+  transform: translateX(100%);
+  transition: transform .3s cubic-bezier(.16,.73,.58,.62) .3s;
+}
+#sbm-elem:hover:before,
+#sbm-elem:hover:after {transform: translateX(0);}
+#sbm-elem{
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 200px;
+    color: black;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    margin-left: 20px;
+    background: white;
+}
+#sbm-elem:after , #sbm-elem:hover:before{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    vertical-align: middle;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+ }   
+
+
+#comment_add textarea{
+    padding: 30px 45px;
+  width: 500px;
+    height: 200px;
+     outline:none;
+}
+#comment_add textarea:focus{
+  border-color:#bee5eb;
+}
+#comment_add input{
+   box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+   border:none;
+   padding:3px;
+   outline:none;
+}
+#comment_add{
+  
+}
 .close-btn img{
 position: absolute;
     width: 35px;
@@ -50,7 +124,8 @@ position: absolute;
   margin:10px;
 }
 .container-comment__input{
-  
+  position:relative;
+
 }
 .container-comment__sbm{
   
@@ -61,13 +136,22 @@ position: absolute;
     align-items: center;
 }
 .container-comment__form{
- text-align: center;
+ border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: fit-content;
+    text-align: center;
     bottom: 25px;
-   align-items: center;
-    margin: 0 auto;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 20px auto;
     background: #edeef0;
-    padding: 25px;
-    display:flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 .container-comment__item{
@@ -93,23 +177,26 @@ position: absolute;
   right: 5px;
 }
 .container-comment{
+    top:10%;
 	color: black;
-    background: #edeef0;
     width: 100%;
-    z-index: 99999;
+    z-index: 999999999;
     position: absolute;
     left: 0;
     height: 100%;
-    top: 0;
+    top: 30px;
     display: flex;
-    align-items: center;
+
 }	
 .container-comment__content{
+height: fit-content;
+ box-shadow: 0 0 10px rgba(0,0,0,0.5); 
       width: 900px;
     margin: 0 auto;
     background: white;
     border-radius: 5px;
     padding: 10px;
+    margin-bottom: 45px;
 }
 
 </style>
@@ -117,27 +204,41 @@ position: absolute;
 
 <script>
 import { mapGetters , mapActions } from 'vuex'
+import Vue from 'vue'
+
 
 export default {
   name: 'PaperComments',
   props: ['postData'],
   data() {
     return {
-      enter: false
+      enter: false,
+      rerender: ''
     };
   },
   created(){
       this.feathComments();
   },
   computed: mapGetters(['allComments']),
+  watch: {
+    rerender: function(){
+       this.refrashComments();
+    }
+  },
   methods: {
-    ...mapActions(['addComments' , 'feathComments']),
+    ...mapActions(['addComments' , 'feathComments' , 'refrashComments']),
     comment_add(e){
+       let component = this;
        e.preventDefault();
+       let form = e.target.parentElement.parentElement;
        let data = {
-            'name' : e.target.querySelector("input[name='name_form']").value ,
-            'comment' : e.target.querySelector("textarea[name='comment_form']").value,
-            'paper': this.$props.postData
+            'name' : form.querySelector("input[name='name_form']").value ,
+            'comment' : form.querySelector("textarea[name='comment_form']").value,
+            'paper': this.$props.postData,
+            'callbak': function(data){
+               console.log('CALBACK!!');
+               component.refrashComments(data); 
+            }
        }
        this.addComments(
           data

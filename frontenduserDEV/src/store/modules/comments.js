@@ -12,19 +12,32 @@ const getters = {
 
 //  Объект для получения данных из внешних источников
 const actions = {
-	async addComments(obj ,data){
-		console.log('addComments');
-		console.log(data);
-		const response = await axios.post(
-			'http://alexweber.ru:5000/comment_add',
-			data
-		)
+	async addComments(obj ,data ){
+		
+		let send = function(){
+			axios.post('http://alexweber.ru:5000/comment_add',data);
+			alert('Комментарий отправлен');
+			data.callbak(data);
+		}
+
+		const response = await send();
+		
 	},
 	async feathComments( {commit} ){
 		const response = await axios.get(
 			'http://alexweber.ru:5000/get_all_comments'
 		)
 		commit('setComments' , response.data);
+	},
+	refrashComments: function(obj , data){
+		let insertData = {
+			_id: 9999,
+			title: data.comment,
+			user: data.name,
+			paper: data.paper,
+			__v: 999
+		}
+		obj.state.comments.push(insertData);
 	}
 }
 

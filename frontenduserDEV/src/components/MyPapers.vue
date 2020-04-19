@@ -11,7 +11,7 @@ import modules from './modules'
             <PaperComments class='papers-container__comments' :id='n.title' :post-data="n.title"/>
              
       </div>
-
+      
       
 
 	  </div>
