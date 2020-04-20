@@ -1,0 +1,16 @@
+$body-color: red;
+
+body {
+  color: $body-color;
+  #app{
+      background: white;
+      .index-container{
+       	 display:flex;
+      	.index-container__item{
+      		width:25%;
+      		margin:10px;
+      		background:#EBFBFF;
+      	}
+      }
+  }
+}
