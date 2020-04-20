@@ -1,8 +1,6 @@
 import modules from './modules'
 
 <template>
-
-
   	<div id="main-page">
 		<div class="content">
            <h2 class='content__sub-title'>WEB-DEVELOPER</h2>
@@ -41,175 +39,15 @@ import modules from './modules'
            </div>
 		</div>
 	</div>
-
 </template>
 
 
 <script>
-
 import Vue from 'vue'
-
 export default {
   name: 'MainPage',
 }  
 </script>
-
 <style scoped>
-.content__skill-box a{
-  color:#949494;
-  text-decoration: none;
-}
-.content__name{
-  background:#bee5eb;
-  color:#fff;
-  padding:10px;
-}
-#main-page{
-	height: 100vh;
-	width:100%;
-	position:relative;
-	display:flex;
-	justify-content: center;
-	align-items: center;
-}
-#main-page h1{
-  width:100%;
-  font-size: 90px;
-}
-#main-page h2{
-	width:100%;
-}
-
-
-body {
-  background: #090d00;
-  color: rgba(255, 255, 255, 0.5);
-  text-align: center;
-}
-
-p {
-  border: 4px double rgba(255, 255, 255, 0.25);
-  border-width: 4px 0;
-  padding: 1.5em 0em;
-  top: 18%;
-  font-size:100px;
-}
-.content p .content__sum-title {
-  font-size:20px;
-  border: 4px double rgba(255, 255, 255, 0.25);
-  border-width: 4px 0;
-  padding: 2.5em 0em;
-  position: absolute;
-  top: 18%;
-  left: 50%;
-  width: 60em;
-  margin: 0 0 0 -20em;
-}
-.content {
-  text-transform: uppercase;
-  padding: .25em 0 .325em;
-  display: block;
-  text-shadow: 0 0 80px rgba(255, 255, 255, 0.9);
-  animation: bounce-top 2s  both;
-  font-family: 'Open Sans', sans-serif;
-  }
-.content__skill-box{
-  display:flex;
-  justify-content: center;
-  margin-top: 25px;
-}
-.content__skill-box div{
-    margin: 10px;
-    border: 1px solid #bee5eb;
-    padding: 15px;
-    cursor:pointer;
-}
-.content__skill-box div:hover{
-    animation: jump 2s  both;
-}
-.content__title{
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-@keyframes bounce-top {
-  0% {
-    transform: translateY(-45px);
-    animation-timing-function: ease-in;
-    opacity: 1;
-  }
-  24% {
-    opacity: 1;
-  }
-  40% {
-    transform: translateY(-24px);
-    animation-timing-function: ease-in;
-  }
-  65% {
-    transform: translateY(-12px);
-    animation-timing-function: ease-in;
-  }
-  82% {
-    transform: translateY(-6px);
-    animation-timing-function: ease-in;
-  }
-  93% {
-    transform: translateY(-4px);
-    animation-timing-function: ease-in;
-  }
-  25%,
-  55%,
-  75%,
-  87% {
-    transform: translateY(0px);
-    animation-timing-function: ease-out;
-  }
-  100% {
-    transform: translateY(0px);
-    animation-timing-function: ease-out;
-    opacity: 1;
-  }
-}
-
-@keyframes jump {
-  0% {
-     transform: translateX(0px);
-    animation-timing-function: ease-in;
-    opacity: 1;
-  }
-  24% {
-    opacity: 1;
-  }
-  40% {
-    transform: translateY(-24px);
-    animation-timing-function: ease-in;
-  }
-  65% {
-    transform: translateY(-12px);
-    animation-timing-function: ease-in;
-  }
-  82% {
-    transform: translateY(-6px);
-    animation-timing-function: ease-in;
-  }
-  93% {
-    transform: translateY(-4px);
-    animation-timing-function: ease-in;
-  }
-  25%,
-  55%,
-  75%,
-  87% {
-    transform: translateY(0px);
-    animation-timing-function: ease-out;
-  }
-  100% {
-    border-color: #bee5eb;
-    transform: translateX(100px);
-    background: #bee5eb;
-    transform: translateY(0px);
-    animation-timing-function: ease-out;
-    color:#fff;
-    font-weight:bold;
-  }
-}
+@import '../styles/body/main/style.css';
 </style>

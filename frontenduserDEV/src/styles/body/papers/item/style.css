@@ -1,0 +1,26 @@
+#paper-page{
+	height: 100vh;
+ text-align: start;
+}
+#paper-page .papers-container{
+	 display: block;
+    float: left;
+    width: 50%;
+    height: 50vh;
+    overflow: hidden;
+    cursor:pointer;
+}
+.paper-item__btn{
+    display: flex;
+    bottom: 0;
+    right: 0;
+    color: white;
+    background: black;
+    padding: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    width: fit-content;
+}
+.papers-container__comments{
+  display:none;
+}

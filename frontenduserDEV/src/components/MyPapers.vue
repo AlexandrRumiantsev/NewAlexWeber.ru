@@ -18,34 +18,7 @@ import modules from './modules'
 </template>
 
 <style scoped>
-.papers-container__comments{
-  display:none;
-}
-#paper-page{
-	height: 100vh;
- text-align: start;
-}
-#paper-page .papers-container{
-	 display: block;
-    float: left;
-    width: 50%;
-    height: 50vh;
-    overflow: hidden;
-    cursor:pointer;
-}
-.paper-item__btn{
-    display: flex;
-    bottom: 0;
-    right: 0;
-    color: white;
-    background: black;
-    padding: 10px;
-    position: -webkit-sticky;
-    position: sticky;
-    max-width: 140px;
-}
-
-    
+@import '../styles/body/papers/item/style.css';
 </style>
 
 
