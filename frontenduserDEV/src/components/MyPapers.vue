@@ -18,7 +18,7 @@ import modules from './modules'
 </template>
 
 <style scoped>
-@import '../styles/body/papers/item/style.css';
+@import '../styles/body/papers/list/style.css';
 </style>
 
 
