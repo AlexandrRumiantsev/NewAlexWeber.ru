@@ -54,3 +54,14 @@ justify-content: center;
   color:white;
   font-size:18px;
 }
+@media (max-width: 1055px) {
+  #paper-page .papers-container {
+    width: 100%;
+  }
+  .contact-page{
+    top:0 !important;
+  }
+  #close-btn{
+    left: 0;
+  }
+}

@@ -85,3 +85,9 @@ background: white;
 .hidden-info{
    display:none;
 }
+
+@media (max-width: 1055px) {
+    html .project-container{
+        width: 70%;
+    }
+}
