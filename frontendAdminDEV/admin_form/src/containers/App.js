@@ -17,13 +17,13 @@ function Switcher(props) {
     return <div>Главная</div>
   };
   if(props.page == 'projects'){
-    return <div><Projects /></div>
+    return <div className='page_popupp'><Projects store={props.store}/></div>
   };
   if(props.page == 'papers'){
-    return <div><Papers /></div>
+    return <div className='page_popupp'><Papers store={props.store}/></div>
   };
   if(props.page == 'comments'){
-    return <div><Comments /></div>
+    return <div className='page_popupp'><Comments store={props.store}/></div>
   };
   
 }
@@ -52,11 +52,7 @@ class App extends Component {
       }
   }
   render() {
-    const { user, main, store } = this.props
-    //console.log(store.getState().switcher.page);
-    //const { setYear } = this.props.pageActions
-    //const page = page;
-    
+    const { user, main, store } = this.props 
     return <div>
               <User name={user.name} />
 
@@ -102,7 +98,7 @@ class App extends Component {
                     </div>
               </div>
 
-               <Switcher page={store.getState().switcher.page}/>
+               <Switcher store={store} page={store.getState().switcher.page}/>
 
           </div>
   }

@@ -15,23 +15,25 @@ import { createStore } from 'redux'
 
     switch(actions.type){
     	case "projects":
-    		//return {}, state, {page: actions.type}
     		return Object.assign({}, state, {
              page: actions.type
         	})
     	break;
     	case "papers":
-    		//return {}, state, {page: actions.type}
     		return Object.assign({}, state, {
              page: actions.type
         	})
     	break;
     	case "comments":
-    		//return {}, state, {page: actions.type}
     		return Object.assign({}, state, {
              page: actions.type
         	})
     	break;
+      case "index":
+        return Object.assign({}, state, {
+             page: actions.type
+          })
+      break;
     	default:
     		console.log('TEST3')
     		return state;
