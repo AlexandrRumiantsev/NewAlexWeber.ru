@@ -90,7 +90,6 @@ class Authorization extends React.Component{
         this.onClick(log , pass);
     }
     onClick(log , pass){
-       console.log(this.props);
        axios.get('http://alexweber.ru:5000/login?login=' + log + '&password=' + pass)
           .then( response => {
             console.log(response);
@@ -99,22 +98,31 @@ class Authorization extends React.Component{
             else{
                 alert('Неверный логин или пароль');
             }   
+          })
+          .catch(error => {
+              console.log(error)
           });
           
     }
     render(){
         return (
-             <div className='Authorization'>
-                <h1>Авторизация пользователя</h1>
-                    <div className='line'>
-                        <div className='row'>Логин:</div> <div className='row'><input id='log'/></div>
-                    </div>
-                    <div className='line'>
-                        <div className='row'> Пароль:</div>  <div className='row'><input id='pass'/></div>
-                    </div>
-                    <span>
-                         <div onClick={ ()=>{ this.check(this.state.checkbox) } } className='sbm'>Войти</div>
-                         <span onClick={ 
+          <div>
+
+             <div className="box Authorization">
+              <h1>Авторизация пользователя</h1>
+              <form>
+                <div className="inputbox">
+                  <input required id="log" type="text" name="login"/>
+                  <label>Username</label>
+                </div>
+                <div className="inputbox">
+                  <input required id="pass" type="password" name="password"/>
+                  <label>Password</label>
+                </div>
+
+                <div className='box__btn'>
+                <div onClick={ ()=>{ this.check(this.state.checkbox) } } className='sbm'>Войти</div>
+                <span className='span_save' onClick={ 
                             ()=>{ 
                                
                                 if(this.state.checkbox=='false'){
@@ -133,7 +141,9 @@ class Authorization extends React.Component{
                             <input type='checkbox' name='check' id='check'/>
                              Запомнить
                          </span>
-                    </span>
+                   </div>      
+              </form>             
+            </div>
              </div>
         )
     }
@@ -160,7 +170,7 @@ class Menu extends Component {
 
     }
   componentDidMount(){
-    alert('xx');
+    //alert('xx');
   }
 
   render() {
