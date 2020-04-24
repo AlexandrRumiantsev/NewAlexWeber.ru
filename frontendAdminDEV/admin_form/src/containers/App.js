@@ -18,7 +18,7 @@ const ReactDOM = require('react-dom');
 
 function Switcher(props) {
   if(props.page == 'index'){
-    return <div>Главная</div>
+    return <div></div>
   };
   if(props.page == 'projects'){
     return <div className='page_popupp'><Projects store={props.store}/></div>
@@ -107,8 +107,6 @@ class Authorization extends React.Component{
                                   'pass': pass,
                                   'callback': function(val){
                                      console.log('1callback!');
-                                     if(val.log != undefined && val.pass != undefined)
-                                       return <Menu store={storeState}  />
                                   }
                               },
                               store: this.props.store
@@ -189,7 +187,7 @@ class Menu extends Component {
   }
 
   render() {
-      return <div>
+      return <div id='index'>
                 <div class='index-container'>
                       <div onClick={()=>{
                       this.props.store.dispatch(
@@ -200,7 +198,8 @@ class Menu extends Component {
                         )
                       }}
                       class='index-container__item'>
-                      Проекты
+                      <i class="far-projects fa-calendar-check"></i>
+                      <p>Проекты</p>
                       </div>
                 </div>
 
@@ -214,7 +213,8 @@ class Menu extends Component {
                         )
                       }}
                       class='index-container__item'>
-                      Статьи
+                      <i class="far-papers"></i>
+                      <p>Статьи</p>
                       </div>
                 </div>
 
@@ -229,7 +229,8 @@ class Menu extends Component {
                         )
                       }}
                       class='index-container__item'>
-                      Комментарии
+                      <i class="far-comments"></i>
+                      <p>Комментарии</p>
                       </div>
                 </div>
 
