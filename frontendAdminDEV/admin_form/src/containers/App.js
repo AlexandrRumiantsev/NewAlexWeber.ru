@@ -73,9 +73,15 @@ class Authorization extends React.Component{
           autoriz: [],
           checkbox: 'false'
         };
+        const { store } = this.props
+        console.log(store);
+        this.state = store.getState();
+        this.unsubscribe = store.subscribe(() => {
+            this.setState(store.getState());
+        });
     }
     check(item){
-        
+        console.log('check');
         let log = document.getElementById('log').value;
         let pass = document.getElementById('pass').value;
         
@@ -90,21 +96,29 @@ class Authorization extends React.Component{
         this.onClick(log , pass);
     }
     onClick(log , pass){
-       axios.get('http://alexweber.ru:5000/login?login=' + log + '&password=' + pass)
-          .then( response => {
-            console.log(response);
-            if (response.data.length != 0) 
-                ReactDOM.render(<Menu store={this.props.store}  />,  document.getElementById('app'))
-            else{
-                alert('Неверный логин или пароль');
-            }   
-          })
-          .catch(error => {
-              console.log(error)
-          });
-          
+       console.log('onClick');
+       let storeState = this.props.store;
+      
+       let data = this.props.store.dispatch(
+                            {
+                              type: 'LoginUser', 
+                              val: {
+                                  'log': log ,
+                                  'pass': pass,
+                                  'callback': function(val){
+                                     console.log('1callback!');
+                                     if(val.log != undefined && val.pass != undefined)
+                                       return <Menu store={storeState}  />
+                                  }
+                              },
+                              store: this.props.store
+                            }
+                        )
     }
     render(){
+        if(this.props.store.getState().user.User['log'] != undefined)
+          return <Menu store={this.props.store} />
+        else{
         return (
           <div>
 
@@ -146,6 +160,7 @@ class Authorization extends React.Component{
             </div>
              </div>
         )
+      }
     }
 }
 

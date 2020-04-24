@@ -14,7 +14,7 @@ function listProject(props) {
     switch(actions.type){
     	case "setProjectsAll":
         console.log("setProjectsAll");
-        getProjects(state);
+        getProjects(state , actions.val);
     		return state;
     	break;
 
