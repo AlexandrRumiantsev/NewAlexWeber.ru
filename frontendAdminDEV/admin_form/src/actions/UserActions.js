@@ -19,7 +19,7 @@ export function getUser(state , data , store) {
                             }
                         )
                     return state;
-                //ReactDOM.render(<Menu store={store}  />,  document.getElementById('app'))
+              
             }else{
                 alert('Неверный логин или пароль');
             }   
