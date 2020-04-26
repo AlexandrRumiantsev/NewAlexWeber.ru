@@ -1,19 +1,21 @@
-import { SET_YEAR } from '../constants/Main'
+import { GET_PROJECTS , ERROR_TEXT} from '../constants/Projects'
 import axios from 'axios';
 
-export function getProjects(state) {
-	console.log('getProjects');
-	let projectsData = [];
-    
-    new Promise( ()=>
-        axios.get(`http://alexweber.ru:5000/data`)
+export function getProjects(state , action , GET_TEST) {
+    if(GET_TEST){
+        return getData(GET_TEST , state, action)
+    }else return getData(GET_PROJECTS , state);
+}
+
+const getData = (GET , state) => {
+        new Promise( ()=>
+        axios.get(GET)
             .then(res => {
-            	console.log(res.data);
+                console.log(res.data);
                 state.data = res.data;
             }) 
          ).then(() => {
-            throw new Error('Где-то произошла ошибка');
-        });     
-    return state;
-  
-  }
+            throw new Error(ERROR_TEXT);
+        }); 
+    return state;     
+}
