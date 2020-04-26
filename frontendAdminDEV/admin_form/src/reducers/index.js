@@ -4,6 +4,7 @@ import main from './main';
 import user from './user';
 import projects from './projects';
 import papers from './papers';
+import comments from './comments';
 
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
   user,
   switcher,
   projects,
-  papers
+  papers,
+  comments
 })

@@ -96,7 +96,7 @@ export default class Projects extends Component {
     } = this.props
 
     return <div >
-      <div class = 'index-container' >
+      <div>
       <div onClick = {
           () => {
             store.dispatch({
@@ -105,7 +105,7 @@ export default class Projects extends Component {
             })
           }
         }
-      class = 'index-container__item' >
+      class = 'item__close' >
         Закрыть 
       </div> 
     </div> 

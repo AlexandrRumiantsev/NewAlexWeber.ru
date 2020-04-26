@@ -43,6 +43,11 @@ export class Menu extends Component {
 
   render() {
       return <div id='index'>
+                <div class='menu'>
+                  <span class='menu__login'>
+                    { this.props.store.getState().user.User.log }
+                  </span>
+                </div>
                 <div class='index-container'>
                       <div onClick={()=>{
                       this.props.store.dispatch(

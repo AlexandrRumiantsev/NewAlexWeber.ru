@@ -38,7 +38,7 @@ import axios from 'axios';
                           }
                       )
                     }}
-                    class='index-container__item'>
+                    class='item__close'>
                     Закрыть
                     </div>
        {this.state.papers.map((papers, index)=> {
