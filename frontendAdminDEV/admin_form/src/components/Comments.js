@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import '../styles/app.scss';
 import { connect } from 'react-redux';
 import { getComments } from '../actions/CommentsActions.js';
+import '../styles/body/comments/list.scss';
+import '../styles/body/comments/item.scss';
 
 class Comments extends Component {
 	constructor () {

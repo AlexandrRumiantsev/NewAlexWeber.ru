@@ -4,54 +4,29 @@ import React, {
 import PropTypes from 'prop-types';
 import '../styles/app.scss';
 
-const formItem = function (data, i) {
-  console.log(data);
-  let ProjectContainer = document.createElement('div');
-  ProjectContainer.className = 'ProjectContainer';
-  let id = data[i]._id;
-  let group = data[i].id_group;
+import '../styles/body/projects/list.scss';
+import '../styles/body/projects/item.scss';
 
-  ProjectContainer.id = id;
-  ProjectContainer.dataset.id_group = group;
+import '../styles/body/projects/menu.scss';
 
-  let ProjectImg = document.createElement('div');
-  ProjectImg.className = 'ProjectImg';
-  let image = document.createElement('div');
-  image.innerText = data[i].image;
-  let imageFull = document.createElement('div');
-  imageFull.innerText = data[i].imageFull;
-  ProjectImg.appendChild(image);
-  ProjectImg.appendChild(imageFull);
-
-  let ProjectInfo = document.createElement('div');
-  ProjectInfo.className = 'ProjectInfo';
-
-  let name = document.createElement('div');
-  let link = document.createElement('div');
-  let discription = document.createElement('div');
-  name.className = 'ProjectInfo__name';
-  link.className = 'ProjectInfo__link';
-  discription.className = 'ProjectInfo__discr';
-
-  name.innerText = data[i].name;
-  link.innerText = data[i].link;
-  discription.innerText = data[i].discription;
-
-  ProjectInfo.appendChild(name);
-  ProjectInfo.appendChild(link);
-  ProjectInfo.appendChild(discription);
-  ProjectContainer.appendChild(ProjectImg);
-  ProjectContainer.appendChild(ProjectInfo);
-  return ProjectContainer;
+function ListProject(props) {
+    console.log(props.data);
+    return <div>
+              <div>{props.data.name}</div>
+              <div>{props.data.link}</div>
+              <div>{props.data._id}</div>
+              <div>{props.data.image}</div>
+              <div>{props.data.imageFull}</div>
+            </div>
 }
 
 export default class Projects extends Component {
   constructor() {
     super(...arguments);
-    /* 
-      алгоритм необходимы для обновления компонента, 
-      посли изменения состояния хранилища 
-    */
+    this.setState({
+      data: [],
+      render: false
+    })
     const {
       store
     } = this.props
@@ -67,61 +42,45 @@ export default class Projects extends Component {
     } = this.props
 
     store.dispatch({
-      type: 'setProjectsAll',
-      val: 'setProjectsAll'
-    })
-
-    this.setState({
-      isFetching: true
-    })
-
-  }
-  insertAllProjects(data) {
-    const btn = document.getElementsByClassName('all_projects_btn')[0];
-
-    if (btn.className != 'all_projects_btn active') {
-      btn.classList.add("active");
-      const content = document.getElementById('content');
-      for (let i = 0; i < data.length; i++) {
-        content.appendChild(
-          formItem(data, i)
-        )
+      type: 'getProjectsAll',
+      data: {
+        'projectComponent' : this
       }
-      console.log(content);
-    }
+    })
   }
   render() {
+
     const {
       store
     } = this.props
+    
 
-    return <div >
-      <div>
-      <div onClick = {
-          () => {
-            store.dispatch({
-              type: 'index',
-              val: 'index'
-            })
-          }
-        }
-      class = 'item__close' >
-        Закрыть 
-      </div> 
-    </div> 
-    <span 
-    class = 'all_projects_btn'
-    onClick = {
-        () => {
-          this.insertAllProjects(store.getState().projects.data)
-        }
-      } >
-      Все проекты 
-    </span> 
-    <div>
-      Добавить 
-    </div> 
-      <div id = 'content' > < /div> 
-    </div>
+    if(this.state.render == true){
+      return <div>
+      <div onClick={()=>{
+              this.setState({
+                state: false
+              })
+
+              store.dispatch(
+                  {
+                    type: 'index', 
+                    val: 'index'
+                  }
+              )
+          }}
+          className='item__close'>
+        Закрыть
+      </div>
+      {this.state.data.map((project, index)=> {
+            return <li key={index}>
+                      <ListProject data={project}/>
+                    </li>
+       })}
+      </div>
+    }else{
+      return <div class='loader'></div>
+    }
+    
   }
 }

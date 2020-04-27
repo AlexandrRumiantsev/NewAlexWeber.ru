@@ -3,6 +3,8 @@ import Projects from '../components/Projects'
 import Comments from '../components/Comments'
 import Papers from '../components/Papers'
 
+import '../styles/body/menu.scss';
+
 function Switcher(props) {
   if(props.page == 'index'){
     return <div></div>

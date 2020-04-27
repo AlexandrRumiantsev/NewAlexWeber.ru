@@ -4,6 +4,10 @@ import '../styles/app.scss';
 import { getPapers } from '../actions/PapersActions.js';
 import { connect } from 'react-redux';
 import axios from 'axios';
+
+import '../styles/body/papers/list.scss';
+import '../styles/body/papers/item.scss';
+
  class Papers extends Component {
   constructor () {
 

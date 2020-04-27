@@ -4,6 +4,7 @@ import React, {
 import {
   Menu
 } from './Menu.js'
+import '../styles/header/login.scss';
 
 export class Authorization extends React.Component {
   constructor(props) {
