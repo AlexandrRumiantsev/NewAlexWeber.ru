@@ -50,46 +50,46 @@ export class Menu extends Component {
                     { this.props.store.getState().user.User.log }
                   </span>
                 </div>
-                <div class='index-container'>
-                      <div onClick={()=>{
-                      this.props.store.dispatch(
+                <div onClick={()=>{
+                        this.props.store.dispatch(
                             {
                               type: 'projects', 
                               val: 'projects'
                             }
                         )
-                      }}
+                      }} class='index-container'>
+                      <div 
+                      
                       class='index-container__item'>
                       <i class="far-projects fa-calendar-check"></i>
                       <p>Проекты</p>
                       </div>
                 </div>
 
-                <div class='index-container'>
-                      <div onClick={()=>{
+                <div onClick={()=>{
                       this.props.store.dispatch(
                             {
                               type: 'papers', 
                               val: 'papers'
                             }
                         )
-                      }}
+                      }} class='index-container'>
+                      <div 
                       class='index-container__item'>
                       <i class="far-papers"></i>
                       <p>Статьи</p>
                       </div>
                 </div>
 
-                <div class='index-container'>
-                      <div onClick={()=>{
-                        alert('sadasd');
+                <div onClick={()=>{
                       this.props.store.dispatch(
                             {
                               type: 'comments', 
                               val: 'comments'
                             }
                         )
-                      }}
+                      }} class='index-container'>
+                      <div 
                       class='index-container__item'>
                       <i class="far-comments"></i>
                       <p>Комментарии</p>

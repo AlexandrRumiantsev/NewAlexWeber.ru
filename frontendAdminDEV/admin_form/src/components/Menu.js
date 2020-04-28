@@ -51,8 +51,7 @@ export class Menu extends Component {
                       </div>
                 </div>
 
-                <div class='index-container'>
-                      <div onClick={()=>{
+                <div onClick={()=>{
                         alert('sadasd');
                       this.props.store.dispatch(
                             {
@@ -61,7 +60,8 @@ export class Menu extends Component {
                             }
                         )
                       }}
-                      class='index-container__item'>
+                      class='index-container'>
+                      <div class='index-container__item'>
                       Комментарии
                       </div>
                 </div>

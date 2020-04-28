@@ -1,0 +1,28 @@
+.item{
+	font-size: 35px;
+    display: flex;
+    position: relative;
+    margin: auto;
+    height: 100%;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 3px 3px 5px black, 0 0 1em black;
+}
+.item__title{
+	background-color: rgba(0,0,0,0.8);
+    width: 100%;
+    text-align: center;
+ }  
+.container-btn{
+	font-size: 18px;
+	padding: 10px;
+    background: white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    span{
+       margin:5px;
+    }
+}

@@ -7,16 +7,15 @@ import '../styles/app.scss';
 import '../styles/body/projects/list.scss';
 import '../styles/body/projects/item.scss';
 
-import '../styles/body/projects/menu.scss';
-
 function ListProject(props) {
     console.log(props.data);
-    return <div>
-              <div>{props.data.name}</div>
-              <div>{props.data.link}</div>
-              <div>{props.data._id}</div>
-              <div>{props.data.image}</div>
-              <div>{props.data.imageFull}</div>
+    return <div className='item'>
+              <div className='item__title'>{props.data.name}</div>
+              <div className='container-btn'>
+                <a target='_blank' href={props.data.link}>Перейти</a>  
+                <span onClick={()=>{alert('редактировать')}}>Ред.</span>
+                <span onClick={()=>{alert('Удалить')}}>Уд.</span>
+              </div>
             </div>
 }
 
@@ -56,7 +55,8 @@ export default class Projects extends Component {
     
 
     if(this.state.render == true){
-      return <div>
+      
+      return <div class='list-projects'>
       <div onClick={()=>{
               this.setState({
                 state: false
@@ -70,12 +70,19 @@ export default class Projects extends Component {
               )
           }}
           className='item__close'>
-        Закрыть
+        X
       </div>
       {this.state.data.map((project, index)=> {
-            return <li key={index}>
+        console.log(project.imageFull);
+            const pStyle = {
+              background: "url('http://alexweber.ru/img/"+project.image+"')",
+              backgroundSize: 'cover' 
+            };
+
+            return <div style={pStyle} class='projects__item' 
+                        key={index}>
                       <ListProject data={project}/>
-                    </li>
+                    </div>
        })}
       </div>
     }else{
