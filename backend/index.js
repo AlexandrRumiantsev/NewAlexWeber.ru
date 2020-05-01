@@ -20,22 +20,40 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const mongoose = require("mongoose");
+
+
+
+
 (function(){
   "use strict";
+    
+ // Add headers
+ app.use(function (req, res, next) {
+     next();
+ });
   
-    // Add headers
-    app.use(function (req, res, next) {
-    
-        // Website you wish to allow to connect
-       
-    
-        // Pass to next layer of middleware
-        next();
-    });
-    
+ // BEGIN Methods for interface API
+
  app.get('/', function(req, res){
-         
+     res.sendFile(__dirname + '/view/index.html');
+ });
+ app.get('/dev', function(req, res){
+     mongoose.connect('mongodb://mongo:27017/docker-node-mongo',
+    { useNewUrlParser: true }
+      )
+      .then(() => console.log('Соединение с MongoDB установленно'))
+      .catch(err => console.log('ERROR:' + err));
+  
+      res.sendFile(__dirname + '/view/index.html');
+
   });
+
+ // END Methods for interface API
+
+
+
+ // BEGIN Methods for get/take DATA
   
  app.get('/data', function(req, res){
     console.log('data'); 
@@ -110,6 +128,7 @@ app.get('/login', function(req, res){
  
  });    
 
+// END Methods for get/take DATA
 
 
 http.listen(5000, ()=>{
