@@ -53,7 +53,7 @@
 | cors  | Это механизм, позволяющий запрашивать ограниченные ресурсы на веб-странице из другого домена за пределами домена, из которого обслуживался первый ресурс.         |    npm i cors |
 jest | Тесты | npm i jest --save-dev
  @babel/core babel-loader @babel/preset-env @babel/preset-react| Дополнения | npm install @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
-
+| node-cache | Кэш в Node | npm install node-cache --save
 
 
 

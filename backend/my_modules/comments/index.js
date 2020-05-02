@@ -2,23 +2,7 @@ function comments() {
     const mongoose = require("mongoose");
     const commentsSchem = require('./Schema.js');
     
-    this.connect = function(res) {
-        console.log('connect');
-       
-        mongoose.connect('mongodb://localhost:27017/server', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }, function(err, db) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('222Подключение с БД установлено');
-                return db;
-                   
-                                } 
-                                
-                            });
-                        }
+
     this.makeid = function() {
         var text = "";
         var possible = "55153a8014829a865bbf700d";

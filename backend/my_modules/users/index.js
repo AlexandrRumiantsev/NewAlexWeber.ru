@@ -5,10 +5,7 @@ function users() {
   
    this.users_model = function(res) { 
        
-       /**
-       const login = "Admin";
-       const password = "6Exniskay20"; 
-       **/
+
        console.log('res');
        const login = res['req']['query']['login'];
        const password = res['req']['query']['password'];
