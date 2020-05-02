@@ -16,7 +16,7 @@ const state = {
 			title:'тест 3'
 		}
 	],
-	projects:[]
+	projects: ''
 };
 
 //  Объект для получения состояний в компоненте
@@ -28,16 +28,30 @@ const getters = {
 //  Объект для получения данных из внешних источников
 const actions = {
 	async feathProjects( {commit} ){
-		const response = await axios.get(
+		let arrData = JSON.parse(localStorage.getItem('projects'))
+		if(arrData){
+			console.log('Из кешей');
+			commit('getProjects' , arrData);
+		}else{
+			console.log('Запрос');
+			const response = await axios.get(
 			'http://alexweber.ru:5000/data'
-		)
-		commit('setProjects' , response.data);
+			)
+			commit('setProjects' , response.data);
+		}
+		
 	}
 }
 
 //  Объект для изменения объекта состояния при использование в action метода commit
 const mutations = {
-	setProjects: (state , projects) => (state.projects = projects)
+	setProjects: (state , projects) => {
+		localStorage.setItem('projects', JSON.stringify(projects));
+		state.projects = projects;
+	},
+	getProjects: (state , projects) => {
+		state.projects = projects;
+	}
 }
 
 export default {
