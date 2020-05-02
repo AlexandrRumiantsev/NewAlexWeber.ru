@@ -27,27 +27,8 @@ app.use(bodyParser.urlencoded({
 
 const mongoose = require("mongoose");
 
-
-
-this.connect = function(res) {
-    console.log('connect');
-
-    mongoose.connect('mongodb://localhost:27017/server', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }, function(err, db) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('111Подключение с БД установлено');
-            return db;
-
-        }
-
-    });
-}();
-
-
+var config = require('./my_modules/config.js');
+config.connectDEV();
 
 (function() {
     "use strict";
@@ -62,16 +43,7 @@ this.connect = function(res) {
     app.get('/', function(req, res) {
         res.sendFile(__dirname + '/view/index.html');
     });
-    app.get('/dev', function(req, res) {
-        mongoose.connect('mongodb://mongo:27017/docker-node-mongo', {
-                useNewUrlParser: true
-            })
-            .then(() => console.log('Соединение с MongoDB установленно'))
-            .catch(err => console.log('ERROR:' + err));
-
-        res.sendFile(__dirname + '/view/index.html');
-
-    });
+    
 
     // END Methods for interface API
 
@@ -151,7 +123,7 @@ this.connect = function(res) {
     // END Methods for get/take DATA
 
 
-    http.listen(5000, () => {
+    http.listen(4000, () => {
         console.log('СЕРВЕР ЗАПУЩЕН');
     });
 
