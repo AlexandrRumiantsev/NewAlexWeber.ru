@@ -27,8 +27,9 @@ app.use(bodyParser.urlencoded({
 
 const mongoose = require("mongoose");
 
+
 var config = require('./my_modules/config.js');
-config.connectDEV();
+//config.connectDEV();
 
 (function() {
     "use strict";
@@ -43,12 +44,75 @@ config.connectDEV();
     app.get('/', function(req, res) {
         res.sendFile(__dirname + '/view/index.html');
     });
+
+    app.get('/exportprod', function(req, res) {
+        const resMain = res;
+        var http = require('http');
+        const mainUrl = 'http://alexweber.ru:5000/';
+        const dataGet = [
+            'data',
+            'data_papers',
+            'get_all_comments'
+        ];
+        const fileSaved = function(dir , data){
+            let fs = require('fs');
+            let time = new Date("April/17/1983/21:08:00");
+ 
+             fs.appendFile('./files/'+dir+'/'+time+'.txt', data, function (err) {
+                 if (err) throw err;
+                 console.log('Saved!');
+                 //resMain.download('./files/'+dir+'/'+time+'.txt');
+             }); 
+         }
+         
+        const getProd = function(url){
+           let parsedData; 
+           http.get( mainUrl+url , (res) => {
+            res.setEncoding('utf8');
+            let rawData = '';
+            res.on('data', (chunk) => { rawData += chunk; });
+            res.on('end', () => {
+                try {
+                let str = [];    
+                parsedData = JSON.parse(rawData);
+                for(let i = 0 ; i<parsedData.length ; i++){
+                  str.push(JSON.stringify(parsedData[i]));
+                }
+                    fileSaved(url , JSON.stringify(str));
+                } catch (e) {
+                console.error(e.message);
+                }
+            });
+            }).on('error', (e) => {
+            console.error(`Got error: ${e.message}`);
+            })
+           
+        }
+        for( var i = 0 ; i < dataGet.length; i++){
+                getProd(dataGet[i]);
+        }
+        
+        res.sendFile(__dirname + '/view/success.html');
+        
+    });
+
+    app.get('/exportDev', function(req, res) {
+        res.sendFile(__dirname + '/view/index.html');
+    });
+
+    app.get('/importProd', function(req, res) {
+        res.sendFile(__dirname + '/view/index.html');
+    });
+
+    app.get('/importDev', function(req, res) {
+        res.sendFile(__dirname + '/view/index.html');
+    });
     
 
     // END Methods for interface API
 
 
-
+    
     // BEGIN Methods for get/take DATA
 
     app.get('/data', function(req, res) {
