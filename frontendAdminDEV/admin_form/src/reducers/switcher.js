@@ -35,7 +35,6 @@ import { createStore } from 'redux'
           })
       break;
     	default:
-    		console.log('TEST3')
     		return state;
     	break;
 

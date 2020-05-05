@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 module.exports = {
     'connect':function(){
         console.log('connect');
-        
         mongoose.connect('mongodb://localhost:27017/server', {
             useNewUrlParser: true,
             useUnifiedTopology: true
@@ -12,7 +11,7 @@ module.exports = {
                 console.log(err);
             } else {
                 console.log('Подключение к Продовой БД');
-                return db;
+                return  db;
             }
         });
     },

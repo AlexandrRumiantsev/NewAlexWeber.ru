@@ -12,7 +12,14 @@ function comments() {
         console.log(text);
         return text;
     }
-
+    this.comments_del = function(title , config) { 
+       
+       commentsSchem.deleteOne({ title: title }, function (err , data) {
+        if (err)  console.log('Not Save: ' + err);
+          console.log('Save');
+          console.log(data);
+        });
+    }
    this.comments_model = function(data) { 
          var dataForm = data;
          var id = mongoose.Types.ObjectId(this.makeid());
@@ -20,6 +27,18 @@ function comments() {
          item.save(function (err) {
             if (err) return console.log(err);
          });
+   }
+   this.comments_del = function(id ,config) { 
+       config.connect();
+       var query = { '_id': id };
+        commentsSchem.deleteOne(query, function (err, result) {
+        if (err) {
+            console.log("error query");
+        } else {
+            console.log(result);
+        }
+
+    });    
    }
    this.get_all_comments = function(res) {
        return commentsSchem.find({}, (err, data) => {

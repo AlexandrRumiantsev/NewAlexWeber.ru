@@ -16,11 +16,9 @@ import { getPapers } from '../actions/PapersActions.js'
         return state;
       break;
       case "PERSONS_FETCH_DATA_SUCCESS":
-      console.log('!!PERSONS_FETCH_DATA_SUCCESS!!');
             return action.persons;
        break; 
       default:
-        console.log('TEST3')
         return state;
       break;
 

@@ -9,7 +9,6 @@ export default class User extends Component {
     </div>
   }
 }
-console.log(PropTypes.string);
 User.propTypes = {
   name: PropTypes.string.isRequired
 }

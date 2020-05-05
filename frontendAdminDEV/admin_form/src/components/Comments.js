@@ -2,9 +2,29 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import '../styles/app.scss';
 import { connect } from 'react-redux';
-import { getComments } from '../actions/CommentsActions.js';
+import { delComment , getComments } from '../actions/CommentsActions.js';
 import '../styles/body/comments/list.scss';
 import '../styles/body/comments/item.scss';
+
+function ItemComment(props){
+console.log(props.data);
+         return <div className='item-comment'>
+            <span onClick={()=>{
+                  delComment(props.data._id);
+                }}>
+                  <i class="fas fa-trash-alt"></i>
+            </span>
+           <div className='item-comment__title'>
+              title is: {props.data.title}
+           </div>
+           <div className='item-comment__paper'>
+              paper is: {props.data.paper}
+           </div>
+           <div className='item-comment__user'>
+              user is: {props.data.user}
+           </div>
+         </div>                  
+}
 
 class Comments extends Component {
 	constructor () {
@@ -13,6 +33,7 @@ class Comments extends Component {
           алгоритм необходимы для обновления компонента, 
           посли изменения состояния хранилища 
         */
+        this.delComment = React.createRef();
         const { store } = this.props
         this.state = store.getState();
         this.unsubscribe = store.subscribe(() => {
@@ -21,14 +42,15 @@ class Comments extends Component {
 
   }
   componentDidMount(){
-
+    const { store } = this.props;
+    
     getComments(this)
 
   }
   render() {
   	const { store } = this.props
     if(this.state.status == true){
-      return  <div>
+      return  <div className='page-comment'>
       <div onClick={()=>{
                     store.dispatch(
                           {
@@ -40,13 +62,10 @@ class Comments extends Component {
                     class='item__close'>
                     Закрыть
                     </div>
-                    {this.state.comments.map((comments, index)=> {
-                      return <li key={index}>
-                        <div>title is: {comments.title}</div>
-                         <div>paper is: {comments.paper}</div>
-                          <div>_id is: {comments._id}</div>
-                           <div>user is: {comments.user}</div>
-                      </li>
+                    { this.state.comments.map((comments, index)=> {
+                      return <section className='comment-list-item' key={comments._id}>
+                          <ItemComment components={this} store={store}  data={comments} />
+                       </section>
                     })}
               </div>
             

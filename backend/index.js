@@ -20,7 +20,7 @@ const urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -30,7 +30,7 @@ const mongoose = require("mongoose");
 
 var config = require('./my_modules/config.js');
 //config.connectDEV();
-
+config.connect();
 (function() {
     "use strict";
 
@@ -174,7 +174,11 @@ var config = require('./my_modules/config.js');
         var comment = new comments();
         comment.comments_model(req.body);
     })
-
+    app.post('/comment_del', urlencodedParser, (req, res) => {
+        var comment = new comments();
+        console.log(req.body);
+        comment.comments_del(req.body['id']  , config);
+    })
     app.get('/login', function(req, res) {
         console.log('login');
         res.setHeader('Access-Control-Allow-Origin', '*');
@@ -187,7 +191,7 @@ var config = require('./my_modules/config.js');
     // END Methods for get/take DATA
 
 
-    http.listen(4000, () => {
+    http.listen(5000, () => {
         console.log('СЕРВЕР ЗАПУЩЕН');
     });
 

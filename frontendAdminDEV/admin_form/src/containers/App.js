@@ -32,7 +32,6 @@ class App extends Component {
     const {
       store
     } = this.props
-    //console.log(store);
     this.state = store.getState();
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState());

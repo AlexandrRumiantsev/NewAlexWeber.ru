@@ -16,7 +16,6 @@ export class Authorization extends React.Component {
     const {
       store
     } = this.props
-    console.log(store);
     this.state = store.getState();
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState());
@@ -46,7 +45,7 @@ export class Authorization extends React.Component {
     this.onClick(log, pass);
   }
   onClick(log, pass) {
-    console.log('onClick');
+
     let storeState = this.props.store;
 
     let data = this.props.store.dispatch({
@@ -55,7 +54,7 @@ export class Authorization extends React.Component {
         'log': log,
         'pass': pass,
         'callback': function (val) {
-          console.log('1callback!');
+          
         }
       },
       store: this.props.store

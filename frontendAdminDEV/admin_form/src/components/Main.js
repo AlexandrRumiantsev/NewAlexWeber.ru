@@ -11,14 +11,11 @@ import {createStore} from 'redux';
 export default class Main extends Component {
   constructor(props) {
         super(props);
-        console.log(this.props.store);
   }
   render() {
     return <div class='index-container'>
     
             <div onClick={()=>{
-                //console.log(this.props.store.dispatch('SET_PAGE'))
-                 //this.props.store.dispatch({type: 'SET_PAGE' , val: 'projects'});
                   this.props.store.dispatch(
                     {type: 'projects' , val: 'projects'}
                   )

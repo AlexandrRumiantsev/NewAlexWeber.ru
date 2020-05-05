@@ -7,7 +7,6 @@ const initialState = {
   export default function user(state = initialState , actions , store) {
     switch(actions.type){
         	case "LoginUser":
-        	console.log('LoginUser');
         	getUser(state , actions.val , actions.store );
             return state;
     	break;
@@ -18,7 +17,6 @@ const initialState = {
         	})
     	break;
     	default:
-    		console.log('TEST3')
     		return state;
     	break;
 
