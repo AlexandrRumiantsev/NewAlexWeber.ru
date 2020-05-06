@@ -150,7 +150,6 @@ function editProject(data , store , target){
 }
 
 function ListProject(props) {
-    console.log(props.data);
     return <div className='item'>
               <div className='item__title'>
                   <div className='title__content'>
@@ -203,6 +202,7 @@ export default class Projects extends Component {
     store.dispatch({
       type: 'getProjectsAll',
       data: {
+        'store':store,
         'projectComponent' : this
       }
     })

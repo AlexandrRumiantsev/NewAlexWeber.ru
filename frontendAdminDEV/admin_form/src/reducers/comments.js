@@ -12,8 +12,20 @@ import { getComments , delComment} from '../actions/CommentsActions.js'
     switch(actions.type){
       case 'getComment':
           console.log('GET_COMMENTS_ALL');
-          //getComments(state , actions);
           return state;
+      break;
+      case 'setComment':
+          console.log('SET_COMMENTS');
+          return Object.assign({}, state, {
+             data: actions.val,
+             status: true
+          })
+      break;    
+      case 'refrashComment':
+          console.log('refrashComment');
+          let el = document.getElementById(actions['data'].id);
+          el.parentNode.removeChild(el);
+        return state;
       break;
       default:
         return state;

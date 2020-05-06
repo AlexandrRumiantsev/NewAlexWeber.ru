@@ -2,18 +2,35 @@ import { GET_COMMENTS , ERROR_TEXT , DEL_COMMENTS , DEL_COMMENTS_DEV } from '../
 import axios from 'axios';
 
 
-export function getComments(components , action) {
+export function getComments(components , store) {
    axios.get(GET_COMMENTS)
         .then(res => {
+        	store.dispatch(
+                {
+                  type: 'setComment', 
+                  val: res.data
+                }
+            )
             components.setState({comments: res.data , status: true})
         })
         .catch(()=>{}); 
 }
 
-export function delComment(id) {
+export function delComment(id , component , store ) {
 	console.log('delComment');
+  console.log(component);
     //console.log(data['data'].component.setState({comments: '' , status: true}));
-    
+    component.setState({refrash: true})
+    store.dispatch(
+                {
+                  type: 'refrashComment',
+                  data: {
+                    'component':component,
+                    'id':id
+                  }
+                }
+            )
+             
    	axios.post(DEL_COMMENTS, {
 	    id: id
 	  })

@@ -7,10 +7,11 @@ import '../styles/body/comments/list.scss';
 import '../styles/body/comments/item.scss';
 
 function ItemComment(props){
-console.log(props.data);
          return <div className='item-comment'>
             <span onClick={()=>{
-                  delComment(props.data._id);
+                  let sign = confirm("Удалить?");
+                  if(sign)
+                    delComment(props.data._id , props.components , props.store);
                 }}>
                   <i class="fas fa-trash-alt"></i>
             </span>
@@ -44,11 +45,12 @@ class Comments extends Component {
   componentDidMount(){
     const { store } = this.props;
     
-    getComments(this)
+    getComments(this , store)
 
   }
   render() {
   	const { store } = this.props
+    console.log(store.getState().comments.data)
     if(this.state.status == true){
       return  <div className='page-comment'>
       <div onClick={()=>{
@@ -62,8 +64,8 @@ class Comments extends Component {
                     class='item__close'>
                     Закрыть
                     </div>
-                    { this.state.comments.map((comments, index)=> {
-                      return <section className='comment-list-item' key={comments._id}>
+                    { store.getState().comments.data.map((comments, index)=> {
+                      return <section id={comments._id} className='comment-list-item' key={comments._id}>
                           <ItemComment components={this} store={store}  data={comments} />
                        </section>
                     })}

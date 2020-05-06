@@ -5,9 +5,7 @@ import { getProjects } from '../actions/ProjectsActions.js'
     data: []
   }
   
-function listProject(props) {
-  
-}
+
 
   export default function switcher(state = initialState , actions) {
 
@@ -16,6 +14,12 @@ function listProject(props) {
       case "getProjectsAll":
          getProjects(state , actions);
         return state;
+      break;
+      case "setProjects":
+        return Object.assign({}, state, {
+               data: actions.val,
+               status: true
+        })
       break;
 
       default:

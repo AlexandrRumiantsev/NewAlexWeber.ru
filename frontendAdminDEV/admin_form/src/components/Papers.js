@@ -21,8 +21,8 @@ import '../styles/body/papers/item.scss';
 
   }
   componentDidMount(){
-
-    getPapers(this)
+    const { store } = this.props
+    getPapers(this , store)
 
   }
   componentWillUnmount(){
@@ -31,7 +31,7 @@ import '../styles/body/papers/item.scss';
   render() {
   	const { store } = this.props
     
-    if(this.state.status == true){
+    if(this.state.papers.data){
       console.log(this.state.papers)
       return <div>
       <div onClick={()=>{
@@ -45,7 +45,9 @@ import '../styles/body/papers/item.scss';
                     class='item__close'>
                     Закрыть
                     </div>
-       {this.state.papers.map((papers, index)=> {
+                    {console.log(this.state.papers.data)}
+       {
+          this.state.papers.data.map((papers, index)=> {
                 return <li key={index}>
                   <div>title is: {papers.title}</div>
                   <div>img is: {papers.img}</div>

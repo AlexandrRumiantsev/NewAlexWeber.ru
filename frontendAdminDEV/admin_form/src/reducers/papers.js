@@ -15,9 +15,14 @@ import { getPapers } from '../actions/PapersActions.js'
         getPapers(state , actions.val);
         return state;
       break;
-      case "PERSONS_FETCH_DATA_SUCCESS":
-            return action.persons;
-       break; 
+      case "setPapers":
+        console.log("setPapers");
+        console.log(actions);
+        return Object.assign({}, state, {
+            data: actions.val,
+            status: true
+        })
+      break; 
       default:
         return state;
       break;
