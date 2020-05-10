@@ -9,144 +9,19 @@ import '../styles/body/projects/item.scss';
 
 var ReactDOM = require('react-dom');
 
+import * as myModule from '../lib/';
+
+//https://stackoverflow.com/questions/58200373/how-to-append-child-to-react-element
+
 function editProject(data , store , target){
-  let to = target.parentElement.parentElement.parentElement.getElementsByClassName('edit-container')[0];
-  to.style = 'display:block;'
+  let to = document.getElementsByClassName('edit-container')[0];
+  console.log(to);
+  to.classList.toggle('active');
+  
   ReactDOM.render(
-      React.createElement(
-        "div",
-        {
-            id: "add-page"
-        },
-        React.createElement(
-            "div",
-            {
-                className: "add-container"
-            },
-            React.createElement("h1", null, "Редактировать проект"),
-            
-            React.createElement(
-              "form",
-              {
-                  className: "colm-container",
-                  id: "add_form",
-                  encType: "multipart/form-data"
-              },
-
-            React.createElement(
-              "div",
-              {
-                  className: "colm-right"
-              },
-              React.createElement("span", null, "Наименование товара"),
-              React.createElement("span", null, "Изображение"),
-              React.createElement("span", null, "Описание"),
-              React.createElement("span", null, ""),
-            ),
-
-            React.createElement(
-              "div",
-              {
-                  className: "colm-left"
-              },
-                React.createElement(
-                "div",
-                {
-                    className: "colm-content"
-                },
-                  React.createElement("input", {
-                    type: "text",
-                    value: "text",
-                    onInput: function onInput(e) {
-                        alert(e.target.value);
-                    }
-                  }),
-                ), 
-                
-                React.createElement(
-                  "div",
-                  {
-                      className: "colm-content"
-                  },
-                  React.createElement("input", {
-                    type: "file",
-                    id: 'file-target',
-                    name: 'file',
-                    crossorigin: "anonymous",
-                    accept: "image/*",
-                    onInput: function onInput(e) {
-                      var input = event.target;
-                      var reader = new FileReader();
-                      reader.onload = function(){
-                        var dataURL = reader.result;
-                        var output = document.querySelector('#img');
-                        output.src = dataURL;
-                      };
-                      reader.readAsDataURL(input.files[0]);
-                    }
-                  }),
-                  React.createElement("div", {
-                    className: "file-in",
-                    id: 'file-in',
-                    onClick: function (e) {
-                      console.log(e.target);
-                      document.getElementById('file-target').click();
-                    },
-                    
-                  },
-                  React.createElement("img", {
-                    id: 'img'
-                  })
-                  ),
-                ),
-                
-                React.createElement(
-                  "div",
-                  {
-                      className: "colm-content"
-                  },
-                  React.createElement("textarea", {
-                    value: "text",
-                    name: "discription",
-                    onInput: function onInput(e) {
-                        alert(e.target.value);
-                    }
-                  }),
-                ),
-                
-                React.createElement(
-                  "div",
-                  {
-                      className: "colm-content"
-                  },
-                  React.createElement("input", {
-                    type: "submit",
-                    value: "Добавить",
-                    onClick: function onInput(e) {
-                      e.preventDefault();
-                      console.log(e.target.value);
-                      console.log(self(
-                        document.forms.add_form
-                      ));
-                    }
-                  }),
-                )
-              ),
-            ) 
-        ),
-        React.createElement(
-            "div",
-            {
-                className: "close",
-                onClick: function (e) {
-                  to.style = 'display:none'
-                }
-            },
-            'Закрыть'
-        ),
-      ),
-  to
-  ); 
+    myModule.liba.form.create('EditProject',data) , 
+    to
+   )
 }
 
 function ListProject(props) {
@@ -174,7 +49,6 @@ function ListProject(props) {
                   <i class="fas fa-trash-alt"></i>
                 </span>
               </div>
-              <div class='edit-container'></div>
             </div>
 }
 
@@ -217,6 +91,7 @@ export default class Projects extends Component {
     if(this.state.render == true){
       
       return <div class='list-projects'>
+      <div class='edit-container'></div>
       <div onClick={()=>{
               this.setState({
                 state: false

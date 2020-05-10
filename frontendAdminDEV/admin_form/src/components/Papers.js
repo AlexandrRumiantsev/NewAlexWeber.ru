@@ -4,9 +4,49 @@ import '../styles/app.scss';
 import { getPapers } from '../actions/PapersActions.js';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Button from '@material-ui/core/Button'
+
 
 import '../styles/body/papers/list.scss';
 import '../styles/body/papers/item.scss';
+
+
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
+
+function BasicTextFields(props) {
+  const classes = useStyles();
+
+  return (
+    <form className={classes.root} noValidate autoComplete="off">
+      <TextField id="standard-basic" 
+        defaultValue={props.data.title} 
+        label="Standard" 
+      />
+      <TextField id="filled-basic" 
+        defaultValue={props.data.link} 
+        label="Filled" 
+        variant="filled" 
+      />
+      <TextField 
+        id="outlined-basic" 
+        defaultValue={props.data.discription} 
+        label="Outlined" 
+        variant="outlined" 
+      />
+    </form>
+  );
+}
+
 
  class Papers extends Component {
   constructor () {
@@ -43,18 +83,23 @@ import '../styles/body/papers/item.scss';
                       )
                     }}
                     class='item__close'>
-                    Закрыть
+                    Х
                     </div>
+                   
                     {console.log(this.state.papers.data)}
        {
           this.state.papers.data.map((papers, index)=> {
-                return <li key={index}>
+                return <section key={index}>
                   <div>title is: {papers.title}</div>
                   <div>img is: {papers.img}</div>
                   <div>link is: {papers.link}</div>
                   <div>discription is: {papers.discription}</div>
                   <div>Mugger ID is: {papers._id}</div>
-                </li>
+                   <Button variant="contained" color="primary">
+                     edit
+                    </Button>
+                    <BasicTextFields data={papers}/>
+                </section>
               })}
       </div>
     }else{

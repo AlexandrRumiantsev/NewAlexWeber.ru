@@ -62,7 +62,7 @@ class Comments extends Component {
                       )
                     }}
                     class='item__close'>
-                    Закрыть
+                    X
                     </div>
                     { store.getState().comments.data.map((comments, index)=> {
                       return <section id={comments._id} className='comment-list-item' key={comments._id}>

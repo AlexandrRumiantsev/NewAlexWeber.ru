@@ -14,13 +14,7 @@
     .fa-trash-alt:before {
         content: "\f171";
     }
-    .edit-container{
-    background: black;
-      height: 100%;
-        width: 100%;
-        position: absolute;
-        display: none;
-    }
+    
 }
 .item__title{
     
@@ -44,4 +38,19 @@
     span{
        margin:5px;
     }
+}
+
+.sbm-span:before{
+    position: absolute;
+    font-family: "FontAwesome";
+    content: '\f0c7';
+    font-style: normal;
+    font-size: 50px;
+    left: 0;
+    bottom: 0;
+    cursor:pointer;
+}
+.discription-project__item , .name-project__item , .url-project__item , .image-project__item , .image-project-full__item{
+    font-size:20px;
+        padding: 5px;
 }
