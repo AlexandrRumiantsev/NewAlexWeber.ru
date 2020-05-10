@@ -1,20 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types';
-import '../styles/app.scss';
-import { getPapers } from '../actions/PapersActions.js';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import Button from '@material-ui/core/Button'
-import EditIcon from '@material-ui/icons/Edit';
-
-import '../styles/body/papers/list.scss';
-import '../styles/body/papers/item.scss';
-
-
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
-
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -56,8 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-function RecipeReviewCard(props) {
+export function EditPapers(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -104,9 +88,12 @@ function RecipeReviewCard(props) {
          
         </CardContent>
       </Collapse>
+      <Button />
     </Card>
   );
 }
+
+
 
 function BasicTextFields(props) {
   const classes = useStyles();
@@ -131,90 +118,3 @@ function BasicTextFields(props) {
     </form>
   );
 }
-
-
- class Papers extends Component {
-  constructor () {
-
-        super(...arguments);
-        
-        const { store } = this.props
-        this.state = store.getState();
-        this.unsubscribe = store.subscribe(() => {
-            this.setState(store.getState());
-        });
-
-  }
-  componentDidMount(){
-    const { store } = this.props
-    getPapers(this , store)
-
-  }
-  componentWillUnmount(){
-    //this.state.papers.status = true;
-  }
-  render() {
-  	const { store } = this.props
-    
-    if(this.state.papers.data){
-      console.log(this.state.papers)
-      return <div className='container-paper'>
-      <div onClick={()=>{
-                    store.dispatch(
-                          {
-                            type: 'index', 
-                            val: 'index'
-                          }
-                      )
-                    }}
-                    class='item__close'>
-                    Х
-                    </div>
-                   
-                    {console.log(this.state.papers.data)}
-       {
-          this.state.papers.data.map((papers, index)=> {
-                return <section className='section' key={index}>             
-                    <RecipeReviewCard data={papers}/>
-                </section>
-              })}
-      </div>
-    }else{
-      return <div>
-    <div class='index-container'>
-                    <div onClick={()=>{
-                    store.dispatch(
-                          {
-                            type: 'index', 
-                            val: 'index'
-                          }
-                      )
-                    }}
-                    class='index-container__item'>
-                    Закрыть
-                    </div>
-              </div>
-    <span>PAPEr</span>
-    
-    </div>
-    }
-    
-  }
-}
-const mapStateToProps = state => {
-  return {
-    papers: state.papers
-  }
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchData:  (state) => {
-      dispatch(getTest(state))
-    }
-  }
-}
-export default connect( mapStateToProps , mapDispatchToProps)(Papers)
-
-
-
-
