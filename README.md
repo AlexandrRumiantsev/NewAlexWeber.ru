@@ -46,14 +46,9 @@
 
 ## Список дополнительных модулей, используемые программой.
 
-| Название модуля       | краткое описание                | команда |
-| ------------- |:------------------:| -----:|
-| vuex  | представляет собой среду веб-приложений для Node.js , выпущенную в виде бесплатного программного обеспечения с открытым исходным кодом под лицензией MIT.    | npm install vuex --save  |
-| chalk    | строка запроса является частью унифицированного указателя ресурса (URL) , который присваивает значения указанных параметров. |   npm install -save-dev chalk |
-| cors  | Это механизм, позволяющий запрашивать ограниченные ресурсы на веб-странице из другого домена за пределами домена, из которого обслуживался первый ресурс.         |    npm i cors |
-jest | Тесты | npm i jest --save-dev
- @babel/core babel-loader @babel/preset-env @babel/preset-react| Дополнения | npm install @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
-| node-cache | Кэш в Node | npm install node-cache --save
+React / frontendAdminDev / https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/README.md
+VUE / frontendUserDev / https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontenduserDEV/README.md
+Node / backend / https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/backend/README.md
 
 
 
