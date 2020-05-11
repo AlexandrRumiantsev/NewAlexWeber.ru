@@ -31,6 +31,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import SaveIcon from '@material-ui/icons/Save';
 
 import {DropzoneArea} from 'material-ui-dropzone'
 
@@ -39,8 +40,10 @@ import * as myModule from '../lib/';
 
 
 class DropzoneAreaExample extends Component{
+  //const change = this.props.change;
   constructor(props){
     super(props);
+    
     const valFile = [
         props.data
     ]
@@ -49,6 +52,7 @@ class DropzoneAreaExample extends Component{
     };
   }
   handleChange(files){
+    this.props.change(files);
     this.setState({
       files: files
     });
@@ -104,8 +108,15 @@ function RecipeReviewCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const saveButtom = function(that) {
+    console.log(that);
+  }
   return (
     <Card className={classes.root}>
+    
+     
+
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -149,26 +160,60 @@ function RecipeReviewCard(props) {
 
 function BasicTextFields(props) {
   const classes = useStyles();
-
+  const _data = {
+    'title': props.data.title ,
+    'link': props.data.link ,
+    'discription': props.data.discription ,
+    'file':props.data.img
+  }
+  const _handleTitleFieldChange = function(e){
+    _data.title = e.target.value;
+  }
+  const _handleLinkFieldChange = function(e){
+     _data.link = e.target.value;
+  }
+  const _handleDiscriptionFieldChange = function(e){
+    _data.discription = e.target.value;
+  }
+  const _handleDropzoneAreaExampleChange = function(files){
+    _data.file = files;
+  }
+  const saveButtom = function(){
+    console.log(_data);
+  }
   return (
     <form className={classes.root} noValidate autoComplete="off">
+
       <TextField id="standard-basic" 
         defaultValue={props.data.title} 
         label="Заголовок" 
+        onChange={_handleTitleFieldChange}
       />
       <TextField id="filled-basic" 
-        defaultValue={props.data.link} 
+        defaultValue={props.data.link}
+        onChange={_handleLinkFieldChange} 
         label="Ссылка"
       />
       <TextField 
         id="outlined-multiline-static"
         label="Описание"
+        onChange={_handleDiscriptionFieldChange}
         multiline
         rows={4}
         defaultValue={props.data.discription} 
         variant="outlined"
       />
-      <DropzoneAreaExample data={props.data.link}/>
+      <DropzoneAreaExample change={_handleDropzoneAreaExampleChange} data={props.data.img}/>
+      <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        className={classes.button}
+        startIcon={<SaveIcon />}
+        onClick={ () => {saveButtom(this)} }
+      >
+        Save
+      </Button>
     </form>
   );
 }
