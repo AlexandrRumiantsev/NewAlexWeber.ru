@@ -31,6 +31,46 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+
+import {DropzoneArea} from 'material-ui-dropzone'
+
+
+import * as myModule from '../lib/';
+
+
+class DropzoneAreaExample extends Component{
+  constructor(props){
+    super(props);
+    const valFile = [
+        props.data
+    ]
+    this.state = {
+      files: []
+    };
+  }
+  handleChange(files){
+    this.setState({
+      files: files
+    });
+  }
+  render(){
+    const valFile = [
+        this.props.data
+    ] 
+    return (
+      <DropzoneArea
+        
+        initialFiles={
+          valFile
+        }
+        onChange={this.handleChange.bind(this)}
+        useChipsForPreview={true}
+        />
+    )
+  }
+}
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -64,7 +104,6 @@ function RecipeReviewCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log(props);
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -115,19 +154,21 @@ function BasicTextFields(props) {
     <form className={classes.root} noValidate autoComplete="off">
       <TextField id="standard-basic" 
         defaultValue={props.data.title} 
-        label="Standard" 
+        label="Заголовок" 
       />
       <TextField id="filled-basic" 
         defaultValue={props.data.link} 
-        label="Filled" 
-        variant="filled" 
+        label="Ссылка"
       />
       <TextField 
-        id="outlined-basic" 
+        id="outlined-multiline-static"
+        label="Описание"
+        multiline
+        rows={4}
         defaultValue={props.data.discription} 
-        label="Outlined" 
-        variant="outlined" 
+        variant="outlined"
       />
+      <DropzoneAreaExample data={props.data.link}/>
     </form>
   );
 }
