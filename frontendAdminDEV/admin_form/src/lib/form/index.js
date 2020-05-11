@@ -1,5 +1,5 @@
 import { EditProject } from  './EditProject.js';
-import { BasicTextFields } from  './EditPapers.js';
+import { EditPapers } from  './EditPapers.js';
 
 export default class Form{
    constructor(type , data) {
@@ -8,7 +8,7 @@ export default class Form{
      			return EditProject(data);  
      		break;
      	case 'EditPapers':
-     			return BasicTextFields(data);  
+     			return EditPapers(data);  
      		break;	
      	default:
      		break
