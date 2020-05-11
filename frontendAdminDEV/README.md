@@ -10,12 +10,12 @@
 # Макеты экранов приложения.
 
 ## Главный экран
-![alt text](/docs/1.png)
+![alt text](/docs/1.png) =250x250
 ## Проекты
-![alt text](/docs/2.png)
+![alt text](/docs/2.png) =250x250
 ## Редактирование проекта
-![alt text](/docs/3.png)
+![alt text](/docs/3.png) =250x250
 ## Страница стататей
-![alt text](/docs/4.png)
+![alt text](/docs/4.png) =250x250
 ## Страница комментариев
 
