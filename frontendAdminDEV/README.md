@@ -10,12 +10,12 @@
 # Макеты экранов приложения.
 
 ## Главный экран
-![alt text](/docs/1.png =250x250) 
+<img src="/docs/1.png" data-canonical-src="/docs/1.png" width="200" height="400" /> 
 ## Проекты
-![alt text](/docs/2.png =250x250) 
+<img src="/docs/2.png" data-canonical-src="/docs/2.png" width="200" height="400" />  
 ## Редактирование проекта
-![alt text](/docs/3.png =250x250) 
+<img src="/docs/3.png" data-canonical-src="/docs/3.png" width="200" height="400" /> 
 ## Страница стататей
-![alt text](/docs/4.png =250x250) 
+<img src="/docs/4.png" data-canonical-src="/docs/4.png" width="200" height="400" /> 
 ## Страница комментариев
-
+<img src="/docs/5.png" data-canonical-src="/docs/4.png" width="200" height="400" /> 
