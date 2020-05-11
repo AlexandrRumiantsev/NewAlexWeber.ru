@@ -45,7 +45,8 @@
 Язык программирования - JavaScript. Версия - ES7. Node.js - для серверной части. vue.js(пользовательский) , react.js(административная панель) - для разработки интерфейса. Документирование кода - JSDoc. Тесты - Jest.
 
 ## Список дополнительных модулей, используемые программой.
-
+| Основная технология       | Название модуля                | ссылка |
+| ------------- |:------------------:| -----:|
 | React |  frontendAdminDev | https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/README.md | 
 | VUE |  frontendUserDev |  https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontenduserDEV/README.md | 
 Node |  backend |  https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/backend/README.md | 
