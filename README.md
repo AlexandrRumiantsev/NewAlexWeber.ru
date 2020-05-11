@@ -46,9 +46,9 @@
 
 ## Список дополнительных модулей, используемые программой.
 
-React / frontendAdminDev / https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/README.md
-VUE / frontendUserDev / https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontenduserDEV/README.md
-Node / backend / https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/backend/README.md
+| React |  frontendAdminDev | https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/README.md | 
+| VUE |  frontendUserDev |  https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontenduserDEV/README.md | 
+Node |  backend |  https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/backend/README.md | 
 
 
 

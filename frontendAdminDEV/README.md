@@ -10,12 +10,12 @@
 # Макеты экранов приложения.
 
 ## Главный экран
-![alt text](https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/tree/master/frontendAdminDEV/docs/1.png)
+![alt text](/docs/1.png)
 ## Проекты
-![alt text](https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/tree/master/frontendAdminDEV/docs/2.png)
+![alt text](/docs/2.png)
 ## Редактирование проекта
-![alt text](https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/tree/master/frontendAdminDEV/docs/3.png)
+![alt text](/docs/3.png)
 ## Страница стататей
-![alt text](https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/tree/master/frontendAdminDEV/docs/4.png)
+![alt text](/docs/4.png)
 ## Страница комментариев
 
