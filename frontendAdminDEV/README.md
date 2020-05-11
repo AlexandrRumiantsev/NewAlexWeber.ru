@@ -10,12 +10,12 @@
 # Макеты экранов приложения.
 
 ## Главный экран
-<img src="/docs/1.png" data-canonical-src="/docs/1.png" width="200" height="400" /> 
+<img src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/1.png" data-canonical-src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/1.png" width="200" height="400" /> 
 ## Проекты
-<img src="/docs/2.png" data-canonical-src="/docs/2.png" width="200" height="400" />  
+<img src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/2.png" data-canonical-src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/2.png" width="200" height="400" />  
 ## Редактирование проекта
-<img src="/docs/3.png" data-canonical-src="/docs/3.png" width="200" height="400" /> 
+<img src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/3.png" data-canonical-src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/3.png" width="200" height="400" /> 
 ## Страница стататей
-<img src="/docs/4.png" data-canonical-src="/docs/4.png" width="200" height="400" /> 
+<img src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/4.png" data-canonical-src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/4.png" width="200" height="400" /> 
 ## Страница комментариев
-<img src="/docs/5.png" data-canonical-src="/docs/4.png" width="200" height="400" /> 
+<img src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/5.png" data-canonical-src="https://github.com/AlexandrRumiantsev/NewAlexWeber.ru/blob/master/frontendAdminDEV/docs/5.png" width="200" height="400" /> 
