@@ -19,11 +19,10 @@ const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
-app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 
 const mongoose = require("mongoose");
 
@@ -142,6 +141,13 @@ config.connect();
         var db = new projects();
         var project_data = db.projects_del(res);
 
+    });
+
+    app.post('/upp_papers', urlencodedParser , function(req, res) {
+        //console.log(req.body.data);
+        console.log('upp_papers');
+        var db_papers = new papers();
+        var papers_data = db_papers.upp_papers( res , req.body.data);
     });
 
 

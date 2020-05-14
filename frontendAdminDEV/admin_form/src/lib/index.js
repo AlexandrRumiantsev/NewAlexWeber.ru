@@ -3,8 +3,8 @@ import file from './file';
 
 export const liba = {
 	'form': {
-		'create': function(type , data){
-			return new form(type , data);
+		'create': function(type , data , store){
+			return new form(type , data , store);
 		}
 	},
 	'file' : {

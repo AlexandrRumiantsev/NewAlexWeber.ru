@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 const papersSchema = mongoose.Schema({
-          _id: String,
+          /*_id: String,*/
           title: String,
           discription: String,
           link: String,

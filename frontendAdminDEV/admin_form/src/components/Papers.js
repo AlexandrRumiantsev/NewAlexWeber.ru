@@ -56,7 +56,7 @@ import * as myModule from '../lib/';
        {
           this.state.papers.data.map((papers, index)=> {
                 return <section className='section' key={index}>             
-                    { myModule.liba.form.create('EditPapers', papers) }
+                    { myModule.liba.form.create('EditPapers', papers , store ) }
                 </section>
               })}
       </div>

@@ -1,0 +1,9 @@
+{
+    "name": "Listen for XDebug",
+    "type": "node",
+    "request": "launch",
+    "port": 9000,
+    "pathMappings": {
+        "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/backend": "/usr/src/app"
+    },
+}

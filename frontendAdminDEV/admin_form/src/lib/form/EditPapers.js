@@ -1,3 +1,26 @@
+/**
+  Внешние объекты (библиотеки) для разработки модуля "Редактирование статей"
+  makeStyles - пакета решение для стайлинга, используемое в компонентах Material-UI 
+  TextField - обертка представляет собой полный элемент управления формы, включая метку, ввод и текст справки.
+  clsx - это крошечная утилита для className условного построения строк.
+  Card -  Карты содержат контент и действия по одной теме.
+  
+  Элементы внутри родительского CARD
+  CardHeader , CardMedia, CardContent, СardActions
+
+  Collapse - раскрывающийся элемент формы
+  Avatar - элемент кзбражения пользователя, внутри Card
+  IconButton - Элемент формы "Кнопка" в виде иконки
+  Typography - Используйте типографику, чтобы представить свой дизайн и контент как можно более четко и эффективно.
+  red - Функция для получения цвета из библиотеки material-ui по коду
+  ExpandMoreIcon - иконки
+  MoreVertIcon - иконки MoreVert
+  SaveIcon - иконка "СОХРАНИТЬ"
+  DropzoneArea -  компонент, элемент формы, для загрузки файла
+  Button - Элемент формы "Кнопка"
+  React - Основной компонент React
+  Component - Базовый компонент  React, наследуясь от которого, класс получает все возможности компонента React
+*/
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import clsx from 'clsx';
@@ -11,8 +34,6 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SaveIcon from '@material-ui/icons/Save';
@@ -20,9 +41,25 @@ import {DropzoneArea} from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button'
 import React, { Component } from 'react'
 
-export const EditPapers = function(data){ 
 
+/**
+     * Модуль, который реализует форму для редактирования статей
+     * @function EditPapers
+     * @data {Object}  - данные по определенной статье в формате объекта.
+     * @returns {Component.<RecipeReviewCard>} Составной компонент внутри модуля,
+     который внутри себя, соделрит более маленькие компоненты(части) 
+     блока для редактирования статьи
+*/
+export function EditPapers(data , store){ 
 
+const ClassStore = store;
+const classData = {}
+
+/**
+     * Обертка компонента DropzoneArea(material-ui) для работы с файлами
+     * @function handleChange - функция для добавления элементов формы типа "Файл",
+     в общий объект, который отправляется на сервер
+*/
 class DropzoneAreaExample extends Component{
   //const change = this.props.change;
   constructor(props){
@@ -32,11 +69,24 @@ class DropzoneAreaExample extends Component{
         props.data
     ]
     this.state = {
-      files: []
+      files: [],
+      bs64:''
     };
   }
   handleChange(files){
-    console.log(this);
+
+    /* Конвертирую объект файла в base64 строку 
+    и передаю в глобальный объект */
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      classData.fileBs64 = event.target.result;
+    };
+    
+    // Convert data to base64 
+    if(files[0] != undefined)
+      reader.readAsDataURL(files[0]);
+  
+    console.log(classData);
     this.props.change(files);
     this.setState({
       files: files
@@ -48,7 +98,7 @@ class DropzoneAreaExample extends Component{
     ] 
     return (
       <DropzoneArea
-        
+        filesLimit={1}
         initialFiles={
           valFile
         }
@@ -59,7 +109,11 @@ class DropzoneAreaExample extends Component{
   }
 }
 
-
+/**
+     * Объект стилей из библиотеки material-ui, для
+     добавление стилей, напрямую внутрь компонента, 
+     который получен из данной библиотеки
+*/
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -87,7 +141,10 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
+/**
+     * RecipeReviewCard - Модуль, который реализует плашку с информацией о проекте
+     * @function handleExpandClick - обработчик клика по элементу
+*/
 function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -96,9 +153,6 @@ function RecipeReviewCard(props) {
     setExpanded(!expanded);
   };
 
-  const saveButtom = function(that) {
-    console.log(that);
-  }
   return (
     <Card className={classes.root}>
     
@@ -145,6 +199,19 @@ function RecipeReviewCard(props) {
   );
 }
 
+
+/**
+     * BasicTextFields - Модуль, который реализует плашку с информацией о проекте
+     * @function _handleTitleFieldChange , 
+                 _handleLinkFieldChange, 
+                 _handleDiscriptionFieldChange, 
+                 _handleDropzoneAreaExampleChange
+      - Обработчики, реагирующий на изменение своего поля и 
+      записывающие актуальные данные в общий объект
+
+     * @function saveButtom - Обработчик клика, по кнопке "Сохранить",
+     получает все текущие данные с формы.    
+*/
 function BasicTextFields(props) {
   const classes = useStyles();
   const _data = {
@@ -163,11 +230,23 @@ function BasicTextFields(props) {
   const _handleDiscriptionFieldChange = function(e){
     _data.discription = e.target.value;
   }
+  
+  
   const _handleDropzoneAreaExampleChange = function(files){
     _data.file = files;
   }
   const saveButtom = function(){
-    console.log(_data);
+    console.log('§§saveButtom§§');
+    _data.fileBs64 = classData.fileBs64;
+
+    store.dispatch(
+          {type: 'uppPaper',val : {
+            data: _data,
+            store: ClassStore,
+            component: RecipeReviewCard
+          }
+        }
+    )
   }
   return (
     <form className={classes.root} noValidate autoComplete="off">
