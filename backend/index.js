@@ -39,6 +39,120 @@ config.connect();
     });
 
     // BEGIN Methods for interface API
+     app.get('/test', function(req, res) {
+         class BaseModel {
+              
+              /*
+                Примеры вызова
+                    * Список элементов:
+                        new BaseModel( require('./my_modules/comments/Schema.js') , 'getList' );
+                    * Получение элемента:
+                        new BaseModel( require('./my_modules/comments/Schema.js') , 'getItem' , 343638353466386136353038 );    
+                    * Удаление элемента:
+                        new BaseModel( require('./my_modules/comments/Schema.js') , 'delItem' , 343638353466386136353038);
+                    * Обновление элемента:
+                        let data = { 'title': '000', 'user': '000' , 'paper': '000'}
+                        new BaseModel( require('./my_modules/comments/Schema.js') , 'uppItem' , '313237343534623235303735' , data );
+              */
+              getField(type) {
+                return this[type];
+              }
+
+              setField(type , value) {
+                this[type] = value;
+              }
+              
+              getList(){
+                  return this.schem.find({}, (err, data) => {
+                         res.setHeader('Access-Control-Allow-Origin', '*');
+                         console.log(data);
+                         res.send(data);
+                  });
+              }
+              
+              getItem(query){
+                   return this.schem.find( query , (err, data) => {
+                     console.log(data);  
+                   })
+              }
+              
+              delItem(query){
+            
+                return this.schem.deleteOne(query, function (err, result) {
+                    if (err) {
+                        console.log("error query");
+                    } else {
+                        console.log(result);
+                    }
+                })
+                
+              }    
+              
+              upItem(query , data){
+                  return this.schem.updateOne( query , 
+                    {$set:
+                        {
+                            title: data.title, 
+                            user : data.user,
+                            paper: data.paper
+                        }
+                    },
+                    function (err , success) {
+                        if (err) throw (err);
+                         else {
+                            console.log('upp success!')
+                        }
+                    })
+              }
+              
+              setSchem(type , value) {
+                this[type] = value;
+              }
+              
+              makeid() {
+                    let text = "";
+                    let possible = "55153a8014829a865bbf700d";
+                
+                    for( let i= 0; i < 12; i++ )
+                        text += possible.charAt(Math.floor(Math.random() * possible.length));
+                    console.log(text);
+                    return text;
+                }
+              
+              constructor(  shem , type , id , data) {
+                this.mongoose = require("mongoose");
+                this.schem = shem;
+                this.ObjectID = require('mongodb').ObjectID;
+                this.query = { '_id': new this.ObjectID(id) };
+                switch(type){
+                    case 'uppItem':
+                            this.upItem(this.query , data);
+                        break;
+                    case 'delItem':
+                            this.delItem(this.query);
+                        break;
+                    case 'getList':
+                            this.getList(); 
+                        break;
+                    case 'getItem':
+                            this.getItem(this.query);
+                        break;
+                }
+              }
+
+              
+
+            }
+        
+            
+            
+            
+            new BaseModel( require('./my_modules/comments/Schema.js') , 'getItem' , '343638353466386136353038' );
+            
+           
+           
+     })
+    
 
     app.get('/', function(req, res) {
         res.sendFile(__dirname + '/view/index.html');
