@@ -30,6 +30,8 @@ const mongoose = require("mongoose");
 var config = require('./my_modules/config.js');
 //config.connectDEV();
 config.connect();
+const base = require("./lib/Base.js");
+
 (function() {
     "use strict";
 
@@ -39,116 +41,11 @@ config.connect();
     });
 
     // BEGIN Methods for interface API
+
      app.get('/test', function(req, res) {
-         class BaseModel {
-              
-              /*
-                Примеры вызова
-                    * Список элементов:
-                        new BaseModel( require('./my_modules/comments/Schema.js') , 'getList' );
-                    * Получение элемента:
-                        new BaseModel( require('./my_modules/comments/Schema.js') , 'getItem' , 343638353466386136353038 );    
-                    * Удаление элемента:
-                        new BaseModel( require('./my_modules/comments/Schema.js') , 'delItem' , 343638353466386136353038);
-                    * Обновление элемента:
-                        let data = { 'title': '000', 'user': '000' , 'paper': '000'}
-                        new BaseModel( require('./my_modules/comments/Schema.js') , 'uppItem' , '313237343534623235303735' , data );
-              */
-              getField(type) {
-                return this[type];
-              }
-
-              setField(type , value) {
-                this[type] = value;
-              }
-              
-              getList(){
-                  return this.schem.find({}, (err, data) => {
-                         res.setHeader('Access-Control-Allow-Origin', '*');
-                         console.log(data);
-                         res.send(data);
-                  });
-              }
-              
-              getItem(query){
-                   return this.schem.find( query , (err, data) => {
-                     console.log(data);  
-                   })
-              }
-              
-              delItem(query){
-            
-                return this.schem.deleteOne(query, function (err, result) {
-                    if (err) {
-                        console.log("error query");
-                    } else {
-                        console.log(result);
-                    }
-                })
-                
-              }    
-              
-              upItem(query , data){
-                  return this.schem.updateOne( query , 
-                    {$set:
-                        {
-                            title: data.title, 
-                            user : data.user,
-                            paper: data.paper
-                        }
-                    },
-                    function (err , success) {
-                        if (err) throw (err);
-                         else {
-                            console.log('upp success!')
-                        }
-                    })
-              }
-              
-              setSchem(type , value) {
-                this[type] = value;
-              }
-              
-              makeid() {
-                    let text = "";
-                    let possible = "55153a8014829a865bbf700d";
-                
-                    for( let i= 0; i < 12; i++ )
-                        text += possible.charAt(Math.floor(Math.random() * possible.length));
-                    console.log(text);
-                    return text;
-                }
-              
-              constructor(  shem , type , id , data) {
-                this.mongoose = require("mongoose");
-                this.schem = shem;
-                this.ObjectID = require('mongodb').ObjectID;
-                this.query = { '_id': new this.ObjectID(id) };
-                switch(type){
-                    case 'uppItem':
-                            this.upItem(this.query , data);
-                        break;
-                    case 'delItem':
-                            this.delItem(this.query);
-                        break;
-                    case 'getList':
-                            this.getList(); 
-                        break;
-                    case 'getItem':
-                            this.getItem(this.query);
-                        break;
-                }
-              }
-
-              
-
-            }
         
-            
-            
-            
-            new BaseModel( require('./my_modules/comments/Schema.js') , 'getItem' , '343638353466386136353038' );
-            
+            const base = require("./lib/Base.js");
+            new base( require('./my_modules/comments/Schema.js') , 'getList' , '', '', res );
            
            
      })
@@ -229,24 +126,34 @@ config.connect();
     // BEGIN Methods for get/take DATA
 
     app.get('/data', function(req, res) {
-
-        var projects = new projectsModel();
-        var project_result = projects.projects_model(res, (data) => {
-            res.send(data);
-        });
-
+        new base( 
+            require('./my_modules/my_projects/Schema.js') , 
+            'getList' , 
+            '', 
+            '', 
+            res 
+        );
     });
 
     app.get('/data_papers', function(req, res) {
-        console.log('data_papers');
-        var db_papers = new papers();
-        var papers_data = db_papers.papers_model(res);
+        new base( 
+            require('./my_modules/my_papers/Schema.js') , 
+            'getList' , 
+            '', 
+            '', 
+            res 
+        );
     });
 
     app.get('/get_all_comments', function(req, res) {
         console.log('all_comments');
-        var db_comments = new comments();
-        db_comments.get_all_comments(res);
+        new base( 
+            require('./my_modules/comments/Schema.js') , 
+            'getList' , 
+            '', 
+            '', 
+            res 
+        );
     });
 
     app.get('/delete', function(req, res) {
@@ -258,7 +165,6 @@ config.connect();
     });
 
     app.post('/upp_papers', urlencodedParser , function(req, res) {
-        //console.log(req.body.data);
         console.log('upp_papers');
         var db_papers = new papers();
         var papers_data = db_papers.upp_papers( res , req.body.data);
