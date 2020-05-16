@@ -99,6 +99,7 @@ class DropzoneAreaExample extends Component{
     const valFile = [
         this.props.data
     ] 
+    console.log(this.props);
     return (
       <DropzoneArea
         filesLimit={1}
@@ -218,6 +219,7 @@ function RecipeReviewCard(props) {
      * @function delButtom - Обработчик клика, по кнопке "Удалить".  
 */
 function BasicTextFields(props) {
+  console.log(props);
   const classes = useStyles();
   const _data = {
     '_id': props.data._id , 
@@ -270,17 +272,8 @@ function BasicTextFields(props) {
   }
   return (
     <form className={classes.root} noValidate autoComplete="off">
-    <Button
-       
-        color="primary"
-        
-        className={classes.button}
-        startIcon={<DeleteIcon />}
-        onClick={ () => { 
-            delButtom(props.data._id);
-        }}
-      >
-      </Button>
+   
+    
       <TextField id="standard-basic"
               disabled 
               defaultValue={props.data._id} 
@@ -305,7 +298,19 @@ function BasicTextFields(props) {
         defaultValue={props.data.discription} 
         variant="outlined"
       />
-      <DropzoneAreaExample change={_handleDropzoneAreaExampleChange} data={props.data.img}/>
+      <DropzoneAreaExample change={_handleDropzoneAreaExampleChange} data={props.data.link}/>
+       <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        className={classes.button}
+        startIcon={<DeleteIcon />}
+        onClick={ () => { 
+            delButtom(props.data._id);
+        }}
+      >
+      Удалить
+      </Button>
       <Button
         variant="contained"
         color="primary"
@@ -314,7 +319,7 @@ function BasicTextFields(props) {
         startIcon={<SaveIcon />}
         onClick={ () => {saveButtom(this)} }
       >
-        Save
+        Сохранить
       </Button>
     </form>
   );

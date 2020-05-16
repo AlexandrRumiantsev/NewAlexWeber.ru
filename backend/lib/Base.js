@@ -49,13 +49,9 @@ class BaseModel extends require("./Helper.js"){
 
     }
 
-    upItem(query, data) {
+    upItem(query , setting) {
         return this.schem.updateOne(query, {
-                $set: {
-                    title: data.title,
-                    user: data.user,
-                    paper: data.paper
-                }
+                $set: setting
             },
             function(err, success) {
                 if (err) throw (err);
@@ -69,17 +65,19 @@ class BaseModel extends require("./Helper.js"){
         this[type] = value;
     }
 
-    constructor(shem, type, id, data , res) {
+    constructor(shem, type, id, data , res , setting) {
         super();
         this.schem = shem;
-        if(id != '')
+        if(id != ''){
             this.query = {
                     '_id': new ObjectID(id)
                 };
+        }
+            
         switch (type) {
             case 'uppItem':
-                
-                this.upItem(this.query, data);
+                console.log(this.query);
+                this.upItem(this.query, setting);
                 break;
             case 'delItem':
                 this.delItem(this.query);

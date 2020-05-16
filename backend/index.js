@@ -180,8 +180,18 @@ const base = require("./lib/Base.js");
 
     app.post('/upp_papers', urlencodedParser , function(req, res) {
         console.log('upp_papers');
-        var db_papers = new papers();
-        var papers_data = db_papers.upp_papers( res , req.body.data);
+        let settter =  {'title': req.body.data.title, 'discription':req.body.data.discription , 'link': req.body.data.link }
+        console.log( req.body.data );
+        new base( 
+              require('./my_modules/my_papers/Schema.js') , 
+              'uppItem' , 
+              req.body.data._id , 
+              '' ,
+              '' ,
+              settter
+        );
+        //var db_papers = new papers();
+        //var papers_data = db_papers.upp_papers( res , req.body.data);
     });
 
 
