@@ -16,6 +16,7 @@
   ExpandMoreIcon - иконки
   MoreVertIcon - иконки MoreVert
   SaveIcon - иконка "СОХРАНИТЬ"
+  DeleteIcon - иконка "УДАЛИТЬ"
   DropzoneArea -  компонент, элемент формы, для загрузки файла
   Button - Элемент формы "Кнопка"
   React - Основной компонент React
@@ -40,6 +41,8 @@ import SaveIcon from '@material-ui/icons/Save';
 import {DropzoneArea} from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button'
 import React, { Component } from 'react'
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 
 /**
@@ -210,7 +213,9 @@ function RecipeReviewCard(props) {
       записывающие актуальные данные в общий объект
 
      * @function saveButtom - Обработчик клика, по кнопке "Сохранить",
-     получает все текущие данные с формы.    
+     получает все текущие данные с формы.
+
+     * @function delButtom - Обработчик клика, по кнопке "Удалить".  
 */
 function BasicTextFields(props) {
   const classes = useStyles();
@@ -248,8 +253,34 @@ function BasicTextFields(props) {
         }
     )
   }
+  const delButtom = function(id){
+  
+    let result = confirm('Удалить статью '+props.data.title);
+    if(result){
+      let elem = document.getElementById(id);
+      elem.parentNode.removeChild(elem);
+      store.dispatch(
+          {type: 'delPaper',val : {
+            id: id
+          }
+        }
+      )
+    }
+    
+  }
   return (
     <form className={classes.root} noValidate autoComplete="off">
+    <Button
+       
+        color="primary"
+        
+        className={classes.button}
+        startIcon={<DeleteIcon />}
+        onClick={ () => { 
+            delButtom(props.data._id);
+        }}
+      >
+      </Button>
       <TextField id="standard-basic"
               disabled 
               defaultValue={props.data._id} 

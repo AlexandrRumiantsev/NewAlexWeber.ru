@@ -1,6 +1,8 @@
 import { createStore } from 'redux'
 import { getPapers } from '../actions/PapersActions.js'
 import { updatePaper } from '../actions/PapersActions.js'
+import { delPaper } from '../actions/PapersActions.js'
+
 
   const initialState = {
     data: [],
@@ -28,7 +30,12 @@ import { updatePaper } from '../actions/PapersActions.js'
         console.log("savePaper");
         updatePaper(actions.val.component , actions.val.store , actions.val.data);
         return state;
-      break; 
+      break;
+      case "delPaper":
+        console.log("delPaper");
+        delPaper(actions.val.id);
+        return state;
+      break;
       default:
         return state;
       break;

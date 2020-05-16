@@ -155,12 +155,26 @@ const base = require("./lib/Base.js");
             res 
         );
     });
-
+    
     app.get('/delete', function(req, res) {
 
         console.log('delete project');
         var db = new projects();
         var project_data = db.projects_del(res);
+
+    });
+    
+    app.post('/del_papers', function(req, res) {
+
+        console.log('del_papers');
+        console.log(req.body['id']);
+        new base( 
+            require('./my_modules/my_papers/Schema.js') , 
+            'delItem' , 
+            req.body['id'], 
+            '', 
+            res 
+        );
 
     });
 

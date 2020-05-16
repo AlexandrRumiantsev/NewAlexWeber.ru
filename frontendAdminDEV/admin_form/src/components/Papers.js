@@ -12,7 +12,50 @@ import '../styles/body/papers/item.scss';
 
 import * as myModule from '../lib/';
 
+import Icon from '@material-ui/core/Icon';
 
+  function addPaperForm(){
+      let template = document.createElement('div');
+
+        
+       let closeBtn = `
+          <div onClick="
+              let elem = this.parentElement.parentElement.parentElement;
+              elem.parentNode.removeChild(elem);
+          " 
+          class='add_paper_form__close'>
+              X
+          </div>
+       `;
+       
+      
+
+      template.innerHTML = `<section class='add_paper_form'>
+            <form>
+              `+ closeBtn +`
+              <div>
+                <input class='add_paper_form__title'/>
+              </div>
+              <div>
+                <input class='add_paper_form__link'/>
+              </div>  
+              <div>  
+                <input class='add_paper_form__discr'/>
+              </div>  
+              <div>
+                <input type='file' class='add_paper_form__img'/>
+              </div>  
+              <div>
+                <input type='submit' class='add_paper_form__sbm'/>
+              </div>  
+            </form>
+      </section>`;
+     
+
+      document.body.appendChild(
+        template    
+      );
+  }
 
  class Papers extends Component {
   constructor () {
@@ -37,6 +80,7 @@ import * as myModule from '../lib/';
   render() {
   	const { store } = this.props
     //<RecipeReviewCard data={papers}/>
+
     if(this.state.papers.data){
       console.log(this.state.papers)
       return <div className='container-paper'>
@@ -51,11 +95,19 @@ import * as myModule from '../lib/';
                     class='item__close'>
                     Х
                     </div>
-                   
+                    <Icon 
+                      className="fa fa-plus-circle" 
+                      style={{ color: 'red' }} 
+                      onClick={
+                        ()=>{
+                          addPaperForm()
+                        } 
+                      }
+                    />
                     {console.log(this.state.papers.data)}
        {
           this.state.papers.data.map((papers, index)=> {
-                return <section className='section' key={index}>             
+                return <section id={papers._id} className='section' key={index}>             
                     { myModule.liba.form.create('EditPapers', papers , store ) }
                 </section>
               })}
