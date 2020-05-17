@@ -20,20 +20,39 @@ const urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
 
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '500mb'}));
+app.use(bodyParser.urlencoded({limit: '500mb', extended: true}));
 
-
+const fs = require('fs');
 const mongoose = require("mongoose");
 
 
-var config = require('./my_modules/config.js');
+const config = require('./my_modules/config.js');
 //config.connectDEV();
 config.connect();
 const base = require("./lib/Base.js");
 
+
+
+        
+   //app.use(upload.array()); 
+        
+
 (function() {
     "use strict";
+    
+    const multer = require('multer');
+
+        var storage = multer.diskStorage({
+          destination: function (req, file, cb) {
+            cb(null, 'uploads')
+          },
+          filename: function (req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now())
+          }
+        })
+         
+   var upload = multer({ storage: storage })
 
     // Add headers
     app.use(function(req, res, next) {
@@ -181,7 +200,7 @@ const base = require("./lib/Base.js");
     app.post('/upp_papers', urlencodedParser , function(req, res) {
         console.log('upp_papers');
         let settter =  {'title': req.body.data.title, 'discription':req.body.data.discription , 'link': req.body.data.link }
-        console.log( req.body.data );
+        
         new base( 
               require('./my_modules/my_papers/Schema.js') , 
               'uppItem' , 
@@ -190,10 +209,34 @@ const base = require("./lib/Base.js");
               '' ,
               settter
         );
-        //var db_papers = new papers();
-        //var papers_data = db_papers.upp_papers( res , req.body.data);
     });
-
+    
+    app.post('/save_paper', urlencodedParser , (req, res) => {
+        console.log(req.body.file);
+        
+        function decodeBase64Image(dataString) {
+          var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+            response = {};
+        
+          if (matches.length !== 3) {
+            return new Error('Invalid input string');
+          }
+        
+          response.type = matches[1];
+          response.data = new Buffer(matches[2], 'base64');
+        
+          return response;
+        }
+        let dt = decodeBase64Image(req.body.file);
+        console.log(dt);
+        fs.writeFile('image.jpg', dt.data , {encoding: 'base64'}, function(err) {
+                 console.log('File created');
+        });
+        
+       
+        
+    
+    })
 
     app.post('/save', (req, res) => {
         var POST;

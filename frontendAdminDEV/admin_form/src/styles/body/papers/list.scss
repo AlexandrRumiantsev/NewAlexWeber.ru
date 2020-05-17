@@ -51,13 +51,19 @@
     align-items: center;
 
   form{
-  background: white;
+    background: white;
     padding: 20px;
     width: 550px;
     div{
-    margin: 5px;
+        margin-bottom: 10px;
+        width: 100%;
       input{
         width: 100%;
+      }
+      .MuiIconButton-label{
+         div{
+          margin-bottom: 0px;
+         }
       }
     }
   }

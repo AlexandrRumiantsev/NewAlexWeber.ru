@@ -22,13 +22,17 @@ import SaveIcon from '@material-ui/icons/Save';
 
 import Button from '@material-ui/core/Button';
 
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import {DropzoneArea} from 'material-ui-dropzone'
 
-  function addPaperForm(){
-      let template = document.createElement('div');
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
+  function addPaperForm(store){
+      let template = document.createElement('div');
+      
         
        let closeBtn = `
           <div onClick="
@@ -43,13 +47,12 @@ import {DropzoneArea} from 'material-ui-dropzone'
       
 
       template.innerHTML = `<section class='add_paper_form'>
-            <form>
+            <form id='add_paper'>
               `+ closeBtn +`
               <div class='container-title'></div>  
               <div class='container-discr'></div>
               <div class='container-check'></div> 
-              <div class='container-link hidden'></div> 
-              <div class='container-file hidden'></div> 
+             <div class='container-file'></div> 
               <div class='container-sbm'></div> 
             </form>
       </section>`;
@@ -60,14 +63,14 @@ import {DropzoneArea} from 'material-ui-dropzone'
       );
 
       ReactDOM.render(
-                <TextField id="filled-basic" 
+                <TextField id="title_form" 
                   label="Заголовок"
                 /> , 
                 document.getElementsByClassName('container-title')[0]
               )
       ReactDOM.render(
                 <TextField 
-                  id="outlined-multiline-static"
+                  id="discr_form"
                   label="Описание"
                   multiline
                   rows={4}
@@ -76,65 +79,114 @@ import {DropzoneArea} from 'material-ui-dropzone'
                 document.getElementsByClassName('container-discr')[0]
               )
 
-      const handleChange = (event) => {
-        //console.log(event.currentTarget.name);
-      document.getElementsByClassName(
-        'container-' + event.currentTarget.name
-      )[0].classList.remove("hidden");
       
-      if(event.currentTarget.name == 'file'){
-        document.getElementsByClassName(
-          'container-link'
-        )[0].classList.add("hidden");
-      }else{
-        document.getElementsByClassName(
-          'container-file'
-        )[0].classList.add("hidden");
+      const handleChangePath  = (event) => {
+          console.log(event.target);
+          ReactDOM.render(
+            <TextField id="link" 
+                    label="Ссылка"
+                  /> ,
+          document.getElementsByClassName('container-file')[0]
+          )
       }
-
-      };
-      ReactDOM.render(
-                 <FormGroup>
-                    <FormControlLabel
-                      control={<Checkbox  onChange={handleChange} name="file" />}
-                      //onClick={()=>{alert('Файл')}}
-                      label="Файл"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox  onChange={handleChange} name="link" />}
-                      //onClick={()=>{alert('Ссылка')}}
-                      label="Ссылка"
-                    />
-                  </FormGroup> , 
-                document.getElementsByClassName('container-check')[0]
-              )
-        ReactDOM.render(
-                <TextField id="link" 
-                  label="Ссылка"
-                /> 
-                 , 
-                document.getElementsByClassName('container-link')[0]
-              )
-         ReactDOM.render(
-                  <DropzoneArea
+      const handleChangeLoad  = (event) => {
+          console.log(event.target);
+          ReactDOM.render(
+          <DropzoneArea
                     id='file'
                     filesLimit={1}
                     useChipsForPreview={true}
-                    />, 
-                document.getElementsByClassName('container-file')[0]
-              )             
+                    />,
+          document.getElementsByClassName('container-file')[0]
+          )          
+      }
+      ReactDOM.render(
+                <FormControl component="fieldset">
+                  <FormLabel component="legend">Способ загрузки</FormLabel>
+                  <RadioGroup aria-label="gender" name="gender1">
+                    <FormControlLabel 
+                      value="path" 
+                      control={<Radio />} 
+                      label="Путь к файлу" 
+                      onChange={handleChangePath}
+                    />
+                    <FormControlLabel 
+                      value="load" 
+                      control={<Radio />} 
+                      label="Загрузить файл"
+                      onChange={handleChangeLoad} 
+                    />
+                  </RadioGroup>
+                </FormControl> , 
+                document.getElementsByClassName('container-check')[0]
+              )
+        
+                  
+      function base64toBlob(base64Data, contentType) {
+          console.log(base64Data);
+          contentType = contentType || '';
+          var sliceSize = 1024;
+          var byteCharacters = atob(base64Data);
+          var bytesLength = byteCharacters.length;
+          var slicesCount = Math.ceil(bytesLength / sliceSize);
+          var byteArrays = new Array(slicesCount);
+
+          for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+            var begin = sliceIndex * sliceSize;
+            var end = Math.min(begin + sliceSize, bytesLength);
+
+            var bytes = new Array(end - begin);
+            for (var offset = begin, i = 0 ; offset < end; ++i, ++offset) {
+              bytes[i] = byteCharacters[offset].charCodeAt(0);
+            }
+            byteArrays[sliceIndex] = new Uint8Array(bytes);
+          }
+          return new Blob(byteArrays, { type: contentType });
+      }  
+
        ReactDOM.render(
                <Button
                   variant="contained"
                   color="primary"
                   size="large"
                   startIcon={<SaveIcon />}
-                  onClick={ () => {alert('xxx')} }
+                  onClick={ 
+                    () => {
+                      let arr = document.forms.add_paper.querySelectorAll(
+                        'input[type="text"] , input[type="file"] , textarea'
+                      )
+                      let data = {}
+                      Object.keys(arr).forEach( function(i){
+                        if(arr[i].id == ''){
+                          
+                          const reader = new FileReader();
+                          reader.onload = function(e) {    
+                               var binaryData = e.target.result;
+                               data.binary = binaryData;
+                               
+                            
+                                
+                          };
+                          data.fileObj = arr[i].files[0];
+                          //reader.readAsBinaryString(arr[i].files[0]);
+                          
+                        }else data[arr[i].id]=arr[i].value
+                      })
+                      store.dispatch(
+                          {
+                            type: 'savePaper', 
+                            val: data
+                          }
+                      )
+                   }
+                 }
                 >
                 Сохранить
               </Button>, 
                 document.getElementsByClassName('container-sbm')[0]
               )
+
+            
       
   }
 
@@ -181,7 +233,7 @@ import {DropzoneArea} from 'material-ui-dropzone'
                       style={{ color: 'red' }} 
                       onClick={
                         ()=>{
-                          addPaperForm()
+                          addPaperForm(store)
                         } 
                       }
                     />
