@@ -20,12 +20,14 @@ const urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
 
-app.use(bodyParser.json({limit: '500mb'}));
-app.use(bodyParser.urlencoded({limit: '500mb', extended: true}));
+app.use(bodyParser.json({limit: '1gb'}));
+app.use(bodyParser.urlencoded({limit: '1gb', extended: true}));
 
 const fs = require('fs');
 const mongoose = require("mongoose");
 
+const multiparty = require('multiparty');
+const util = require('util');
 
 const config = require('./my_modules/config.js');
 //config.connectDEV();
@@ -33,6 +35,17 @@ config.connect();
 const base = require("./lib/Base.js");
 
 
+var tar = require('tar');
+var zlib = require('zlib');
+var path = require('path');
+var mkdirp = require('mkdirp'); // used to create directory tree
+
+ var zip = require("machinepack-zip");
+
+
+
+
+//import { createReadStream, ReadStream } from 'fs';
 
         
    //app.use(upload.array()); 
@@ -210,32 +223,47 @@ const base = require("./lib/Base.js");
               settter
         );
     });
-    
+      
     app.post('/save_paper', urlencodedParser , (req, res) => {
-        console.log(req.body.file);
-        
-        function decodeBase64Image(dataString) {
-          var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-            response = {};
-        
-          if (matches.length !== 3) {
-            return new Error('Invalid input string');
-          }
-        
-          response.type = matches[1];
-          response.data = new Buffer(matches[2], 'base64');
-        
-          return response;
-        }
+
+        let  form = new multiparty.Form();
+        form.parse(req, function(err, fields, files) {
+            let nameFile = files.file[0].originalFilename;
+            fs.copyFile( 
+                files.file[0].path , 
+                '../papers/' + nameFile, 
+                function(er){
+                    if(er){
+                        console.log('error: ' + er)
+                    }else{
+                        console.log('create');
+                      
+                        zip.unzip({
+                            source: '../papers/' + nameFile,
+                            destination: '../papers/',
+                        }).exec({
+                            error: function (err){
+                             console.log("error")
+                            },
+                            success: function (){
+                              console.log("success")
+                            },
+                        });
+                      
+                    }
+                }
+            );
+          
+        });
+    
+        /*
+        Вариант записи файла из строки base64
         let dt = decodeBase64Image(req.body.file);
-        console.log(dt);
-        fs.writeFile('image.jpg', dt.data , {encoding: 'base64'}, function(err) {
+        fs.writeFile('test.html', dt.data , {encoding: 'base64'}, function(err) {
                  console.log('File created');
         });
-        
-       
-        
-    
+        */
+
     })
 
     app.post('/save', (req, res) => {

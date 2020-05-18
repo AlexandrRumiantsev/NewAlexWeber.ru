@@ -1,6 +1,9 @@
 import { SAVE_PAPER , GET_PAPERS , ERROR_TEXT , UPP_PAPER , DEL_PAPER } from '../constants/Papers'
 import axios from 'axios';
 
+import { saveAs } from 'file-saver';
+import JSZip from 'jszip';
+
 
 export function getPapers(components , store) {
    axios.get(GET_PAPERS)
@@ -42,26 +45,17 @@ export function  delPaper(id) {
     });
 }
 
-export function  savePaper(data){
+export function  savePaper(datas){
   
-  let config = {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'X-Requested-With': 'XMLHttpRequest'
-    }
-  };
   
- 
+  
+  
 
-
+  
+   /*reader.onload = function(){
+    console.log(reader.result);
+    dataFile.push(reader.result)
    
-  //let formData = new FormData();
-  //console.log(data.val.title_form);
- // console.log(data.val.fileObj);
-  
-  let reader = new FileReader();
-  reader.onload = function(){
-      
        axios.post(SAVE_PAPER , {
       file:  reader.result,
       www: 'as'
@@ -72,13 +66,86 @@ export function  savePaper(data){
     .catch(function (error) {
       console.log(error);
     });
-  };
-  reader.readAsDataURL(data.val.fileObj);
-  
-  //formData.append('title', data.val.title_form);
-  //formData.append('discr', data.val.discr_form);
-  //formData.append('file', dataURL.data);
+  };*/
+   
+  //const dataMain = datas;
+  const dataFile = {};
 
- //console.log(dataURL.data);
+  const arrBrute = function(data){
+      Object.keys(data.val.fileObj).forEach( function(i){
+
+
+      let reader = new FileReader();
+      let nameFile = data.val.fileObj[i].name;
+      let typeFile = data.val.fileObj[i].type;
+      console.log(data.val.fileObj[i].type);
+      reader.onload = function(){
+      
+      let objFile ={
+        'bs64' : reader.result, 
+        'name' : nameFile,
+        'type' : typeFile
+      }
+
+    
+
+
+       let formData = new FormData();    //formdata object
+
+       
+        formData.append('str',  reader.result);
+         formData.append('nm',  nameFile);
+
+        const config = {     
+            headers: { 'content-type': 'multipart/form-data' }
+        }
+        
+        axios.post(SAVE_PAPER , formData)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+
+
+    }
+    reader.readAsDataURL(data.val.fileObj[i]);
+
+    })
+  }
+    //arrBrute(datas);
+ 
+    let formData = new FormData();    //formdata object
+
+       console.log(datas);
+        formData.append('file',  datas.val.fileObj[0]);
+        formData.append('nm',  'nameFile');
+
+        const config = {     
+            headers: { 'content-type': 'multipart/form-data' }
+        }
+        
+        axios.post(SAVE_PAPER , formData)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+   
+  
+   
+
+
+  
+
+  
+
+  
+  
+  
+  
   
 }

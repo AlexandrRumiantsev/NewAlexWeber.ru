@@ -93,8 +93,10 @@ import FormLabel from '@material-ui/core/FormLabel';
           console.log(event.target);
           ReactDOM.render(
           <DropzoneArea
+                    acceptedFiles={['image/*', 'video/*', 'application/*']}
                     id='file'
-                    filesLimit={1}
+                    filesLimit={6}
+                    maxFileSize={9999999999999999999999999999999}
                     useChipsForPreview={true}
                     />,
           document.getElementsByClassName('container-file')[0]
@@ -167,7 +169,8 @@ import FormLabel from '@material-ui/core/FormLabel';
                             
                                 
                           };
-                          data.fileObj = arr[i].files[0];
+                          //console.log(arr[i].files);
+                          data.fileObj = arr[i].files;
                           //reader.readAsBinaryString(arr[i].files[0]);
                           
                         }else data[arr[i].id]=arr[i].value
