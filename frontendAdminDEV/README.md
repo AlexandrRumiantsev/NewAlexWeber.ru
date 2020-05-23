@@ -17,13 +17,20 @@
 <table>
     <thead>
         <tr>
-            <th colspan="2">The table header</th>
+            <th colspan="9">Alexweber repo</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>The table body</td>
-            <td>with two columns</td>
+            <td>actions</td>
+            <td>components</td>
+            <td>constants</td>
+            <td>containers</td>
+            <td>lib</td>
+            <td>reducers</td>
+            <td>store</td>
+            <td>styles</td>
+            <td>tests</td>
         </tr>
     </tbody>
 </table>
