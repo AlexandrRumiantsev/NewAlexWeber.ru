@@ -14,11 +14,9 @@
 
 Все файлы приложения находятся в папке src
 
-<style type="text/css">
-	.struct{
-		color:red;
-	}
-</style>
+<script type="text/javascript">
+	alert('xxx');
+</script>
 
 <div class='struct'>
 <div class='struct__title'> actions </div> 
