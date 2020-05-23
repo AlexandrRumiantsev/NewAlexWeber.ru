@@ -14,74 +14,70 @@
 
 Все файлы приложения находятся в папке src
 
-<script type="text/javascript">
-	alert('xxx');
-</script>
-
-<div class='struct'>
-<div class='struct__title'> actions </div> 
-	> ApiActions.js - тестовый экшн
-	> CommentsActions.js - тестовый экшн
-	> PapersActions.js - тестовый экшн
-	> ProjectsActions.js - тестовый экшн
-	> UserActions.js - тестовый экшн
--components
-	> Comments.js
-	> Main.js
-	> Menu.js
-	> Papers.js
-	> Projects.js
-	> User.js
--constants
-	> Api.js
-	> Comments.js
-	> Main.js
-	> Papers.js
-	> Projects.js
--containers
-	> App.js
-	> Authorization.js
-	> Menu.js
--lib
-	> file
-		>> index.js
-	> form
-		>> EditPaper.js
-		>> EditProject.js
-		>> index.js
-	> material
-		>> index.js
-		>> paperAddPopupp.js
-	> index.js
--reducers
-	> comments.js
-	> index.js
-	> main.js
-	> papers.js
-	> projects.js
-	> switcher.js
-	> user.js
--store
-	> configStore.js
--styles
-	> body
-		>> comments
-			>>> item.scss
-			>>> list.scss
-		>> papers
-			>>> item.scss
-			>>> list.scss
-		>> projects
-			>>> item.scss
-			>>> list.scss
-		>> menu.scss
-	> footer
-	> header
-		>login.scss
-	> app.scss
+``
+actions 
+	ApiActions.js - тестовый экшн
+	CommentsActions.js - тестовый экшн
+	PapersActions.js - тестовый экшн
+	ProjectsActions.js - тестовый экшн
+	UserActions.js - тестовый экшн
+components
+	Comments.js
+	Main.js
+	Menu.js
+	Papers.js
+	Projects.js
+	User.js
+constants
+	Api.js
+	Comments.js
+	Main.js
+	Papers.js
+	Projects.js
+containers
+	App.js
+	Authorization.js
+	Menu.js
+lib
+	file
+		index.js
+	form
+		EditPaper.js
+		EditProject.js
+		index.js
+	material
+		index.js
+		paperAddPopupp.js
+	index.js
+reducers
+	comments.js
+	index.js
+	main.js
+	papers.js
+	projects.js
+	switcher.js
+	user.js
+store
+	configStore.js
+styles
+	body
+		comments
+			item.scss
+			list.scss
+		papers
+			item.scss
+			list.scss
+		projects
+			tem.scss
+			list.scss
+		menu.scss
+	footer
+	header
+		login.scss
+	app.scss
 -tests
-	> В разработке
-</div>
+	В разработке
+``
 
 # Макеты экранов приложения.
 
