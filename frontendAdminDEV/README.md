@@ -32,6 +32,23 @@
             <td>styles</td>
             <td>tests</td>
         </tr>
+        <tr>
+            <td>
+            	<p>ApiActions.js</p>
+            	<p>CommentsActions.js</p>
+            	<p>PapersActions.js</p>
+            	<p>ProjectsActions.js</p>
+            	<p>UserActions.js</p>
+            </td>
+            <td>components</td>
+            <td>constants</td>
+            <td>containers</td>
+            <td>lib</td>
+            <td>reducers</td>
+            <td>store</td>
+            <td>styles</td>
+            <td>tests</td>
+        </tr>
     </tbody>
 </table>
 
