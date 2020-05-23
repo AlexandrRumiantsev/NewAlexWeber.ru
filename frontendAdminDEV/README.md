@@ -34,20 +34,71 @@
         </tr>
         <tr>
             <td>
-            	<p>ApiActions.js</p>
-            	<p>CommentsActions.js</p>
-            	<p>PapersActions.js</p>
-            	<p>ProjectsActions.js</p>
-            	<p>UserActions.js</p>
+            	<div>ApiActions.js</div>
+            	<div>CommentsActions.js</div>
+            	<div>PapersActions.js</div>
+            	<div>ProjectsActions.js</div>
+            	<div>UserActions.js</div>
             </td>
-            <td>components</td>
-            <td>constants</td>
-            <td>containers</td>
-            <td>lib</td>
-            <td>reducers</td>
-            <td>store</td>
-            <td>styles</td>
-            <td>tests</td>
+            <td>
+            	<div>Comments.js</div>
+            	<div>Main.js</div>
+            	<div>Menu.js</div>
+            	<div>Papers.js</div>
+            	<div>User.js</div>
+            </td>
+            <td>
+            	<div>Api.js</div>
+            	<div>Comments.js</div>
+            	<div>Main.js</div>
+            	<div>Papers.js</div>
+            	<div>Projects.js</div>   	
+            </td>
+            <td>
+            	<div>App.js</div>
+            	<div>Authorization.js</div>
+            	<div>Menu.js</div>
+            </td>
+            <td>
+            	<pre>
+            		file
+            	</pre>
+            	<pre>
+            		form
+            	</pre>
+            	<pre>
+            		material
+            	</pre>
+            	<div>index.js</div>
+            </td>
+            <td>
+            	<div>ApiActions.js</div>
+            	<div>CommentsActions.js</div>
+            	<div>PapersActions.js</div>
+            	<div>ProjectsActions.js</div>
+            	<div>UserActions.js</div>
+            </td>
+            <td>
+            	<div>ApiActions.js</div>
+            	<div>CommentsActions.js</div>
+            	<div>PapersActions.js</div>
+            	<div>ProjectsActions.js</div>
+            	<div>UserActions.js</div>
+            </td>
+            <td>
+            	<div>ApiActions.js</div>
+            	<div>CommentsActions.js</div>
+            	<div>PapersActions.js</div>
+            	<div>ProjectsActions.js</div>
+            	<div>UserActions.js</div>
+            </td>
+            <td>
+            	<div>ApiActions.js</div>
+            	<div>CommentsActions.js</div>
+            	<div>PapersActions.js</div>
+            	<div>ProjectsActions.js</div>
+            	<div>UserActions.js</div>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -55,29 +106,6 @@
 
 
 ``
-actions 
-	ApiActions.js - тестовый экшн
-	CommentsActions.js - тестовый экшн
-	PapersActions.js - тестовый экшн
-	ProjectsActions.js - тестовый экшн
-	UserActions.js - тестовый экшн
-components
-	Comments.js
-	Main.js
-	Menu.js
-	Papers.js
-	Projects.js
-	User.js
-constants
-	Api.js
-	Comments.js
-	Main.js
-	Papers.js
-	Projects.js
-containers
-	App.js
-	Authorization.js
-	Menu.js
 lib
 	file
 		index.js
