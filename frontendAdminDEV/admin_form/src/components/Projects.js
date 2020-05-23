@@ -2,54 +2,26 @@ import React, {
   Component
 } from 'react'
 import PropTypes from 'prop-types';
-import '../styles/app.scss';
 
+import '../styles/app.scss';
 import '../styles/body/projects/list.scss';
 import '../styles/body/projects/item.scss';
 
 var ReactDOM = require('react-dom');
 
 import * as myModule from '../lib/';
+import { ItemProjectTemplate  } from '../templates/projects/item.js';
+import { ListProjectTemplate  } from '../templates/projects/list.js';
+import { Loader  } from '../templates/main/loader.js';
 
-//https://stackoverflow.com/questions/58200373/how-to-append-child-to-react-element
 
-function editProject(data , store , target){
+function editProject(data){
   let to = document.getElementsByClassName('edit-container')[0];
-  console.log(to);
   to.classList.toggle('active');
-  
   ReactDOM.render(
     myModule.liba.form.create('EditProject',data) , 
     to
    )
-}
-
-function ListProject(props) {
-    return <div className='item'>
-              <div className='item__title'>
-                  <div className='title__content'>
-                    {props.data.name}
-                  </div>
-              </div>
-              <div className='container-btn'>
-                <a target='_blank' href={props.data.link}>
-                  <i class="fal fa-tv"></i>
-                </a>  
-                <span onClick={(e)=>{
-                  editProject(props.data , props.store ,e.target );
-                }}>
-                  <i class="fas fa-edit"></i>
-                </span>
-                <span onClick={()=>{
-                  let del = confirm("Удалить?");
-                  if(del){
-                    console.log(props.store);
-                  }
-                }}>
-                  <i class="fas fa-trash-alt"></i>
-                </span>
-              </div>
-            </div>
 }
 
 export default class Projects extends Component {
@@ -82,46 +54,30 @@ export default class Projects extends Component {
     })
   }
   render() {
-
     const {
       store
     } = this.props
-    
 
+    const itemDel = function(){
+      let del = confirm("Удалить?");
+        if(del){
+          console.log('Удалить');
+        }
+    }
+                
+    const goToMain = function(){
+      store.dispatch({type: 'index',val: 'index'})
+    }
     if(this.state.render == true){
-      
-      return <div class='list-projects'>
-      <div class='edit-container'></div>
-      <div onClick={()=>{
-              this.setState({
-                state: false
-              })
-
-              store.dispatch(
-                  {
-                    type: 'index', 
-                    val: 'index'
-                  }
-              )
-          }}
-          className='item__close'>
-        X
-      </div>
-      {this.state.data.map((project, index)=> {
-        console.log(project.imageFull);
-            const pStyle = {
-              background: "url('http://alexweber.ru/img/"+project.image+"')",
-              backgroundSize: 'cover' 
-            };
-
-            return <div style={pStyle} class='projects__item' 
-                        key={index}>
-                      <ListProject store={store} data={project}/>
-                    </div>
-       })}
-      </div>
+      return <ListProjectTemplate 
+                data={this.state.data} 
+                goToMain={goToMain}
+                item={ItemProjectTemplate}
+                editProject={editProject}
+                itemDel={itemDel}
+            />
     }else{
-      return <div class='loader'></div>
+      return <Loader />
     }
     
   }

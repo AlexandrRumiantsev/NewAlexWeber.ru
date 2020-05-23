@@ -7,7 +7,6 @@ import React, { Component } from 'react'
  */
 
 export function ListCommentTemplate(goToMain , comments , store , ItemComment ){
-  console.log(goToMain);
   return ( <div className='page-comment'>
       <div onClick={goToMain.bind()}
                     class='item__close'>
