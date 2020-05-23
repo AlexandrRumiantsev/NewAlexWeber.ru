@@ -1,10 +1,6 @@
 import { SAVE_PAPER , GET_PAPERS , ERROR_TEXT , UPP_PAPER , DEL_PAPER } from '../constants/Papers'
 import axios from 'axios';
 
-import { saveAs } from 'file-saver';
-import JSZip from 'jszip';
-
-
 export function getPapers(components , store) {
    axios.get(GET_PAPERS)
         .then(res => {
