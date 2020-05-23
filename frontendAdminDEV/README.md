@@ -15,30 +15,30 @@
 Все файлы приложения находятся в папке src
 
 ```
--&#128193; actions
+<div class='title'> actions </div> 
 	> ApiActions.js - тестовый экшн
 	> CommentsActions.js - тестовый экшн
 	> PapersActions.js - тестовый экшн
 	> ProjectsActions.js - тестовый экшн
 	> UserActions.js - тестовый экшн
--&#128193; components
+-components
 	> Comments.js
 	> Main.js
 	> Menu.js
 	> Papers.js
 	> Projects.js
 	> User.js
--&#128193; constants
+-constants
 	> Api.js
 	> Comments.js
 	> Main.js
 	> Papers.js
 	> Projects.js
--&#128193; containers
+-containers
 	> App.js
 	> Authorization.js
 	> Menu.js
--&#128193; lib
+-lib
 	> file
 		>> index.js
 	> form
@@ -49,7 +49,7 @@
 		>> index.js
 		>> paperAddPopupp.js
 	> index.js
--&#128193; reducers
+-reducers
 	> comments.js
 	> index.js
 	> main.js
@@ -57,9 +57,9 @@
 	> projects.js
 	> switcher.js
 	> user.js
--&#128193; store
+-store
 	> configStore.js
--&#128193; styles
+-styles
 	> body
 		>> comments
 			>>> item.scss
@@ -75,7 +75,7 @@
 	> header
 		>login.scss
 	> app.scss
--&#128193; tests
+-tests
 	> В разработке
 	
 ```
