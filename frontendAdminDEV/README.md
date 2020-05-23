@@ -14,8 +14,14 @@
 
 Все файлы приложения находятся в папке src
 
-```
-<div class='title'> actions </div> 
+<style type="text/css">
+	.struct{
+		color:red;
+	}
+</style>
+
+<div class='struct'>
+<div class='struct__title'> actions </div> 
 	> ApiActions.js - тестовый экшн
 	> CommentsActions.js - тестовый экшн
 	> PapersActions.js - тестовый экшн
@@ -77,8 +83,8 @@
 	> app.scss
 -tests
 	> В разработке
-	
-```
+</div>
+
 # Макеты экранов приложения.
 
 <h2>Главный экран</h2>
