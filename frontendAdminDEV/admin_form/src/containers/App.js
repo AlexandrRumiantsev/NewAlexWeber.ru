@@ -10,7 +10,6 @@ import {
 import User from '../components/User'
 
 import Main from '../components/Main'
-import * as pageActions from '../actions/PageActions'
 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -61,9 +60,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    pageActions: bindActionCreators(pageActions, dispatch)
-  }
+  
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

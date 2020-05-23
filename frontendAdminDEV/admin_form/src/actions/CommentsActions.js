@@ -17,10 +17,6 @@ export function getComments(components , store) {
 }
 
 export function delComment(id , component , store ) {
-	console.log('delComment');
-  console.log(component);
-    //console.log(data['data'].component.setState({comments: '' , status: true}));
-    component.setState({refrash: true})
     store.dispatch(
                 {
                   type: 'refrashComment',
