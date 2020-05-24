@@ -5,6 +5,9 @@ import {
   Menu
 } from './Menu.js'
 import '../styles/header/login.scss';
+import {LoginForm} from '../templates/forms/Login.js'
+
+const globalData = {}
 
 export class Authorization extends React.Component {
   constructor(props) {
@@ -20,31 +23,9 @@ export class Authorization extends React.Component {
     this.unsubscribe = store.subscribe(() => {
       this.setState(store.getState());
     });
+    globalData.component = this;
   }
-  check(item) {
-    console.log('check');
-    let log = document.getElementById('log').value;
-    let pass = document.getElementById('pass').value;
-
-    if (item == 'true') {
-      cookies.set('login', log, {
-        path: '/'
-      });
-      cookies.set('password', pass, {
-        path: '/'
-      });
-    }
-    if (item == 'false') {
-      cookies.set('login', '', {
-        path: '/'
-      });
-      cookies.set('password', '', {
-        path: '/'
-      });
-    }
-    this.onClick(log, pass);
-  }
-  onClick(log, pass) {
+  eventClick(log, pass) {
 
     let storeState = this.props.store;
 
@@ -59,74 +40,28 @@ export class Authorization extends React.Component {
       },
       store: this.props.store
     })
+
   }
-  render() {
-    if (this.props.store.getState().user.User['log'] != undefined)
-      return <Menu store = {
-        this.props.store
-      }
-    />
-    else {
-      return ( <div>
-
-        <div className = "box Authorization" >
-        <h1> Авторизация пользователя </h1> 
-        <form>
-        <div className = "inputbox">
-        <input 
-          required id = "log"
-          type = "text"
-          name = "login" 
-        />
-        <label> Username </label> 
-        </div> 
-        <div className="inputbox">
-        <input required 
-          id = "pass"
-          type = "password"
-          name = "password" 
-        />
-        <label> 
-          Password 
-        </label> 
-        </div>
-
-        <div className='box__btn'>
-        <div onClick = {
-          () => {
-            this.check(this.state.checkbox)
-          }
-        }
-        className = 'sbm'> 
-          Войти 
-        </div> 
-        <span className = 'span_save'
-        onClick = {
-          () => {
-
-            if (this.state.checkbox == 'false') {
-              this.setState({
-                checkbox: 'true'
-              })
-            }
-            if (this.state.checkbox == 'true') {
-              this.setState({
-                checkbox: 'false'
-              })
-            }
-
-          }
-        } >
-        <input type = 'checkbox'
-               name = 'check'
-               id = 'check' / >
-        Запомнить 
-        </span> 
-        </div>       
-        </form>              
-        </div> 
-        </div>
-      )
+  check() {
+    if(sessionStorage.getItem('log') && sessionStorage.getItem('pass')){
+      globalData.component.eventClick(
+            sessionStorage.getItem('log'),
+            sessionStorage.getItem('pass')
+      );
+      window.location.reload(false);
+    }else{
+      let log = document.getElementById('log').value;
+      let pass = document.getElementById('pass').value;
+      sessionStorage.setItem('log', log);
+      sessionStorage.setItem('pass', pass);
+      globalData.component.eventClick(log, pass);
+      window.location.reload(false);
     }
+  } 
+  render() {
+    if (sessionStorage.getItem('log') && sessionStorage.getItem('pass'))
+      return <Menu store = {this.props.store} />
+    else
+      return <LoginForm check={this.check} />
   }
 }

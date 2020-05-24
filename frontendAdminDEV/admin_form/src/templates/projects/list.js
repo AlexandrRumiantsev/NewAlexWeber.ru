@@ -4,7 +4,6 @@ import React, {
 import {
   Link
 } from "react-router-dom";
-
 export function ListProjectTemplate(props){
 	const editProject = props.editProject;
 	const ItemProjectTemplate = props.item;

@@ -3,6 +3,7 @@ import Projects from '../components/Projects'
 import Comments from '../components/Comments'
 import Papers from '../components/Papers'
 
+
 import '../styles/body/menu.scss';
 const ReactDOM = require('react-dom');
 
@@ -26,22 +27,8 @@ function Comment() {
   return <div className='page_popupp'><Comments store={globalData.store}/></div>
 }
 
-
-function Switcher(props) {
-  if(props.page == 'index'){
-    return <div></div>
-  };
-  if(props.page == 'projects'){
-    return <div className='page_popupp'><Projects store={props.store}/></div>
-  };
-  if(props.page == 'papers'){
-    return <div className='page_popupp'><Papers store={props.store}/></div>
-  };
-  if(props.page == 'comments'){
-    return <div className='page_popupp'><Comments store={props.store}/></div>
-  };
-  
-}
+import * as myModule from '../lib/';
+myModule.liba.routerState();
 
 
 
@@ -59,6 +46,7 @@ export class Menu extends Component {
 
   }
   render() {
+      
       return <div id='index'>
                 
       <Router>
