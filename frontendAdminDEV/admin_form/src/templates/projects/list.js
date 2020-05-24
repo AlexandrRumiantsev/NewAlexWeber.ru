@@ -1,6 +1,9 @@
 import React, {
   Component
 } from 'react'
+import {
+  Link
+} from "react-router-dom";
 
 export function ListProjectTemplate(props){
 	const editProject = props.editProject;
@@ -9,10 +12,7 @@ export function ListProjectTemplate(props){
 	return (<div>
 		<div class='list-projects'>
 		<div class='edit-container'></div>
-		<div onClick={props.goToMain.bind()}
-	          className='item__close'>
-	        X
-	      </div>
+		<Link to="/">X</Link>
 	      {props.data.map((project, index)=> {
 	        console.log(project.imageFull);
 	            const pStyle = {

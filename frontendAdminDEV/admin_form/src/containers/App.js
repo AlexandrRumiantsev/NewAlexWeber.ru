@@ -9,8 +9,6 @@ import {
 } from 'react-redux'
 import User from '../components/User'
 
-import Main from '../components/Main'
-
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const ReactDOM = require('react-dom');
@@ -19,15 +17,12 @@ import {
   Authorization
 } from './Authorization.js'
 
+import '../styles/body/menu.scss';
+
 
 class App extends Component {
   constructor() {
     super(...arguments);
-    /* 
-      алгоритм необходимы для обновления компонента, 
-      посли изменения состояния хранилища 
-    */
-
     const {
       store
     } = this.props

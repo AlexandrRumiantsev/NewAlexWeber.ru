@@ -4,6 +4,28 @@ import Comments from '../components/Comments'
 import Papers from '../components/Papers'
 
 import '../styles/body/menu.scss';
+const ReactDOM = require('react-dom');
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+const globalData = {}
+
+function Project() {
+  return <div className='page_popupp'><Projects store={globalData.store}/></div>
+}
+
+function Paper() {
+  return <div className='page_popupp'><Papers store={globalData.store}/></div>
+}
+function Comment() {
+  return <div className='page_popupp'><Comments store={globalData.store}/></div>
+}
+
 
 function Switcher(props) {
   if(props.page == 'index'){
@@ -21,83 +43,45 @@ function Switcher(props) {
   
 }
 
-export class Menu extends Component {
-   constructor () {
-        super(...arguments);
-        /* 
-          алгоритм необходимы для обновления компонента, 
-          посли изменения состояния хранилища 
-        */
 
+
+export class Menu extends Component {
+  constructor () {
+        super(...arguments);
         const { store } = this.props
-        console.log(store);
+        globalData.store = store;
         this.state = store.getState();
         this.unsubscribe = store.subscribe(() => {
             this.setState(store.getState());
         });
-
         this.state = {display: false};
 
-    }
-  componentDidMount(){
-    //alert('xx');
-  }
 
+  }
   render() {
       return <div id='index'>
-                <div class='menu'>
-                  <span class='menu__login'>
-                    { this.props.store.getState().user.User.log }
-                  </span>
-                </div>
-                <div onClick={()=>{
-                        this.props.store.dispatch(
-                            {
-                              type: 'projects', 
-                              val: 'projects'
-                            }
-                        )
-                      }} class='index-container'>
-                      <div 
-                      
-                      class='index-container__item'>
-                      <i class="far-projects fa-calendar-check"></i>
-                      <p>Проекты</p>
-                      </div>
-                </div>
-
-                <div onClick={()=>{
-                      this.props.store.dispatch(
-                            {
-                              type: 'papers', 
-                              val: 'papers'
-                            }
-                        )
-                      }} class='index-container'>
-                      <div 
-                      class='index-container__item'>
-                      <i class="far-papers"></i>
-                      <p>Статьи</p>
-                      </div>
-                </div>
-
-                <div onClick={()=>{
-                      this.props.store.dispatch(
-                            {
-                              type: 'comments', 
-                              val: 'comments'
-                            }
-                        )
-                      }} class='index-container'>
-                      <div 
-                      class='index-container__item'>
-                      <i class="far-comments"></i>
-                      <p>Комментарии</p>
-                      </div>
-                </div>
-
-                 <Switcher store={this.props.store} page={this.props.store.getState().switcher.page}/>
-
-            </div>
+                
+      <Router>
+      <div>
+        <nav>
+              <Link to="/">Home</Link>
+              <Link to="/Paper">Paper</Link>
+              <Link to="/Comment">Comment</Link>
+              <Link to="/Project">Project</Link>
+        </nav>
+        <Switch>
+          <Route path="/Paper">
+            <Paper />
+          </Route>
+          <Route path="/Comment">
+            <Comment />
+          </Route>
+          <Route path="/Project">
+            <Project />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+    </div>
   }
 }

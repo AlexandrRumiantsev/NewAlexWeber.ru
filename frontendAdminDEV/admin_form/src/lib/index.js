@@ -2,6 +2,13 @@ import form from './form';
 import file from './file';
 import Material from './material';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 export const liba = {
 	'form': {
 		'create': function(type , data , store){

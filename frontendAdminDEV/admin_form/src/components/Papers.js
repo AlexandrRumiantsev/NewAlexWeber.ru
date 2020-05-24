@@ -7,7 +7,9 @@ import '../styles/body/papers/list.scss';
 import '../styles/body/papers/item.scss';
 import * as myModule from '../lib/';
 import Icon from '@material-ui/core/Icon';
-
+import {
+  Link
+} from "react-router-dom";
 
  class Papers extends Component {
   constructor () {
@@ -45,7 +47,7 @@ import Icon from '@material-ui/core/Icon';
                       )
                     }}
                     class='item__close'>
-                    Х
+                    <Link to="/">X</Link>
                     </div>
                     <Icon 
                       className="fa fa-plus-circle" 
