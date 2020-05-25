@@ -14,6 +14,7 @@ import { Loader  } from '../templates/main/loader.js';
 
 const globalData = {}
 
+
 function ItemComment(props){
     const del = function(){
         let sign = confirm("Удалить?");

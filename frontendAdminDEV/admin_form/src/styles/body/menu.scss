@@ -58,6 +58,7 @@
               }
             }
             .page_popupp{
+                
                 background: white;
                 position: absolute;
                 width: 100%;
@@ -68,3 +69,26 @@
                 justify-content: center;
             }
           }
+
+.container-main{
+display:flex;
+    #main-container{
+    width:80%;
+}
+#RightMenu{
+    width:20%;
+
+    .MuiDrawer-docked{
+        height: 100%;
+        a{
+             span{
+               color:black;
+             }
+        }
+    }
+    
+}
+.page_popupp{
+        margin-top: calc(65px);
+    }
+}
