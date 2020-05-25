@@ -73,10 +73,10 @@
 .container-main{
 display:flex;
     #main-container{
-    width:80%;
+    width:fit-content;
 }
 #RightMenu{
-    width:20%;
+    width:fit-content;
 
     .MuiDrawer-docked{
         height: 100%;

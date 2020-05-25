@@ -16,8 +16,10 @@ const globalData = {
 export const liba = {
 	'routerState' : function(component) {
 		const mutationObserver = new MutationObserver(function(mutations) {
-		 
-
+			let text = window.location.pathname;
+			component.setState({
+		      display: text.substring(1).toLowerCase()
+		    })
 		});
 		mutationObserver.observe(document, {
 		  attributes: true,

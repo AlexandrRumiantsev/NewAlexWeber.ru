@@ -24,6 +24,8 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import { RightMenu } from './listItems';
 
+import * as myModule from '../lib/';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -59,6 +61,7 @@ export class Menu extends Component {
         this.unsubscribe = store.subscribe(() => {
             this.setState(store.getState());
         });
+        myModule.liba.routerState(this);
         this.state = {display: 'main'};
 
 
