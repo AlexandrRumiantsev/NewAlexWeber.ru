@@ -71,6 +71,7 @@
           }
 
 .container-main{
+height: 100%;
 display:flex;
     #main-container{
     width:fit-content;
@@ -90,5 +91,6 @@ display:flex;
 }
 .page_popupp{
         margin-top: calc(65px);
+        height: 100vh;
     }
 }

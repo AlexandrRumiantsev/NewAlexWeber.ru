@@ -7,13 +7,19 @@ const initialState = {
   export default function user(state = initialState , actions , store) {
     switch(actions.type){
         	case "LoginUser":
-        	getUser(state , actions.val , actions.store );
-            return state;
+        	   getUser(state , actions.val , actions.store );
+          return state;
     	break;
     	case "SetUser":
-            actions.val.callback(actions.val);
+            //actions.val.callback(actions.val);
+            console.log('!!!actions!!!');
+            console.log(actions.val.log);
+             console.log('!!!actions!!!');
     		return Object.assign({}, state, {
-             User: actions.val
+             User: {
+               login : actions.val.log ,
+               password : actions.val.pass
+             }
         	})
     	break;
     	default:

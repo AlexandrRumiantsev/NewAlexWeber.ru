@@ -42,6 +42,7 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import User from '../components/User';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -143,7 +144,7 @@ export function RightMenu (data){
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  console.log(MenuComponent);
+  console.log(data.main.props.log);
   return(<div id='RightMenu'>
         <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -158,8 +159,13 @@ export function RightMenu (data){
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            AlexWeber 
           </Typography>
+          <IconButton color="inherit">
+            <Badge color="secondary">
+              <User data={data} log={data.main.props.log} />
+            </Badge>
+          </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />

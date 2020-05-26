@@ -10,9 +10,6 @@ import {
 //console.log(myModule.liba.other.goToMain());
 export function ListCommentTemplate(goToMain , comments , store , ItemComment ){
   return ( <div className='page-comment'>
-      <div class='item__close'>
-                    <Link to="/">X</Link>
-                    </div>
                     { store.getState().comments.data.map((comments, index)=> {
                       return <section id={comments._id} 
                                       className='comment-list-item' 

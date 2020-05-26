@@ -11,9 +11,16 @@ import {
 
 const globalData = {
 	prevPage: '' ,
-	page: ''
+	page: '' ,
+	store: ''
 }
 export const liba = {
+	'setGlobalStore' : function(store) {
+		globalData.store = store;
+	},
+	'getGlobalStore' : function() {
+		return globalData.store;
+	},
 	'routerState' : function(component) {
 		const mutationObserver = new MutationObserver(function(mutations) {
 			let text = window.location.pathname;

@@ -7,7 +7,7 @@ export function getUser(state , data , store) {
 	axios.get('http://alexweber.ru:5000/login?login=' + data.log + '&password=' + data.pass)
           .then( response => {
             if (response.data.length != 0){ 
-            
+
              store.dispatch(
                             {
                               type : 'SetUser',

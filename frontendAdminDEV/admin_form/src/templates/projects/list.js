@@ -11,7 +11,6 @@ export function ListProjectTemplate(props){
 	return (<div>
 		<div class='list-projects'>
 		<div class='edit-container'></div>
-		<Link to="/">X</Link>
 	      {props.data.map((project, index)=> {
 	        console.log(project.imageFull);
 	            const pStyle = {

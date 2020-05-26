@@ -61,16 +61,18 @@ export class Menu extends Component {
         this.unsubscribe = store.subscribe(() => {
             this.setState(store.getState());
         });
+        myModule.liba.setGlobalStore(store);
         myModule.liba.routerState(this);
         this.state = {display: 'main'};
 
 
   }
   render() {
+      console.log(this.props.authComponent)
       switch(this.state.display){
             case 'comment':
               return <div className='container-main'>
-                <RightMenu main={this}/>
+                <RightMenu aut={this.props.authComponent} main={this}/>
                 <Comment />
               </div>
             break;

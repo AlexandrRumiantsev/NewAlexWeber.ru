@@ -27,7 +27,7 @@ export class Authorization extends React.Component {
   }
   eventClick(log, pass) {
 
-    let storeState = this.props.store;
+    globalData.store = this.props.store;
 
     let data = this.props.store.dispatch({
       type: 'LoginUser',
@@ -40,7 +40,7 @@ export class Authorization extends React.Component {
       },
       store: this.props.store
     })
-
+    //console.log(this);
   }
   check() {
     if(sessionStorage.getItem('log') && sessionStorage.getItem('pass')){
@@ -48,6 +48,7 @@ export class Authorization extends React.Component {
             sessionStorage.getItem('log'),
             sessionStorage.getItem('pass')
       );
+
       window.location.reload(false);
     }else{
       let log = document.getElementById('log').value;
@@ -55,13 +56,16 @@ export class Authorization extends React.Component {
       sessionStorage.setItem('log', log);
       sessionStorage.setItem('pass', pass);
       globalData.component.eventClick(log, pass);
-      window.location.reload(false);
+      //window.location.reload(false);
     }
   } 
   render() {
     if (sessionStorage.getItem('log') && sessionStorage.getItem('pass'))
-      return <Menu store = {this.props.store} />
-    else
-      return <LoginForm check={this.check} />
+      return <Menu log={ sessionStorage.getItem('log') } 
+                   store = {this.props.store}
+                   authComponent={this}
+                  />
+      else
+        return <LoginForm check={this.check} />
   }
 }
