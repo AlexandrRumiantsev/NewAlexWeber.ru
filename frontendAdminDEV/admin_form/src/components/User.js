@@ -7,6 +7,16 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 const globalData = {}
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+	  root: {
+	    marginTop: '30px',
+	    color: 'white'
+	  }
+  })
+)
+
 
 export default class User extends Component {
 constructor () {
@@ -24,13 +34,16 @@ render() {
 
 
 function DropMenu() {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleExit = () => {
     globalData.authComponent.setState({clear : true});
     sessionStorage.clear();
   };
@@ -41,13 +54,15 @@ function DropMenu() {
         { sessionStorage.getItem('log') }
       </Button>
       <Menu
+         onClose={handleClose}
+        className={classes.root}
         id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
       >
         <MenuItem>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleExit}>Logout</MenuItem>
       </Menu>
     </div>
   );
