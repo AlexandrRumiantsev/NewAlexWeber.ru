@@ -1,37 +1,18 @@
 import React, { Component } from 'react'
+const ReactDOM = require('react-dom');
+
 import Projects from '../components/Projects'
 import Comments from '../components/Comments'
 import Papers from '../components/Papers'
+import UserList from './UserList'
+import Dashboard from '../templates/panel/Dashboard'
 
-import Dashboard from './Dashboard'
 import '../styles/body/menu.scss';
-const ReactDOM = require('react-dom');
-
-
-
-import List from '@material-ui/core/List';
-
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import { RightMenu } from './listItems';
-
 import * as myModule from '../lib/';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+
 
 const globalData = {}
 
@@ -57,19 +38,19 @@ export class Menu extends Component {
         super(...arguments);
         const { store } = this.props
         globalData.store = store;
-        this.state = store.getState();
-        this.unsubscribe = store.subscribe(() => {
-            this.setState(store.getState());
-        });
         myModule.liba.setGlobalStore(store);
         myModule.liba.routerState(this);
         this.state = {display: 'main'};
-
-
   }
   render() {
       console.log(this.props.authComponent)
       switch(this.state.display){
+            case 'users':
+              return <div className='container-main'>
+                <RightMenu aut={this.props.authComponent} main={this}/>
+                <UserList />
+              </div>
+            break;
             case 'comment':
               return <div className='container-main'>
                 <RightMenu aut={this.props.authComponent} main={this}/>

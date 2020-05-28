@@ -14,6 +14,10 @@ const initialState = {
             //actions.val.callback(actions.val);
             console.log('!!!actions!!!');
             console.log(actions.val.log);
+             actions.val.callback(
+                actions.val.log , 
+                actions.val.pass
+              );
              console.log('!!!actions!!!');
     		return Object.assign({}, state, {
              User: {

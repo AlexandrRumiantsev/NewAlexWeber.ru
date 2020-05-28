@@ -102,6 +102,7 @@ class DropzoneAreaExample extends Component{
     console.log(this.props);
     return (
       <DropzoneArea
+        disabled
         filesLimit={1}
         initialFiles={
           valFile

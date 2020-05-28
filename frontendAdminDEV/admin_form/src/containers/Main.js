@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+
 import Paper from '@material-ui/core/Paper';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+
+import Chart from '../templates/panel/Chart';
+import Deposits from '../templates/panel/Deposits';
+import Orders from '../templates/panel/Orders';
+
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';

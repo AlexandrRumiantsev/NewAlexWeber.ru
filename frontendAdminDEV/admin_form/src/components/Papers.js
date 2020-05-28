@@ -40,17 +40,6 @@ import {
     if(this.state.papers.data){
       console.log(this.state.papers)
       return <div className='container-paper'>
-      <div onClick={()=>{
-                    store.dispatch(
-                          {
-                            type: 'index', 
-                            val: 'index'
-                          }
-                      )
-                    }}
-                    class='item__close'>
-                    <Link to="/">X</Link>
-                    </div>
                     <Icon 
                       className="fa fa-plus-circle" 
                       style={{ color: 'red' }} 

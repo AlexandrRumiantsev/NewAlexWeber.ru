@@ -12,53 +12,35 @@ const globalData = {}
 export class Authorization extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       autoriz: [],
       checkbox: 'false'
     };
-    const {
-      store
-    } = this.props
-    this.state = store.getState();
-    this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState());
-    });
+    
     globalData.component = this;
+    globalData.store = props.store;
   }
-  eventClick(log, pass) {
+  login() {
 
-    globalData.store = this.props.store;
-
-    let data = this.props.store.dispatch({
+    let data = globalData.store.dispatch({
       type: 'LoginUser',
       val: {
-        'log': log,
-        'pass': pass,
-        'callback': function (val) {
-          
+        'log': document.getElementById('log').value,
+        'pass': document.getElementById('pass').value,
+        'callback': function (log , pass) {
+           sessionStorage.setItem('log', log);
+           sessionStorage.setItem('pass', pass);
+           globalData.component.uppComponent();
         }
       },
-      store: this.props.store
+      store: globalData.store
     })
-    //console.log(this);
-  }
-  check() {
-    if(sessionStorage.getItem('log') && sessionStorage.getItem('pass')){
-      globalData.component.eventClick(
-            sessionStorage.getItem('log'),
-            sessionStorage.getItem('pass')
-      );
 
-      window.location.reload(false);
-    }else{
-      let log = document.getElementById('log').value;
-      let pass = document.getElementById('pass').value;
-      sessionStorage.setItem('log', log);
-      sessionStorage.setItem('pass', pass);
-      globalData.component.eventClick(log, pass);
-      //window.location.reload(false);
-    }
-  } 
+  }
+  uppComponent() {
+    globalData.component.setState({refrash: true});
+  }
   render() {
     if (sessionStorage.getItem('log') && sessionStorage.getItem('pass'))
       return <Menu log={ sessionStorage.getItem('log') } 
@@ -66,6 +48,6 @@ export class Authorization extends React.Component {
                    authComponent={this}
                   />
       else
-        return <LoginForm check={this.check} />
+        return <LoginForm login={this.login} />
   }
 }

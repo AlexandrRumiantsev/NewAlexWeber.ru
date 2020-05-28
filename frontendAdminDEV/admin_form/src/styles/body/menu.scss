@@ -90,7 +90,9 @@ display:flex;
     
 }
 .page_popupp{
+        width: 100%;
         margin-top: calc(65px);
-        height: 100vh;
+        height: calc(100vh - 65px);
+        overflow: scroll;
     }
 }

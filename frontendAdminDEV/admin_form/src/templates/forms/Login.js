@@ -29,7 +29,7 @@ export function LoginForm(props){
             </label> 
          </div>
          <div className='box__btn'>
-            <div onClick = {props.check.bind()}
+            <div onClick = {props.login.bind()}
             className = 'sbm'> 
             Войти 
          </div>
