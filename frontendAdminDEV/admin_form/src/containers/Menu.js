@@ -12,6 +12,7 @@ import '../styles/body/menu.scss';
 import { RightMenu } from './listItems';
 import * as myModule from '../lib/';
 
+import { EditProject } from '../templates/projects/edit.js';
 
 
 const globalData = {}
@@ -43,8 +44,22 @@ export class Menu extends Component {
         this.state = {display: 'main'};
   }
   render() {
-      console.log(this.props.authComponent)
       switch(this.state.display){
+            case 'edit':
+                 console.log(this.state);
+                 let type = this.state.type;
+                 let elemId = this.state.item;
+                 switch(this.state.type){
+                   case 'project':
+                    return(
+                      <div className='container-main'>
+                        <RightMenu aut={this.props.authComponent} main={this}/>
+                        <EditProject store={globalData.store} id={this.state.item}/>
+                      </div>  
+                    )
+                   break;
+                 }    
+            break;
             case 'users':
               return <div className='container-main'>
                 <RightMenu aut={this.props.authComponent} main={this}/>

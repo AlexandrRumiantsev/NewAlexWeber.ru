@@ -125,7 +125,6 @@ export function RightMenu (data){
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  console.log(data.main.props.log);
   return(<div id='RightMenu'>
         <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>

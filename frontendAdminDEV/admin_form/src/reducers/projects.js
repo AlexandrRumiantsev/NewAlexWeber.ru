@@ -21,7 +21,10 @@ import { getProjects } from '../actions/ProjectsActions.js'
                status: true
         })
       break;
-
+      case "getProjectItem":
+        console.log('getProjectItem');
+        return Object.assign({}, state, {})
+      break;
       default:
         return state;
       break;

@@ -24,9 +24,22 @@ export const liba = {
 	'routerState' : function(component) {
 		const mutationObserver = new MutationObserver(function(mutations) {
 			let text = window.location.pathname;
-			component.setState({
-		      display: text.substring(1).toLowerCase()
-		    })
+			let resSplit = text.split('/');
+			if(resSplit){
+				if(resSplit[1]=='edit'){
+					console.log(resSplit);
+					component.setState({
+				      display: resSplit[1],
+				      type: resSplit[2],
+				      item: resSplit[3]
+				    })
+				}else{
+					component.setState({
+				      display: text.substring(1).toLowerCase()
+				    })
+				}
+			}
+			
 		});
 		mutationObserver.observe(document, {
 		  attributes: true,
