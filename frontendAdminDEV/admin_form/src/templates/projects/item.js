@@ -28,7 +28,7 @@ export function ItemProjectTemplate(props) {
                     let div = document.createElement('div');
                     document.body.appendChild(div);
                   }
-                } to={"/edit/project/" + props.data._id}>
+                } to={"/edit-project-" + props.data._id}>
                   <i class="fas fa-edit"></i>
                 </Link>
                 <span onClick={itemDel.bind()}>

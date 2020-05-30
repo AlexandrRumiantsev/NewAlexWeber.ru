@@ -44,21 +44,15 @@ export class Menu extends Component {
         this.state = {display: 'main'};
   }
   render() {
+      console.log(this.state);
       switch(this.state.display){
             case 'edit':
-                 console.log(this.state);
-                 let type = this.state.type;
-                 let elemId = this.state.item;
-                 switch(this.state.type){
-                   case 'project':
-                    return(
+                 return(
                       <div className='container-main'>
                         <RightMenu aut={this.props.authComponent} main={this}/>
                         <EditProject store={globalData.store} id={this.state.item}/>
                       </div>  
-                    )
-                   break;
-                 }    
+                    )    
             break;
             case 'users':
               return <div className='container-main'>

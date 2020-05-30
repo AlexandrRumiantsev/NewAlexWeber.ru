@@ -21,15 +21,20 @@ export const liba = {
 	'getGlobalStore' : function() {
 		return globalData.store;
 	},
+	'session': function(page){
+		sessionStorage.setItem('page', page);
+	},
 	'routerState' : function(component) {
+        
 		const mutationObserver = new MutationObserver(function(mutations) {
 			let text = window.location.pathname;
-			let resSplit = text.split('/');
+			
+			let resSplit = text.split('-');
+			let result = resSplit[0].slice(1);
 			if(resSplit){
-				if(resSplit[1]=='edit'){
-					console.log(resSplit);
+				if(result=='edit'){
 					component.setState({
-				      display: resSplit[1],
+				      display: result,
 				      type: resSplit[2],
 				      item: resSplit[3]
 				    })
@@ -49,6 +54,10 @@ export const liba = {
 		  attributeOldValue: true,
 		  characterDataOldValue: true
 		});
+
+		window.onload = function() {
+        	console.log('RELOAD');
+        }
   		
 	},
 	'form': {

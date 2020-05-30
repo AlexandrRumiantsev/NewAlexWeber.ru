@@ -40,7 +40,9 @@ export function EditProject(props) {
 	const [count, setCount] = useState(0);
 
 	useEffect(() => {
-		globalData.id = props.id;
+		let resSplit = window.location.pathname.split('-');
+		console.log(props.store.getState());
+		globalData.id = resSplit[2];
 		globalData.result = props.store.getState().projects.data.find(filterById)	
 	})   
 

@@ -139,22 +139,15 @@ export class paperAddPopupp{
 
 		let template = document.createElement('div');
       
-        
-	       let closeBtn = `
-	          <div onClick="
-	              let elem = this.parentElement.parentElement.parentElement;
-	              elem.parentNode.removeChild(elem);
-	          " 
-	          class='add_paper_form__close'>
-	              X
-	          </div>
-	       `;
-       
-      
-
 	      template.innerHTML = `<section class='add_paper_form'>
 	            <form id='add_paper'>
-	              `+ closeBtn +`
+	              <div onClick="
+                  let elem = this.parentElement.parentElement.parentElement;
+                  elem.parentNode.removeChild(elem);
+                " 
+                class='add_paper_form__close'>
+                    X
+                </div>
 	              <div class='container-title'></div>  
 	              <div class='container-discr'></div>
 	              <div class='container-img'></div>
