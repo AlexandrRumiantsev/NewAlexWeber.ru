@@ -69,7 +69,12 @@ var mkdirp = require('mkdirp'); // used to create directory tree
 
     // Add headers
     app.use(function(req, res, next) {
-        next();
+        console.log(req.rawHeaders[11]);
+        config.accessList().forEach(element => { 
+          if(req.rawHeaders[11] == element)
+                next(); 
+        });
+        
     });
 
     // BEGIN Methods for interface API
@@ -159,7 +164,7 @@ var mkdirp = require('mkdirp'); // used to create directory tree
 
     app.get('/data', function(req, res) {
         new base( 
-            require('./my_modules/my_projects/Schema.js') , 
+            require('./my_modules/Schems/Projects.js') , 
             'getList' , 
             '', 
             '', 
@@ -169,7 +174,7 @@ var mkdirp = require('mkdirp'); // used to create directory tree
 
     app.get('/data_papers', function(req, res) {
         new base( 
-            require('./my_modules/my_papers/Schema.js') , 
+            require('./my_modules/Schems/Papers.js') , 
             'getList' , 
             '', 
             '', 
@@ -180,7 +185,7 @@ var mkdirp = require('mkdirp'); // used to create directory tree
     app.get('/get_all_comments', function(req, res) {
         console.log('all_comments');
         new base( 
-            require('./my_modules/comments/Schema.js') , 
+            require('./my_modules/Schems/Comments.js') , 
             'getList' , 
             '', 
             '', 
@@ -201,7 +206,7 @@ var mkdirp = require('mkdirp'); // used to create directory tree
         console.log('del_papers');
         console.log(req.body['id']);
         new base( 
-            require('./my_modules/my_papers/Schema.js') , 
+            require('./my_modules/Schems/Papers.js') , 
             'delItem' , 
             req.body['id'], 
             '', 
@@ -215,7 +220,7 @@ var mkdirp = require('mkdirp'); // used to create directory tree
         let settter =  {'title': req.body.data.title, 'discription':req.body.data.discription , 'link': req.body.data.link }
         
         new base( 
-              require('./my_modules/my_papers/Schema.js') , 
+              require('./my_modules/Schems/Papers.js') , 
               'uppItem' , 
               req.body.data._id , 
               '' ,
