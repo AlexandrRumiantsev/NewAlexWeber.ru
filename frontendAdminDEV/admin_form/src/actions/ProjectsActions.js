@@ -12,10 +12,10 @@ const getData = (GET , action ) => {
             .then(res => {
                 console.log(action);
                 //state.data = res.data;
-                action.data.projectComponent.setState({
-                  render: true,
-                  data: res.data
-                });
+                  action.data.projectComponent.setState({
+                    render: true,
+                    data: res.data
+                  });
                 action.data.store.dispatch(
                     {
                       type: 'setProjects', 

@@ -8,6 +8,13 @@ function filterById(item) {
 		return item;
 	}
 };
+function getItem(id , arr) {
+	JSON.parse(arr).forEach( function(el , i){
+		if(el._id == id){
+			return el;
+		}
+	});
+};
 function Template(props) {
 	return(
 		<div className='edit-item'>
@@ -36,14 +43,16 @@ function Template(props) {
 	)
 };
 
+
 export function EditProject(props) {
 	const [count, setCount] = useState(0);
 
 	useEffect(() => {
-		let resSplit = window.location.pathname.split('-');
-		console.log(props.store.getState());
-		globalData.id = resSplit[2];
-		globalData.result = props.store.getState().projects.data.find(filterById)	
+		 
+				let resSplit = window.location.pathname.split('-');
+				globalData.id = resSplit[2];
+			    globalData.result = props.store.getState().projects.data.find(filterById);
+		   
 	})   
 
     if(globalData.result){
@@ -52,8 +61,10 @@ export function EditProject(props) {
 			<Template data={globalData.result} />
 		</div>
 	   )
-    }else 
-	return(
-		<Loader />
-	)
+    }else{
+		return(
+			<Loader />
+		)
+    }
+	
 }

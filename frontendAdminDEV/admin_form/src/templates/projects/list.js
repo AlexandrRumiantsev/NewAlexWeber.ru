@@ -8,6 +8,7 @@ export function ListProjectTemplate(props){
 	const editProject = props.editProject;
 	const ItemProjectTemplate = props.item;
 	const itemDel = props.itemDel;
+	
 	return (<div>
 		<div class='list-projects'>
 		<div class='edit-container'></div>

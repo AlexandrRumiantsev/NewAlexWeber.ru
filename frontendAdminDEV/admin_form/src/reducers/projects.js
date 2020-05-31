@@ -23,8 +23,8 @@ import { getProjects } from '../actions/ProjectsActions.js'
       break;
       case "getProjectItem":
         console.log('getProjectItem');
-        return Object.assign({}, state, {})
-      break;
+        console.log(actions);
+        return state;
       default:
         return state;
       break;
