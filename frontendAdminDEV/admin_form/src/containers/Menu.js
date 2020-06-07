@@ -44,7 +44,6 @@ export class Menu extends Component {
         this.state = {display: 'main'};
   }
   render() {
-      console.log(this.state);
       switch(this.state.display){
             case 'edit':
                  return(

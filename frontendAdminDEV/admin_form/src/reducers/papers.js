@@ -26,9 +26,9 @@ import { savePaper } from '../actions/PapersActions.js'
       break;
       case "uppPaper":
         updatePaper(
-          actions.val.component , 
           actions.val.store , 
-          actions.val.data
+          actions.val.data,
+          actions.val.callback
         );
         return state;
       break;

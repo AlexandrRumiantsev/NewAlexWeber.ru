@@ -15,17 +15,23 @@ export function getPapers(components , store) {
         .catch(()=>{}); 
 }
 
-export function updatePaper(components , store , data) {
-
+export function updatePaper(store , data , callback) {
+  callback(data)
    axios.post(UPP_PAPER, {
       data: data
     })
     .then(function (response) {
       console.log(response);
+      //location.href=location.href;
+      
+
     })
     .catch(function (error) {
       console.log(error);
     });
+    
+
+    
 }
 
 export function  delPaper(id) {

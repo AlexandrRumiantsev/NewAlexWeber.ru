@@ -50,9 +50,9 @@ function DropMenu() {
 
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+      <span onClick={handleClick}>
         { sessionStorage.getItem('log') }
-      </Button>
+      </span>
       <Menu
          onClose={handleClose}
         className={classes.root}
@@ -66,10 +66,4 @@ function DropMenu() {
       </Menu>
     </div>
   );
-}
-
-
-
-User.propTypes = {
-  name: PropTypes.string.isRequired
 }

@@ -7,7 +7,6 @@
   
   Элементы внутри родительского CARD
   CardHeader , CardMedia, CardContent, СardActions
-
   Collapse - раскрывающийся элемент формы
   Avatar - элемент кзбражения пользователя, внутри Card
   IconButton - Элемент формы "Кнопка" в виде иконки
@@ -17,7 +16,7 @@
   MoreVertIcon - иконки MoreVert
   SaveIcon - иконка "СОХРАНИТЬ"
   DeleteIcon - иконка "УДАЛИТЬ"
-  DropzoneArea -  компонент, элемент формы, для загрузки файла
+  DropzoneArea -  компонент, элемент формы, для загрузки файла
   Button - Элемент формы "Кнопка"
   React - Основной компонент React
   Component - Базовый компонент  React, наследуясь от которого, класс получает все возможности компонента React
@@ -43,7 +42,9 @@ import Button from '@material-ui/core/Button'
 import React, { Component } from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import { Loader  } from '../main/loader.js';
 
+var ReactDOM = require('react-dom');
 
 /**
      * Модуль, который реализует форму для редактирования статей
@@ -55,8 +56,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 */
 export function ItemPaperTemplate(props){ 
 
-
-console.log(props);
 const ClassStore = props.store;
 const classData = {}
 
@@ -73,6 +72,8 @@ class DropzoneAreaExample extends Component{
     const valFile = [
         props.data
     ]
+
+
     this.state = {
       files: [],
       bs64:''
@@ -159,7 +160,9 @@ function RecipeReviewCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  
+  const [title, setTitle] = React.useState(props.data.title);
+   
   return (
     <Card className={classes.root}>
     
@@ -175,7 +178,7 @@ function RecipeReviewCard(props) {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-
+      <div id='title-paper'>{title}</div>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -183,7 +186,7 @@ function RecipeReviewCard(props) {
           </Avatar>
         }
         
-        title={props.data.title}
+        title={classData.title}
         subheader=""
       />
       
@@ -196,9 +199,9 @@ function RecipeReviewCard(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           
-          <Typography paragraph>
-             <BasicTextFields data={props.data}/>
-          </Typography>
+         
+             <BasicTextFields title={title} setTitle={setTitle} data={props.data}/>
+          
          
         </CardContent>
       </Collapse>
@@ -215,14 +218,16 @@ function RecipeReviewCard(props) {
                  _handleDropzoneAreaExampleChange
       - Обработчики, реагирующий на изменение своего поля и 
       записывающие актуальные данные в общий объект
-
      * @function saveButtom - Обработчик клика, по кнопке "Сохранить",
      получает все текущие данные с формы.
-
      * @function delButtom - Обработчик клика, по кнопке "Удалить".  
 */
 function BasicTextFields(props) {
-  console.log(props);
+
+  const setTitle = props.setTitle;
+   classData.setTitle = props.setTitle;
+
+
   const classes = useStyles();
   const _data = {
     '_id': props.data._id , 
@@ -247,15 +252,27 @@ function BasicTextFields(props) {
   }
   const saveButtom = function(){
     console.log('§§saveButtom§§');
+     
     _data.fileBs64 = classData.fileBs64;
-    ClassStore.dispatch(
-          {type: 'uppPaper',val : {
-            data: _data,
-            store: ClassStore,
-            component: RecipeReviewCard
-          }
-        }
+
+    async function fn() {
+      ReactDOM.render(<Loader dop="true"/>, document.body);
+      ClassStore.dispatch(
+                    { type: 'uppPaper',val : {
+                      data: _data,
+                      store: ClassStore,
+                      callback: (data) => {
+                      }
+                    }
+                  }
+                )
+    }
+    fn().then(
+      setTimeout(function(){ 
+         window.location.href=window.location.href
+      }, 1000)
     )
+
   }
   const delButtom = function(id){
   
@@ -319,7 +336,7 @@ function BasicTextFields(props) {
         size="large"
         className={classes.button}
         startIcon={<SaveIcon />}
-        onClick={ () => {saveButtom(this)} }
+        onClick={ () => {saveButtom()} }
       >
         Сохранить
       </Button>
