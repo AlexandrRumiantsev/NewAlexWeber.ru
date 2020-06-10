@@ -49,9 +49,16 @@ export function EditProject(props) {
 
 	useEffect(() => {
 		 
-				let resSplit = window.location.pathname.split('-');
-				globalData.id = resSplit[2];
-			    globalData.result = props.store.getState().projects.data.find(filterById);
+		let resSplit = window.location.pathname.split('-');
+		globalData.id = resSplit[2];
+
+		if(localStorage['data_project']){}
+		else localStorage['data_project'] = JSON.stringify(
+				props.store.getState().projects.data
+			)
+		globalData.result = JSON.parse(
+				localStorage['data_project']
+			).find(filterById);
 		   
 	})   
 
