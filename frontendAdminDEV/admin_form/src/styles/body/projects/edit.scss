@@ -1,0 +1,6 @@
+.edit-item{
+    display: grid;
+          grid-template-columns: repeat(2, 0.2fr);
+      grid-gap: 10px;
+      grid-auto-rows: minmax(100px, auto);
+}

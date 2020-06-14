@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Loader  } from '../main/loader.js';
+import * as myModule from '../../lib/';
+import '../../styles/body/projects/edit.scss';
 
 const globalData = {}
 
@@ -19,25 +21,48 @@ function Template(props) {
 	return(
 		<div className='edit-item'>
 		    <div className='edit-item__id'>
-		    	{props.data._id}
+		    	<input
+		    		readOnly 
+		    		className='edit-item-input' 
+		    		defaultValue={props.data._id} 
+		        />
 		    </div>
 		    <div className='edit-item__image'>
-		    	{props.data.image}
+		    	<input  
+		    		className='edit-item-input' 
+		    		defaultValue={props.data.image} 
+		        />
 		    </div>
 		    <div className='edit-item__discription'>
-		    	{props.data.discription}
+		    	<textarea  
+		    		className='edit-item-input' 
+		    		>
+		    		{props.data.discription} 
+		        </textarea>
 		    </div>
 		    <div className='edit-item__imageFull'>
-		    	{props.data.imageFull}
+		    	<input  
+		    		className='edit-item-input' 
+		    		defaultValue={props.data.imageFull} 
+		        />
 		   	</div>
 		    <div className='edit-item__image'>
-		    	{props.data.image}
+		    	<input  
+		    		className='edit-item-input' 
+		    		defaultValue={props.data.image}
+		        />
 		    </div>
 		    <div className='edit-item__link'>
-		    	{props.data.link}
+		    	<input  
+		    		className='edit-item-input' 
+		    		defaultValue={props.data.link}
+		        />
 		    </div>
 		    <div className='edit-item__name'>
-		    	{props.data.name}
+		    	<input  
+		    		className='edit-item-input' 
+		    		defaultValue={props.data.name}
+		        />
 		    </div>
 		</div>
 	)

@@ -9,12 +9,25 @@ import {
   Link
 } from "react-router-dom";
 
+import TextField from '@material-ui/core/TextField';
+import React, { useState, useEffect } from 'react';
+
+
 const globalData = {
 	prevPage: '' ,
 	page: '' ,
 	store: ''
 }
 export const liba = {
+ 	'forms': function(){
+ 		return(
+		   <TextField id="standard-basic"
+	            disabled 
+	            defaultValue='ssss' 
+	            label="ID" 
+	      />
+		)
+ 	},
 	'setGlobalStore' : function(store) {
 		globalData.store = store;
 	},
