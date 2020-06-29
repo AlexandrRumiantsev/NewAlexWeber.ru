@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "nuxt",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -14,6 +15,7 @@
     "bootstrap-vue": "^2.0.0",
     "core-js": "^2.6.5",
     "is-blob-url": "^1.0.1",
+    "nuxt": "^2.6.2",
     "package.json": "^2.0.1",
     "svg-tags": "^1.0.0",
     "vue": "^2.6.10",

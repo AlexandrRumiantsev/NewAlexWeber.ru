@@ -3,6 +3,13 @@ import { Loader  } from '../main/loader.js';
 import * as myModule from '../../lib/';
 import '../../styles/body/projects/edit.scss';
 
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 const globalData = {}
 
 function filterById(item) {
@@ -17,53 +24,87 @@ function getItem(id , arr) {
 		}
 	});
 };
+
 function Template(props) {
+	const [open, setOpen] = React.useState(false);
+
+	  const handleClickOpen = function(e){
+	  	console.log(e);
+	    setOpen(true);
+	  };
+
+	  const handleClose = () => {
+	    setOpen(false);
+	  };
+
+	let imgFull = "http://alexweber.ru/img/" + props.data.imageFull;
+	let img = "http://alexweber.ru/img/" + props.data.image;
 	return(
 		<div className='edit-item'>
-		    <div className='edit-item__id'>
-		    	<input
-		    		readOnly 
-		    		className='edit-item-input' 
-		    		defaultValue={props.data._id} 
-		        />
-		    </div>
-		    <div className='edit-item__image'>
-		    	<input  
-		    		className='edit-item-input' 
-		    		defaultValue={props.data.image} 
-		        />
-		    </div>
-		    <div className='edit-item__discription'>
-		    	<textarea  
-		    		className='edit-item-input' 
-		    		>
-		    		{props.data.discription} 
-		        </textarea>
-		    </div>
-		    <div className='edit-item__imageFull'>
-		    	<input  
-		    		className='edit-item-input' 
-		    		defaultValue={props.data.imageFull} 
-		        />
-		   	</div>
-		    <div className='edit-item__image'>
-		    	<input  
-		    		className='edit-item-input' 
-		    		defaultValue={props.data.image}
-		        />
-		    </div>
-		    <div className='edit-item__link'>
-		    	<input  
-		    		className='edit-item-input' 
-		    		defaultValue={props.data.link}
-		        />
-		    </div>
-		    <div className='edit-item__name'>
-		    	<input  
-		    		className='edit-item-input' 
-		    		defaultValue={props.data.name}
-		        />
-		    </div>
+		     
+            <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>	
+			<div className='edit-cont'>
+			    <div className='edit-item__id'>
+			    	<input
+			    		readOnly 
+			    		className='edit-item-input' 
+			    		defaultValue={props.data._id} 
+			        />
+			    </div>
+			    <div className='edit-item__discription'>
+			    	<textarea  
+			    		className='edit-item-input' 
+			    		>
+			    		{props.data.discription} 
+			        </textarea>
+			    </div>
+			    
+			    <div className='edit-item__link'>
+			    	<input  
+			    		className='edit-item-input' 
+			    		defaultValue={props.data.link}
+			        />
+			    </div>
+			    <div className='edit-item__name'>
+			    	<input  
+			    		className='edit-item-input' 
+			    		defaultValue={props.data.name}
+			        />
+			    </div>
+			</div>
+			<div className='edit_cont-img'>
+			    <div className='edit-item__imageFull'>
+			     <Button variant="outlined" color="primary" onClick={(e) => handleClickOpen(e)}>
+			         Полное изоображение
+			      </Button>
+			   	</div>
+			    <div className='edit-item__image'>
+			      <Button variant="outlined" color="primary" onClick={(e) => handleClickOpen(e)}>
+			         Превью
+			      </Button>
+			    </div>
+			</div>
 		</div>
 	)
 };

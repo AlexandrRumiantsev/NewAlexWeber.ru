@@ -2,18 +2,14 @@ import modules from './modules'
 
 <template>
   	<div id="paper-page">
-      <div class='papers-container' v-for="n in allPapers" v-bind:key='n.id'>
+      <section class='papers-container' v-for="n in allPapers" v-bind:key='n.id'>
             <PapersTemplate :post-data="n"/>
-            <div @click="showComment(n.title)" class='paper-item__btn'> 
-              Комментарии  <span>({{ setCount(n.title)}})</span>
+            <div @click="showComment(n.title)" class='paper-item__btn item-btn'>
+              <i class="fa fa-comment" aria-hidden="true"></i> 
+              <span class='item-btn__title'>{{ setCount(n.title)}}</span>
             </div>
-
             <PaperComments class='papers-container__comments' :id='n.title' :post-data="n.title"/>
-             
-      </div>
-      
-      
-
+      </section>
 	  </div>
 </template>
 

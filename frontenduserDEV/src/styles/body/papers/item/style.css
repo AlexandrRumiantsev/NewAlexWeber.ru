@@ -11,6 +11,7 @@
     cursor:pointer;
 }
 .paper-item__btn{
+    align-items: center;
     display: flex;
     bottom: 0;
     right: 0;
@@ -20,6 +21,13 @@
     position: -webkit-sticky;
     position: sticky;
     width: fit-content;
+}
+.item-btn__title{
+        border-left: 1px solid;
+    border-right: 1px solid;
+    margin-left: 10px;
+    padding: 0 5px;
+    border-radius: 9px;
 }
 .papers-container__comments{
   display:none;

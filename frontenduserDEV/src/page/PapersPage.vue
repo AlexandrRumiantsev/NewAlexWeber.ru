@@ -5,8 +5,8 @@ import modules from './modules'
                   'background: url(http://www.alexweber.ru/img/papers/'+postData.link+'.jpg ) no-repeat;'
                 ">
         <div class='fon-paper__container'>        
-          <div class='fon-paper__title'>{{ postData.title }} </div>
-          <div class='fon-paper__discr'>{{ postData.discription }}</div>
+          <h2 class='fon-paper__title'>{{ postData.title }} </h2>
+          <h3 class='fon-paper__discr'>{{ postData.discription }}</h3>
         </div> 
          
         <div :id="postData.link"  class='paper-item'>
