@@ -1,26 +1,48 @@
+<style>
+@import '../static/css/style.css';
+</style>
+
 <template>
-  <section class="container">
-    <div>
-      <app-logo/>
-      <h1 class="title">
-        {{ name }}
-      </h1>
-      <h2 class="subtitle">
-        {{ description }}
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
+    <div id="main-page">
+    <div class="content">
+           <h2 class='content__sub-title'>WEB-DEVELOPER</h2>
+           <h1 class='content__title'> 
+            <span class='content__name'>
+              АЛЕКСАНДР
+            </span> 
+            РУМЯНЦЕВ
+          </h1>
+           <div class='content__skill-box'>
+                <a rel="nofollow" target="_blank" href='https://ru.vuejs.org/'>
+                  <div>
+                    VUE
+                  </div>
+                </a>
+                <a rel="nofollow" target="_blank" href='https://reactjs.org/'>
+                <div>
+                  REACT
+                </div>
+                 </a>
+                <a rel="nofollow" target="_blank" href='https://nodejs.org/'>
+                <div>
+                  NODE
+                </div>
+                 </a>
+                <a rel="nofollow" target="_blank" href='https://developer.mozilla.org/'>
+                <div>
+                  Native JS
+                </div>
+                 </a>
+                <a rel="nofollow" target="_blank" href='https://www.mongodb.com/'>
+                <div>
+                  MONGO
+                </div>
+                 </a>
+           </div>
     </div>
-  </section>
+  </div>
 </template>
+
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'

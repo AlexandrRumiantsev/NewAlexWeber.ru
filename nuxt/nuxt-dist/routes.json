@@ -1,0 +1,16 @@
+[
+  {
+    "name": "test",
+    "path": "/test",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/test.vue",
+    "chunkName": "pages/test",
+    "_name": "_1a088180"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_f55c37d8"
+  }
+]
