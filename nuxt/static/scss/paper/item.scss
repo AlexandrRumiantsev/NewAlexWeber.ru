@@ -1,0 +1,74 @@
+#paper-page{
+  height: 100vh;
+ text-align: start;
+}
+#paper-page .papers-container{
+   display: block;
+    float: left;
+    width: 50%;
+    height: 50vh;
+    overflow: hidden;
+    cursor:pointer;
+}
+.paper-item__btn{
+    align-items: center;
+    display: flex;
+    bottom: 0;
+    right: 0;
+    color: white;
+    background: black;
+    padding: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    width: fit-content;
+}
+.item-btn__title{
+        border-left: 1px solid;
+    border-right: 1px solid;
+    margin-left: 10px;
+    padding: 0 5px;
+    border-radius: 9px;
+}
+.papers-container__comments{
+  display:none;
+}
+
+#close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: black;
+    z-index: 99;
+}
+.fon-paper__container{
+  background:black;
+  padding:30px;
+  WIDTH:50%;
+}
+.fon-paper{
+ background-size: cover !important;
+ HEIGHT: 100%;
+WIDTH: 100%;
+
+display:flex;
+justify-content: center;
+    align-items: center;
+ -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+.fon-paper:hover{
+   -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -o-transform: scale(1.3);
+  transform: scale(1.3);
+}
+.fon-paper__title{
+  color:white;
+  font-size:24px;
+}
+.fon-paper__discr{
+  color:white;
+  font-size:18px;
+}
