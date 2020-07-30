@@ -23,11 +23,10 @@
     width: fit-content;
 }
 .item-btn__title{
-        border-left: 1px solid;
-    border-right: 1px solid;
-    margin-left: 10px;
-    padding: 0 5px;
-    border-radius: 9px;
+}
+.item-btn__title::before {
+padding-right: 5px;
+  content: "✎";
 }
 .papers-container__comments{
   display:none;
@@ -42,6 +41,7 @@
 }
 .fon-paper__container{
   background:black;
+  background: rgba(0,0,0,0.8);
   padding:30px;
   WIDTH:50%;
 }

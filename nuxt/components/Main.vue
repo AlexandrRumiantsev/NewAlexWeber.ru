@@ -6,7 +6,7 @@ import modules from './modules'
            <h2 class='content__sub-title'>WEB-DEVELOPER</h2>
            <h1 class='content__title'> 
             <span class='content__name'>
-              АЛЕКСАНДР
+              <span><span>АЛЕКСАНДР</span></span>
             </span> 
             РУМЯНЦЕВ
           </h1>
@@ -50,4 +50,5 @@ export default {
 </script>
 <style scoped>
 @import '../static/scss/main.scss';
+@import '../static/scss/h2.scss';
 </style>

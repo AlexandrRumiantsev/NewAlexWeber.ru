@@ -28,10 +28,6 @@ export default {
   },
   methods: {
     ...mapActions(['feathProjects']),
-    showSingle(img) {
-      this.imgs = img
-      this.show()
-    },
     show() {
       this.visible = true
     },

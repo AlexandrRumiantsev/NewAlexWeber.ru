@@ -19,9 +19,8 @@
   width:100%;
   font-size: 90px;
 }
-#main-page h2{
-	width:100%;
-}
+
+
 
 
 body {
@@ -48,6 +47,7 @@ p {
   margin: 0 0 0 -20em;
 }
 .content {
+overflow: hidden;
   text-transform: uppercase;
   padding: .25em 0 .325em;
   display: block;

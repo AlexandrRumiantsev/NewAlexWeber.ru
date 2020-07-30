@@ -15,7 +15,14 @@
          </div>  
          
        
-       
+         <router-link to="/project/"   exact>asdsada</router-link>
+         <nuxt-link :to="{
+                            name: 'project', 
+                            params: { data:postData , id: postData._id }  
+                          }"
+          >
+                            nuxt
+                        </nuxt-link>
 
 </div>
        
@@ -30,5 +37,14 @@ import Vue from 'vue'
 export default {
   name: 'Project',
   props: ['postData'],
-}  
+  methods: {
+    showSingle(img) {
+      alert('ащ');
+    }
+  },
+  mounted() {
+        console.log('asdasd');
+      }
+} 
+
 </script>

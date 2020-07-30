@@ -80,7 +80,6 @@ import Main from '../components/Main.vue'
 import Projects from '../components/Projects.vue'
 import Papers from '../components/Papers.vue'
 
-
 export default {
   name: 'Index',
   data: function() {
