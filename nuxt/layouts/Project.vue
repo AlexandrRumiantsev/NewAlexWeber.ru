@@ -14,15 +14,21 @@
            <div class='discription-projects'> {{ postData.discription }} </div>
          </div>  
          
-       
-         <router-link to="/project/"   exact>asdsada</router-link>
+         
+
+         <NuxtLink :to="'/project/'+postData._id">
+          LINK
+         </NuxtLink>
+
          <nuxt-link :to="{
-                            name: 'project', 
+                            name: 'project' , 
                             params: { data:postData , id: postData._id }  
                           }"
           >
                             nuxt
                         </nuxt-link>
+
+                    
 
 </div>
        

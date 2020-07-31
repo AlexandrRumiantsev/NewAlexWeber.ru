@@ -1,4 +1,15 @@
 module.exports = {
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '/project/:id',
+        name: "project",
+        components: {
+          default: resolve(__dirname, 'components/Projects.vue')
+        }
+      })
+    }
+  },
   /*
   ** Headers of the page
   */
@@ -21,6 +32,12 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    hotMiddleware: {
+      client: {
+        // turn off client overlay when errors are present
+        overlay: false
+      }
+    },
     /*
     ** Run ESLint on save
     */
