@@ -1,0 +1,58 @@
+[
+  {
+    "name": "all",
+    "path": "/all",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/all.vue",
+    "chunkName": "pages/all",
+    "_name": "_8df02876"
+  },
+  {
+    "name": "cart",
+    "path": "/cart",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/cart.vue",
+    "chunkName": "pages/cart",
+    "_name": "_006bb1a8"
+  },
+  {
+    "name": "men",
+    "path": "/men",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/men.vue",
+    "chunkName": "pages/men",
+    "_name": "_27fcf57a"
+  },
+  {
+    "name": "project",
+    "path": "/project",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/project/index.vue",
+    "chunkName": "pages/project/index",
+    "_name": "_3a728000"
+  },
+  {
+    "name": "women",
+    "path": "/women",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/women.vue",
+    "chunkName": "pages/women",
+    "_name": "_1e7130a2"
+  },
+  {
+    "name": "product-id",
+    "path": "/product/:id?",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/product/_id.vue",
+    "chunkName": "pages/product/_id",
+    "_name": "_01260e3e"
+  },
+  {
+    "name": "project-id",
+    "path": "/project/:id",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/project/_id.vue",
+    "chunkName": "pages/project/_id",
+    "_name": "_3df67b30"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_81727114"
+  }
+]
