@@ -3,14 +3,11 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _8df02876 = () => interopDefault(import('../pages/all.vue' /* webpackChunkName: "pages/all" */))
-const _006bb1a8 = () => interopDefault(import('../pages/cart.vue' /* webpackChunkName: "pages/cart" */))
-const _27fcf57a = () => interopDefault(import('../pages/men.vue' /* webpackChunkName: "pages/men" */))
-const _3a728000 = () => interopDefault(import('../pages/project/index.vue' /* webpackChunkName: "pages/project/index" */))
-const _1e7130a2 = () => interopDefault(import('../pages/women.vue' /* webpackChunkName: "pages/women" */))
-const _01260e3e = () => interopDefault(import('../pages/product/_id.vue' /* webpackChunkName: "pages/product/_id" */))
-const _3df67b30 = () => interopDefault(import('../pages/project/_id.vue' /* webpackChunkName: "pages/project/_id" */))
-const _81727114 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _70c3b292 = () => interopDefault(import('../pages/papers/index.js' /* webpackChunkName: "pages/papers/index" */))
+const _6c325e9e = () => interopDefault(import('../pages/project/index.vue' /* webpackChunkName: "pages/project/index" */))
+const _578c3d62 = () => interopDefault(import('../pages/papers/_id.js' /* webpackChunkName: "pages/papers/_id" */))
+const _f1391ef4 = () => interopDefault(import('../pages/project/_id.vue' /* webpackChunkName: "pages/project/_id" */))
+const _f55c37d8 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
 const emptyFn = () => {}
@@ -29,36 +26,24 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
-    path: "/all",
-    component: _8df02876,
-    name: "all"
-  }, {
-    path: "/cart",
-    component: _006bb1a8,
-    name: "cart"
-  }, {
-    path: "/men",
-    component: _27fcf57a,
-    name: "men"
+    path: "/papers",
+    component: _70c3b292,
+    name: "papers"
   }, {
     path: "/project",
-    component: _3a728000,
+    component: _6c325e9e,
     name: "project"
   }, {
-    path: "/women",
-    component: _1e7130a2,
-    name: "women"
-  }, {
-    path: "/product/:id?",
-    component: _01260e3e,
-    name: "product-id"
+    path: "/papers/:id",
+    component: _578c3d62,
+    name: "papers-id"
   }, {
     path: "/project/:id",
-    component: _3df67b30,
+    component: _f1391ef4,
     name: "project-id"
   }, {
     path: "/",
-    component: _81727114,
+    component: _f55c37d8,
     name: "index"
   }],
 

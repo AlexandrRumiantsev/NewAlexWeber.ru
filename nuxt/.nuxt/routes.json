@@ -1,58 +1,37 @@
 [
   {
-    "name": "all",
-    "path": "/all",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/all.vue",
-    "chunkName": "pages/all",
-    "_name": "_8df02876"
-  },
-  {
-    "name": "cart",
-    "path": "/cart",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/cart.vue",
-    "chunkName": "pages/cart",
-    "_name": "_006bb1a8"
-  },
-  {
-    "name": "men",
-    "path": "/men",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/men.vue",
-    "chunkName": "pages/men",
-    "_name": "_27fcf57a"
+    "name": "papers",
+    "path": "/papers",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/papers/index.js",
+    "chunkName": "pages/papers/index",
+    "_name": "_70c3b292"
   },
   {
     "name": "project",
     "path": "/project",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/project/index.vue",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/project/index.vue",
     "chunkName": "pages/project/index",
-    "_name": "_3a728000"
+    "_name": "_6c325e9e"
   },
   {
-    "name": "women",
-    "path": "/women",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/women.vue",
-    "chunkName": "pages/women",
-    "_name": "_1e7130a2"
-  },
-  {
-    "name": "product-id",
-    "path": "/product/:id?",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/product/_id.vue",
-    "chunkName": "pages/product/_id",
-    "_name": "_01260e3e"
+    "name": "papers-id",
+    "path": "/papers/:id",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/papers/_id.js",
+    "chunkName": "pages/papers/_id",
+    "_name": "_578c3d62"
   },
   {
     "name": "project-id",
     "path": "/project/:id",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/project/_id.vue",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/project/_id.vue",
     "chunkName": "pages/project/_id",
-    "_name": "_3df67b30"
+    "_name": "_f1391ef4"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt_app/pages/index.vue",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_81727114"
+    "_name": "_f55c37d8"
   }
 ]
