@@ -5,7 +5,7 @@
         <transition-group name="fade" tag="div">
           <div :key="2">
             <transition name="fade">
-             <div  class="page page-1" v-if="show==1">  
+             <div class="page page-1" v-if="show==1">  
                  <nuxt/>
              </div>   
             </transition>
@@ -42,18 +42,10 @@ export default {
       };
     },
   methods: {
-        
-        activePage: function (page , id) {  
-          this.show = page;
-          Object.keys(document.getElementsByClassName('shape')).forEach(
-              function(index){
-                  document.getElementsByClassName('shape')[index]
-                    .classList.remove('active');
-              }
-          )
-          document.getElementById(id).classList.add('active');
-        }
-      },
+      activePage: function (page , id) {  
+        this.show = page;
+      }
+  },
   computed: {
       evenList: function () {
             return this.list.filter(function (item) {
@@ -65,12 +57,7 @@ export default {
       }    
   },
   beforeCreate() {
-    if (process.client) {
-      let page = window.location.href.split('/')[3];
-      if(page)
-        document.getElementById(page + '-rect').classList.add('active');
-      else  document.getElementById('main-rect').classList.add('active');
-    }
+   /* add before create */
   },
   components: {
     Menu,

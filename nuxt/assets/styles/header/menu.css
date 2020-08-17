@@ -46,7 +46,7 @@
     stroke-width: 8px;
     stroke: white;
 }
-.shape.active{
+.shape.active , .nuxt-link-exact-active.nuxt-link-active .shape{
     stroke: #19f6e8;
     fill: none;
     stroke-dasharray: none;

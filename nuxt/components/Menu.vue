@@ -10,20 +10,20 @@
             </div>
           </div>
         </nuxt-link> 
-         <nuxt-link :to="`/project`">
-            <div @click="activePage(2 , 'project-rect')" class="svg-wrapper">
+         <nuxt-link :to="`/projects`">
+            <div @click="activePage(2 , 'projects-rect')" class="svg-wrapper">
               <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-                <rect id='project-rect' class="shape" height="60" width="320" />
+                <rect id='projects-rect' class="shape" height="60" width="320" />
               </svg>
               <div class="text">
                     ПОРТФОЛИО
               </div>
             </div> 
          </nuxt-link>
-         <nuxt-link :to="`/`">
-          <div @click="activePage(3 , 'paper-rect')" class="svg-wrapper">
+         <nuxt-link :to="`/papers`">
+          <div @click="activePage(3 , 'papers-rect')" class="svg-wrapper">
             <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-              <rect id='paper-rect' class="shape" height="60" width="320" />
+              <rect id='papers-rect' class="shape" height="60" width="320" />
             </svg>
             <div class="text">
                 СТАТЬИ

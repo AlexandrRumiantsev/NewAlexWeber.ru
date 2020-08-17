@@ -1,12 +1,57 @@
+//https://medium.com/js-dojo/how-i-generated-dynamic-routes-for-different-nuxt-js-pages-ce2ee6972743
+
+/*
 import data from './static/storedata.json'
 let dynamicRoutes = () => {
   return new Promise(resolve => {
     resolve(data.map(el => `product/${el.id}`))
   })
 }
+*/
+import axios from 'axios'
+
+const dynamicRoutes = async () => {
+
+    const url = 'http://alexweber.ru:5000/';
+
+    const resForProjects = await axios.get(
+      url + 'get_file_data_project'
+    )
+
+    const resForPapers = await axios.get(
+      url + 'get_file_data_paper'
+    )
+
+
+    const routesForProject = resForProjects.data.map((project)=>{
+      let data = JSON.parse(project);
+      return {
+        route: `/projects/${data._id}`,
+        payload: data
+      }
+    })
+
+    const routesForPaper = resForPapers.data.map((paper)=>{
+      let data = JSON.parse(paper);
+      return {
+        route: `/papers/${data._id}`,
+        payload: data
+      }
+    })
+
+    const routes = routesForProject.concat(routesForPaper);
+
+    return routes;
+
+}
+
+
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
+  /*router: {
+     base: './'
+  },*/
   /*
    ** Headers of the page
    */

@@ -20,7 +20,7 @@ export const state = () => ({
   clientSecret: "" // Required to initiate the payment from the client
 });
 
-let url = "http://alexweber.ru:5000/data";
+let url = "http://alexweber.ru:5000/";
 
 const get = function(){
   axios.get(url)
@@ -34,7 +34,13 @@ const get = function(){
 
 export const getters = {
   featuredProjects: state => function(callback){
-    axios.get(url)
+    axios.get(url + 'get_file_data_project')
+      .then(response => {
+        callback(response.data)
+    })
+  },
+  featuredPapers: state => function(callback){
+    axios.get(url + 'get_file_data_paper')
       .then(response => {
         callback(response.data)
     })

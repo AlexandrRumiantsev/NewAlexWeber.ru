@@ -2,36 +2,31 @@
   {
     "name": "papers",
     "path": "/papers",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/papers/index.js",
-    "chunkName": "pages/papers/index",
-    "_name": "_70c3b292"
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/papers/index.vue",
+    "chunkName": "pages/papers/index"
   },
   {
-    "name": "project",
-    "path": "/project",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/project/index.vue",
-    "chunkName": "pages/project/index",
-    "_name": "_6c325e9e"
+    "name": "projects",
+    "path": "/projects",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/projects/index.vue",
+    "chunkName": "pages/projects/index"
   },
   {
     "name": "papers-id",
     "path": "/papers/:id",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/papers/_id.js",
-    "chunkName": "pages/papers/_id",
-    "_name": "_578c3d62"
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/papers/_id.vue",
+    "chunkName": "pages/papers/_id"
   },
   {
-    "name": "project-id",
-    "path": "/project/:id",
-    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/project/_id.vue",
-    "chunkName": "pages/project/_id",
-    "_name": "_f1391ef4"
+    "name": "projects-id",
+    "path": "/projects/:id",
+    "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/projects/_id.vue",
+    "chunkName": "pages/projects/_id"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_f55c37d8"
+    "chunkName": "pages/index"
   }
 ]

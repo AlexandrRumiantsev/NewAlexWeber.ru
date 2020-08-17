@@ -16,16 +16,16 @@ export default {
     },
   computed: {
     ...mapGetters([
-      'featuredProjects',
+      'featuredPapers',
     ])
   },
   mounted: function () {
       let component = this;
-      this.$store.getters.featuredProjects(
+      this.$store.getters.featuredPapers(
           function(data){
               let id = window.location.href.split('/')[4];
               data.filter(function(el){
-                  if(el._id == id) component.item = el;
+                   if(JSON.parse(el)._id == id) component.item = JSON.parse(el);
               })
           }
       )
