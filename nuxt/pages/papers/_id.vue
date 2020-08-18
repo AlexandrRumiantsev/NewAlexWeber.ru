@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ this.item._id }}
+    <iframe :src="'http://alexweber.ru/papers/' + this.item.link + '.html'"></iframe>
   </div>
 </template>
 
@@ -29,74 +29,23 @@ export default {
               })
           }
       )
+  },
+  head() {
+    return {
+        title: this.item.title,
+        meta: [
+          // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'My custom description'
+          }
+        ]
+  }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.item-contain {
-  margin-left: 8%;
-  width: 80%;
-  display: grid;
-  justify-content: space-around;
-  grid-template-columns: 1fr 2fr;
-}
-
-.product-options {
-  display: flex;
-}
-
-input,
-select {
-  width: 60px;
-  font-size: 25px;
-  margin: 0 5px;
-  padding: 5px 10px;
-}
-
-.update-num {
-  background: black;
-  border-color: black;
-  color: white;
-  font-size: 20px;
-  width: 45px;
-}
-
-.size {
-  margin-left: 10px;
-}
-
-.size-picker {
-  width: 130px;
-  font-size: 20px;
-  height: 100%;
-  border: 0;
-  background-color: white;
-  outline: 1px solid #ccc;
-  outline-offset: -1px;
-}
-
-.quantity {
-  display: flex;
-}
-
-.size-required-message {
-  color: red;
-}
-
-@media screen and (max-width: 650px) {
-  .img img {
-    width: 100%;
-  }
-
-  .item-contain {
-    margin-left: 0 !important;
-    width: 95% !important;
-  }
-
-  .review {
-    width: 90%;
-    margin-left: 4%;
-  }
-}
+  @import '../../assets/styles/body/papers/item.scss';
 </style>

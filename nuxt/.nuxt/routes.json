@@ -3,30 +3,35 @@
     "name": "papers",
     "path": "/papers",
     "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/papers/index.vue",
-    "chunkName": "pages/papers/index"
+    "chunkName": "pages/papers/index",
+    "_name": "_2c26ddd8"
   },
   {
     "name": "projects",
     "path": "/projects",
     "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/projects/index.vue",
-    "chunkName": "pages/projects/index"
+    "chunkName": "pages/projects/index",
+    "_name": "_264aacab"
   },
   {
     "name": "papers-id",
     "path": "/papers/:id",
     "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/papers/_id.vue",
-    "chunkName": "pages/papers/_id"
+    "chunkName": "pages/papers/_id",
+    "_name": "_99fb1380"
   },
   {
     "name": "projects-id",
     "path": "/projects/:id",
     "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/projects/_id.vue",
-    "chunkName": "pages/projects/_id"
+    "chunkName": "pages/projects/_id",
+    "_name": "_4761ddd3"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/aleksandr/Desktop/Projects/MyProjects/AW/NewAlexWeber.ru/nuxt/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_f55c37d8"
   }
 ]

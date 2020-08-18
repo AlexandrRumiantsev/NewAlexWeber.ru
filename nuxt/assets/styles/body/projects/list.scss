@@ -15,18 +15,22 @@ animation: rottate 2s  both;
 .project-box:hover .project-container:before{
     animation: top 2s  both;
     pointer-events: none;
+    animation-delay: 1s;
   
 }
 .project-container:before {
-   color: white;
+   color: black;
     content: attr(text);
     display: inline-block;
     transform: rotateY(180deg);
-    position: absolute;
-    width: 100%;
+    width: 75%;
     left: 0;
-    top: -55px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: -500px;
 } 
 @keyframes rottate {
   0% {
@@ -42,13 +46,13 @@ animation: rottate 2s  both;
      
   }
   100% {
-    top: 45%;
+    margin-top: 0px;
     transform: rotateY(180deg);
   } 
 }     
 .projects-list{
    display: flex;
-    margin-top: 135px;
+    margin-top: 100px;
     width: 100%;
     background-size: cover;
     background-attachment: fixed;
@@ -56,7 +60,7 @@ animation: rottate 2s  both;
 }
 html .project-container{
         transition: 0.5s;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        outline: 5px solid;
     background: white;
     word-wrap: break-word;
     position: relative;
@@ -67,6 +71,8 @@ html .project-container{
     overflow: hidden;
     height: 400px;
     background-size: cover !important;
+    background-blend-mode: overlay;
+    background-color: #E9E2E2 !important;
 }
 .box-img img{
     width:100%;

@@ -1,8 +1,8 @@
 <template>
   <div :id='this.item._id' 
         class='projects__detail detail'
-        :style="'background: url(http://www.alexweber.ru/img/'+ this.item.imageFull + ');'""
-  >
+        :style="'background: url(http://www.alexweber.ru/img/'+ this.item.imageFull + ');'"
+        >
     <h1>{{ this.item.name }}</h1>
 
     
