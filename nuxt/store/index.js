@@ -17,7 +17,8 @@ export const state = () => ({
   cartUIStatus: "idle",
   storedata: data,
   cart: [],
-  clientSecret: "" // Required to initiate the payment from the client
+  clientSecret: "",
+  comments: ""
 });
 
 let url = "http://alexweber.ru:5000/";
@@ -33,6 +34,12 @@ const get = function(){
 
 
 export const getters = {
+  featuredComments: state => function(callback){
+    axios.get(url + 'get_all_comments')
+      .then(response => {
+        callback(response.data)
+    })
+  },
   featuredProjects: state => function(callback){
     axios.get(url + 'get_file_data_project')
       .then(response => {
@@ -101,6 +108,28 @@ export const mutations = {
 };
 
 export const actions = {
+  async addComments(obj ,data ){
+    
+    let send = function(){
+      axios.post('http://alexweber.ru:5000/comment_add',data);
+      alert('Комментарий отправлен');
+      data.callbak(data);
+    }
+
+    const response = await send();
+    
+  },
+  refrashComments: function(obj , data){
+    let insertData = {
+      _id: 9999,
+      title: data.comment,
+      user: data.name,
+      paper: data.paper,
+      __v: 999
+    }
+    console.log(obj);
+    obj.state.comments.push(insertData);
+  },
   async createPaymentIntent({ getters, commit }) {
     try {
       // Create a PaymentIntent with the information about the order

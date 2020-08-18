@@ -23,6 +23,12 @@
           </span>
        </div>
       </div>
+      <div class='paper-item__btn item-btn'>
+          <i class="fa fa-comment" aria-hidden="true"></i> 
+              <span class='item-btn__title'>
+               {{ setCount(JSON.parse(n).title)}}
+              </span>
+      </div>
     </nuxt-link>
   </div>
 </template>
@@ -34,21 +40,38 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
       return {
-        papers: ''
+        papers: '',
+        allComments: ''
       }
     },
   computed: {
     ...mapGetters([
       'featuredPapers',
+      'featuredComments'
     ])
   },
+  methods: {
+    setCount(paper){
+      let counter = '0';
+      for(let i = 0 ; i < this.allComments.length ; i++){
+         if(this.allComments[i].paper == paper)
+            counter++
+      }
+      return counter;
+    }
+  },  
   mounted: function () {
       let component = this;
+      let store = this.$store;
       this.$store.getters.featuredPapers(
           function(data){
-            console.log(data);
               component.papers = data;
-          }
+              store.getters.featuredComments(
+                function(data){
+                  component.allComments = data;
+                }  
+              );
+            }
       )
   }
 };

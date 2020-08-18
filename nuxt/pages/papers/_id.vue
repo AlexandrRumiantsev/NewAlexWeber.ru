@@ -1,44 +1,164 @@
 <template>
-  <div>
+  <div class='paper-page'>
     <iframe :src="'http://alexweber.ru/papers/' + this.item.link + '.html'"></iframe>
+    <section class='comments-box'>
+      <h3 class='comments-box__title'>Комментарии к статье: {{ this.item.title }}</h3>
+      <div class='comments-box__item comment' v-for="n in this.comments">
+        <div class='comment__user'>
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         width="15px" height="15px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
+      <g>
+        <path d="M306,328.667c90.759,0,164.333-73.575,164.333-164.333S396.759,0,306,0c-90.759,0-164.333,73.575-164.333,164.333
+          S215.241,328.667,306,328.667z M383.878,229.376c-7.475,24.718-39.498,43.298-77.878,43.298c-38.38,0-70.403-18.581-77.878-43.298
+          H383.878z M583.667,498.667v54.169c0,8.029-5.912,17.359-13.246,20.624C541.993,586.109,464.45,612,306,612
+          c-158.451,0-235.992-25.891-264.42-38.54c-7.335-3.265-13.246-12.595-13.246-20.624v-54.169
+          c0-81.174,61.804-148.515,140.666-157.533c2.396-0.275,5.949,0.751,7.903,2.165c36.361,26.324,80.877,42.035,129.097,42.035
+          s92.738-15.711,129.097-42.035c1.955-1.414,5.508-2.44,7.904-2.165C521.862,350.152,583.667,417.493,583.667,498.667z"/>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      </svg>
+        {{ n.user }}
+        </div>
+        <div class='comment__conent'>{{ n.title }}</div>
+      </div>
+      <div class='container-comment__form'>
+              <form id='comment_add'>
+                <div class='container-comment__input'>
+                    <input placeholder="Ваше имя?" id='name_form' name='name_form' type='text'>
+                    <button @click="comment_add">Написать</button>
+                    <textarea name='comment_form'></textarea>
+                </div>
+              </form>
+            </div>
+    </section>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   data() {
       return {
-        item: ''
+        item: '',
+        url: '',
+        comments: []
       }
     },
   computed: {
     ...mapGetters([
       'featuredPapers',
+      'featuredComments'
     ])
+  },
+  methods: {
+    ...mapActions(['addComments','refrashComments']),
+    comment_add(e){
+       e.preventDefault();
+       let component = this;
+       e.preventDefault();
+       let form = e.target.parentElement.parentElement;
+       let data = {
+            'user' : form.querySelector("input[name='name_form']").value ,
+            'title' : form.querySelector("textarea[name='comment_form']").value,
+            'paper': component.item.title,
+            'callbak': function(data){
+               component.comments.push(data);
+            }
+       }
+       console.log(form.querySelector("input[name='name_form']").value)
+       console.log(form.querySelector("input[name='name_form']").value)
+       
+       if(form.querySelector("input[name='name_form']").value == ''){
+          form.querySelector("input[name='name_form']").style = 'border:1px solid red;';
+          alert('Заполните Имя');
+       }else if(form.querySelector("textarea[name='comment_form']").value == ''){
+       form.querySelector("textarea[name='comment_form']").style = 'border:1px solid red;';
+        alert('Заполните Комментарий');
+       }else{
+         form.querySelector("input[name='name_form']").style = 'border:none';
+         form.querySelector("textarea[name='comment_form']").style = 'border:none';
+         this.addComments(
+            data
+         );
+       }   
+    }
   },
   mounted: function () {
       let component = this;
-      this.$store.getters.featuredPapers(
+      let store = this.$store;
+      store.getters.featuredPapers(
           function(data){
               let id = window.location.href.split('/')[4];
+              component.url = window.location.href;
               data.filter(function(el){
-                   if(JSON.parse(el)._id == id) component.item = JSON.parse(el);
+                   if(JSON.parse(el)._id == id){
+                      component.item = JSON.parse(el);
+                    }
               })
           }
       )
+      store.getters.featuredComments(
+          function(data){
+              for(let i = 0 ;i < data.length ; i++){
+                if(data[i].paper == component.item.title){
+                    component.comments.push(data[i])
+                }
+              }
+                           
+          }
+      );
   },
   head() {
     return {
         title: this.item.title,
         meta: [
-          // hid is used as unique identifier. Do not use `vmid` for it as it will not work
           {
-            hid: 'description',
-            name: 'description',
-            content: 'My custom description'
+            property: 'og:title',
+            content: this.item.title
+          },
+          {
+            property: 'og:type',
+            content: this.item.discription
+          },
+          {
+            property: 'og:url',
+            content: this.url
+          },
+          {
+            property: 'og:image',
+            content: 'http://www.alexweber.ru/img/papers/'+this.item.link+'.jpg'
           }
         ]
   }

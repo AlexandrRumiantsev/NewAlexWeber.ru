@@ -3,6 +3,7 @@
         class='projects__detail detail'
         :style="'background: url(http://www.alexweber.ru/img/'+ this.item.imageFull + ');'"
         >
+    <div class='loader'></div>    
     <h1>{{ this.item.name }}</h1>
 
     
