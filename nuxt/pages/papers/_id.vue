@@ -94,11 +94,11 @@ export default {
             'title' : form.querySelector("textarea[name='comment_form']").value,
             'paper': component.item.title,
             'callbak': function(data){
+                //console.log(data);
                component.comments.push(data);
             }
        }
-       console.log(form.querySelector("input[name='name_form']").value)
-       console.log(form.querySelector("input[name='name_form']").value)
+       
        
        if(form.querySelector("input[name='name_form']").value == ''){
           form.querySelector("input[name='name_form']").style = 'border:1px solid red;';
@@ -123,17 +123,19 @@ export default {
               let id = window.location.href.split('/')[4];
               component.url = window.location.href;
               data.filter(function(el){
-                   if(JSON.parse(el)._id == id){
-                      component.item = JSON.parse(el);
+                   if(el._id == id){
+                      component.item = el;
                     }
               })
           }
       )
       store.getters.featuredComments(
           function(data){
+          console.log(data);
               for(let i = 0 ;i < data.length ; i++){
                 if(data[i].paper == component.item.title){
-                    component.comments.push(data[i])
+                    component.comments.push(data[i]);
+                    
                 }
               }
                            

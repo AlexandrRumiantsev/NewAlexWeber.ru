@@ -70,10 +70,10 @@ var mkdirp = require('mkdirp'); // used to create directory tree
     // Add headers
     app.use(function(req, res, next) {
         console.log(req.rawHeaders[11]);
-        config.accessList().forEach(element => { 
-          if(req.rawHeaders[11] == element)
+        //config.accessList().forEach(element => { 
+          //if(req.rawHeaders[11] == element)
                 next(); 
-        });
+        //});
         
     });
 
@@ -87,7 +87,34 @@ var mkdirp = require('mkdirp'); // used to create directory tree
            
      })
     
-
+    app.get('/get_file_data_project', function(req, res) {
+        fs.readFile("./files/data/data.json", "utf8", 
+                function(error,data){
+                    console.log("Асинхронное чтение файла");
+                    if(error) throw error; 
+                    console.log(data);  
+                    res.send(data);
+        });
+    });
+    app.get('/get_file_data_paper', function(req, res) {
+        fs.readFile("./files/data_papers/data.json", "utf8", 
+                function(error,data){
+                    console.log("Асинхронное чтение файла");
+                    if(error) throw error; 
+                    console.log(data);  
+                    res.send(data);
+        });
+    });
+    app.get('/get_file_data_comment', function(req, res) {
+        fs.readFile("./files/get_all_comments/data.json", "utf8", 
+                function(error,data){
+                    console.log("Асинхронное чтение файла");
+                    if(error) throw error; 
+                    console.log(data);  
+                    res.send(data);
+        });
+    });
+    
     app.get('/', function(req, res) {
         res.sendFile(__dirname + '/view/index.html');
     });
@@ -105,9 +132,11 @@ var mkdirp = require('mkdirp'); // used to create directory tree
             let fs = require('fs');
             let time = new Date("April/17/1983/21:08:00");
  
-             fs.appendFile('./files/'+dir+'/'+time+'.txt', data, function (err) {
+             //fs.appendFile('./files/'+dir+'/'+time+'.txt', data, function (err) {
+             fs.appendFile('./files/'+dir+'/data.json', data, function (err) {
                  if (err) throw err;
                  console.log('Saved!');
+                 res.sendFile(__dirname + '/view/success.html');
                  //resMain.download('./files/'+dir+'/'+time+'.txt');
              }); 
          }
@@ -139,7 +168,7 @@ var mkdirp = require('mkdirp'); // used to create directory tree
                 getProd(dataGet[i]);
         }
         
-        res.sendFile(__dirname + '/view/success.html');
+        
         
     });
 

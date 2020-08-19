@@ -1,12 +1,12 @@
 .loader{
-background: url(/_nuxt/assets/planetloading.gif);
+background: url(./planetloading.gif);
     position: fixed;
     width: 100%;
     height: 100vh;
     background-size: contain;
     z-index: 2;
     background-position-x: center;
-    animation: hidden 10s  both;
+    animation: hidden 6s  both;
 }
 
 
@@ -61,6 +61,8 @@ margin-left: -300px;
 
 }
 .detail__box{
+width: 50%;
+text-align:center;
 	height: fit-content;
     margin: 30px;
     background: white;

@@ -41,13 +41,13 @@ export const getters = {
     })
   },
   featuredProjects: state => function(callback){
-    axios.get(url + 'get_file_data_project')
+    axios.get(url + 'data')
       .then(response => {
         callback(response.data)
     })
   },
   featuredPapers: state => function(callback){
-    axios.get(url + 'get_file_data_paper')
+    axios.get(url + 'data_papers')
       .then(response => {
         callback(response.data)
     })
@@ -109,11 +109,16 @@ export const mutations = {
 
 export const actions = {
   async addComments(obj ,data ){
-    
+    let sendData = {
+      'paper':data.paper,
+      'title':data.title,
+      'user':data.user,
+    }
+    console.log(sendData);
     let send = function(){
-      axios.post('http://alexweber.ru:5000/comment_add',data);
+      axios.post('http://alexweber.ru:5000/comment_add',sendData);
       alert('Комментарий отправлен');
-      data.callbak(data);
+      data.callbak(sendData);
     }
 
     const response = await send();

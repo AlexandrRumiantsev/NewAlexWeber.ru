@@ -1,8 +1,8 @@
 <template>
   <div class="projects-list">
-      <div class='project-box' v-for="n in this.projects" v-bind:key='JSON.parse(n)._id'>
-        <nuxt-link :text="JSON.parse(n).name" :to="`/projects/${JSON.parse(n)._id}`"  class='project-container'
-        :style="'background: url(http://www.alexweber.ru/img/'+ JSON.parse(n).image + ');'"">
+      <div class='project-box' v-for="n in this.projects" v-bind:key='n._id'>
+        <nuxt-link :text="n.name" :to="`/projects/${n._id}`"  class='project-container'
+        :style="'background: url(http://www.alexweber.ru/img/'+ n.image + ');'"">
         </nuxt-link>  
       </div>    
   </div>
@@ -30,6 +30,7 @@ export default {
       this.$store.getters.featuredProjects(
           function(data){
               component.projects = data;
+              console.log('/////////');
               console.log(component.projects);
           }
       )

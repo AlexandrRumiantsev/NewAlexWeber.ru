@@ -43,7 +43,7 @@ export default {
               let id = window.location.href.split('/')[4];
 
               data.filter(function(el){
-                  if(JSON.parse(el)._id == id) component.item = JSON.parse(el);
+                  if(el._id == id) component.item = el;
               })
           }
       )

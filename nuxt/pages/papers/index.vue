@@ -3,21 +3,21 @@
     <nuxt-link 
       v-for="n in this.papers"
      class='papers-container'
-      :to="`/papers/${JSON.parse(n)._id}`"
-      v-bind:key='JSON.parse(n)._id' 
-      :style="`color:${JSON.parse(n).link}`">
+      :to="`/papers/${n._id}`"
+      v-bind:key='n._id' 
+      :style="`color:${n.link}`">
       <div 
         class='fon-paper'
         :style="
-                'background: url(http://www.alexweber.ru/img/papers/'+JSON.parse(n).link+'.jpg ) no-repeat;'
+                'background: url(http://www.alexweber.ru/img/papers/'+n.link+'.jpg ) no-repeat;'
                 "
       >
         <div class='fon-paper__container'>        
-          <h2 class='fon-paper__title'>{{ JSON.parse(n).title }} </h2>
-          <h3 class='fon-paper__discr'>{{ JSON.parse(n).discription }}</h3>
+          <h2 class='fon-paper__title'>{{ n.title }} </h2>
+          <h3 class='fon-paper__discr'>{{ n.discription }}</h3>
         </div> 
          
-        <div :id="JSON.parse(n).link"  class='paper-item'>
+        <div :id="n.link"  class='paper-item'>
           <span id='close-btn'>
                 <img src='http://localhost:8080/img/close-icon.png'>
           </span>
@@ -26,7 +26,7 @@
       <div class='paper-item__btn item-btn'>
           <i class="fa fa-comment" aria-hidden="true"></i> 
               <span class='item-btn__title'>
-               {{ setCount(JSON.parse(n).title)}}
+               {{ setCount(n.title)}}
               </span>
       </div>
     </nuxt-link>

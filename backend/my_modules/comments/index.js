@@ -1,6 +1,6 @@
 function comments() {
     const mongoose = require("mongoose");
-    const commentsSchem = require('./Schema.js');
+    const commentsSchem = require('../Schems/Comments.js');
     
 
     this.makeid = function() {
@@ -23,7 +23,8 @@ function comments() {
    this.comments_model = function(data) { 
          var dataForm = data;
          var id = mongoose.Types.ObjectId(this.makeid());
-         var item = new commentsSchem({ _id: id, title: dataForm.comment , user: dataForm.name , paper: dataForm.paper });
+         console.log(dataForm);
+         var item = new commentsSchem({ _id: id, title: dataForm.title , user: dataForm.user , paper: dataForm.paper });
          item.save(function (err) {
             if (err) return console.log(err);
          });
