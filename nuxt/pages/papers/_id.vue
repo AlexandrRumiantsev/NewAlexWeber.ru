@@ -118,29 +118,32 @@ export default {
   mounted: function () {
       let component = this;
       let store = this.$store;
-      store.getters.featuredPapers(
-          function(data){
-              let id = window.location.href.split('/')[4];
-              component.url = window.location.href;
-              data.filter(function(el){
-                   if(el._id == id){
-                      component.item = el;
-                    }
-              })
-          }
-      )
-      store.getters.featuredComments(
-          function(data){
-          console.log(data);
-              for(let i = 0 ;i < data.length ; i++){
-                if(data[i].paper == component.item.title){
-                    component.comments.push(data[i]);
-                    
-                }
-              }
-                           
-          }
-      );
+      let id = window.location.href.split('/')[4];
+      
+      //store.getters.feathComments();
+      /*
+      this.$store.state.comments['comments'].filter(function(el){
+          if(el._id == id) component.comments = el;
+      })*/
+      component.comments = this.$store.state.comments['comments'];
+      let s = function(callback){
+       
+        store.getters.featuredPapers();
+        store.state.papers.papers.filter(function(el){
+            if(el._id == id){
+              component.item = el;
+               callback();
+            }
+        })
+        
+      }
+      s(function(){
+          store.getters.feathComments();
+          store.state.comments['comments'].filter(function(el){
+              if(el._id == id) component.comments = el;
+          })
+      })
+      
   },
   head() {
     return {

@@ -38,15 +38,11 @@ export default {
   },
   mounted: function () {
       let component = this;
-      this.$store.getters.featuredProjects(
-          function(data){
-              let id = window.location.href.split('/')[4];
-
-              data.filter(function(el){
-                  if(el._id == id) component.item = el;
-              })
-          }
-      )
+      let id = window.location.href.split('/')[4];
+      this.$store.getters.featuredProjects();
+      this.$store.state.projects.projects.filter(function(el){
+          if(el._id == id) component.item = el;
+      })
   }
 };
 </script>

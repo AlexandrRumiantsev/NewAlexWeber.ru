@@ -27,13 +27,9 @@ export default {
   },
   mounted: function () {
       let component = this;
-      this.$store.getters.featuredProjects(
-          function(data){
-              component.projects = data;
-              console.log('/////////');
-              console.log(component.projects);
-          }
-      )
+      let store = this.$store;
+      store.getters.featuredProjects();
+      this.projects = store.state.projects.projects;
   }
 };
 </script>

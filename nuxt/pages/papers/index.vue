@@ -63,16 +63,11 @@ export default {
   mounted: function () {
       let component = this;
       let store = this.$store;
-      this.$store.getters.featuredPapers(
-          function(data){
-              component.papers = data;
-              store.getters.featuredComments(
-                function(data){
-                  component.allComments = data;
-                }  
-              );
-            }
-      )
+      store.getters.feathComments();
+      this.allComments = store.state.comments.comments;
+      store.getters.featuredPapers();
+      this.papers = store.state.papers.papers;
+      
   }
 };
 </script>
