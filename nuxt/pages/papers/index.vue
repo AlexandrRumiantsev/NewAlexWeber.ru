@@ -1,7 +1,7 @@
 <template>
   <div id="paper-page">
     <nuxt-link 
-      v-for="n in this.papers"
+      v-for="n in this.$store.state.papers.papers"
      class='papers-container'
       :to="`/papers/${n._id}`"
       v-bind:key='n._id' 
@@ -26,7 +26,11 @@
       <div class='paper-item__btn item-btn'>
           <i class="fa fa-comment" aria-hidden="true"></i> 
               <span class='item-btn__title'>
-               {{ setCount(n.title)}}
+               {{ 
+                  setCount(
+                    n.title
+                  ) 
+                }}
               </span>
       </div>
     </nuxt-link>
@@ -53,20 +57,29 @@ export default {
   methods: {
     setCount(paper){
       let counter = '0';
-      for(let i = 0 ; i < this.allComments.length ; i++){
-         if(this.allComments[i].paper == paper)
-            counter++
+      for(let i = 0 ; i <  this.$store.state.comments.comments.length ; i++){
+            if(
+              this.$store.state.comments.comments[i].paper == paper
+            ) counter++;
       }
       return counter;
     }
   },  
   mounted: function () {
+
       let component = this;
       let store = this.$store;
-      store.getters.feathComments();
-      this.allComments = store.state.comments.comments;
-      store.getters.featuredPapers();
-      this.papers = store.state.papers.papers;
+      component.allComments = store.state.comments.comments;
+      console.log(this.$store);
+      store.getters.featuredPapers(function(){
+         store.getters.feathComments();
+         component.allComments = store.state.comments.comments;
+
+         component.papers = store.state.papers.papers;
+         for(let i = 0 ; i < store.state.papers.papers['length'] ; i++){
+            store.state.papers.papers[i].count = component.setCount(store.state.papers.papers[i].title);
+         }
+      });   
       
   }
 };

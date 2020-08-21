@@ -42,7 +42,6 @@
         props: ['activePage'],
         name: 'Menu',
         mounted: function () {
-          console.log(this);
         }
     }  
 </script>

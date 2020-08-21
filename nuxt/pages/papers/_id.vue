@@ -3,7 +3,8 @@
     <iframe :src="'http://alexweber.ru/papers/' + this.item.link + '.html'"></iframe>
     <section class='comments-box'>
       <h3 class='comments-box__title'>Комментарии к статье: {{ this.item.title }}</h3>
-      <div class='comments-box__item comment' v-for="n in this.comments">
+     
+      <div class='comments-box__item comment' v-for="n in this.$store.state.comments.comments">
         <div class='comment__user'>
               <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          width="15px" height="15px" viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
@@ -73,7 +74,7 @@ export default {
       return {
         item: '',
         url: '',
-        comments: []
+        comments: ''
       }
     },
   computed: {
@@ -83,7 +84,7 @@ export default {
     ])
   },
   methods: {
-    ...mapActions(['addComments','refrashComments']),
+    ...mapActions(['addComments','refrashComments','feathComments']),
     comment_add(e){
        e.preventDefault();
        let component = this;
@@ -95,7 +96,8 @@ export default {
             'paper': component.item.title,
             'callbak': function(data){
                 //console.log(data);
-               component.comments.push(data);
+              component.$store.state.comments.comments.push(data);
+               //component.comments.push(data);
             }
        }
        
@@ -119,31 +121,28 @@ export default {
       let component = this;
       let store = this.$store;
       let id = window.location.href.split('/')[4];
-      
-      //store.getters.feathComments();
+      component.featuredPapers(function(data){
+         component.item = data[0];
+           component.feathComments( { function(){
+              console.log( 'x' ); 
+           } 
+         });
+      });
       /*
-      this.$store.state.comments['comments'].filter(function(el){
-          if(el._id == id) component.comments = el;
-      })*/
-      component.comments = this.$store.state.comments['comments'];
-      let s = function(callback){
-       
-        store.getters.featuredPapers();
-        store.state.papers.papers.filter(function(el){
-            if(el._id == id){
-              component.item = el;
-               callback();
-            }
-        })
-        
-      }
-      s(function(){
+      store.getters.featuredPapers();
+
+      store.state.papers.papers.filter(function(el){
+        if(el._id == id){
+          console.log('!!!');
+          component.item = el;
           store.getters.feathComments();
-          store.state.comments['comments'].filter(function(el){
-              if(el._id == id) component.comments = el;
-          })
+          component.comments = store.state.comments.comments;
+          console.log(store.state.comments.comments);
+        }
       })
+      */
       
+
   },
   head() {
     return {

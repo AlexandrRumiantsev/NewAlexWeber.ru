@@ -37,7 +37,7 @@ const actions = {
 		const response = await send();
 		
 	},
-	async feathComments(){
+	async feathComments(store){
         let arrData = JSON.parse(localStorage.getItem('commnets'))
 			if(arrData){
 					mutations.getComments(state , arrData);
@@ -47,6 +47,7 @@ const actions = {
 					'http://alexweber.ru:5000/get_all_comments'
 				)
 				mutations.setComments(state , response.data);
+
         	}
 	},
 	refrashComments: function(obj , data){

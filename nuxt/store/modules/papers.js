@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const state = {
+	callback: '',
 	papers:[]
 };
 
@@ -24,15 +25,17 @@ const mutations = {
 
 //  Объект для получения данных из внешних источников
 const actions = {	
-		async feathPapers( ){
+		async feathPapers(calback){
 			let arrData = JSON.parse(localStorage.getItem('papers'))
 			if(arrData){
 					mutations.getPapers( state , arrData);
+					calback(arrData)
 			}else{	
 				const response = await axios.get(
 					'http://alexweber.ru:5000/data_papers'
 				)
 				 mutations.setPapers( state , response.data);
+				 calback(response.data)
 			}
 		}	
 }
