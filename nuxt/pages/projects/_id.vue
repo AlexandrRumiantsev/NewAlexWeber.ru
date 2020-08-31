@@ -1,23 +1,12 @@
 <template>
   <div :id='this.item._id' 
         class='projects__detail detail'
-        :style="'background: url(http://www.alexweber.ru/img/'+ this.item.imageFull + ');'"
         >
-    <div class='loader'></div>    
-    <h1>{{ this.item.name }}</h1>
-
-    
-    <div class='detail__img'>
-      <img :src="'http://www.alexweber.ru/img/'+ this.item.imageFull" />
-    </div>
-    <div class='detail__box'>
-      <div class='detail__discription'>
-        {{ this.item.discription }}
-      </div>
-      <a target='_blank' rel='nofollow' :href='this.item.link'>
-        Перейти
-      </a>
-    </div>
+        
+    <img class='detail-img' :src="'http://www.alexweber.ru/img/'+ this.item.imageFull">    
+    <div class='loader'>
+      <h1>{{ this.item.name }}</h1>
+    </div>    
   </div>
 </template>
 
